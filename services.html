@@ -8,172 +8,175 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <style>
     :root {
-      --cobalt-500: #1E4D8C; --cobalt-400: #2B6CB0; --cobalt-300: #4299E1; --cobalt-200: #63B3ED;
-      --white: #FFFFFF; --off-white: #F5F3EF; --warm-gray-50: #FAF9F7;
-      --warm-gray-100: #F0EDE8; --warm-gray-200: #E2DED6; --warm-gray-300: #C9C3B8;
-      --warm-gray-400: #A8A096; --warm-gray-500: #7A736A; --warm-gray-600: #5C564E;
-      --warm-gray-700: #3D3833; --warm-gray-800: #2A2622; --black: #0A0A0A;
-      --bg-primary: var(--off-white); --bg-secondary: var(--warm-gray-100);
-      --text-primary: var(--black); --text-secondary: var(--warm-gray-500); --text-muted: var(--warm-gray-400);
-      --accent: var(--cobalt-400); --accent-hover: var(--cobalt-300);
+      --cobalt-400: #2B6CB0; --cobalt-300: #4299E1;
+      --white: #FFFFFF; --off-white: #F3F3EF; --warm-gray-100: #EBEBE7;
+      --warm-gray-200: #DCD8D0; --warm-gray-300: #C4BEB4; --warm-gray-400: #A8A096;
+      --warm-gray-500: #7A736A; --warm-gray-600: #5C564E; --warm-gray-700: #3D3833;
+      --warm-gray-800: #2A2622; --black: #121212; --dark-bg: #0f0f0f;
+      --bg: var(--off-white); --bg-dark: var(--dark-bg);
+      --text: var(--black); --text-light: var(--off-white);
+      --text-muted: var(--warm-gray-500); --accent: var(--cobalt-400);
       --border: var(--warm-gray-200);
-      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.19, 1, 0.22, 1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { font-family: var(--font-primary); font-size: 15px; line-height: 1.5; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; }
+    body { font-family: var(--font); font-size: 15px; line-height: 1.5; background: var(--bg); color: var(--text); overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     img { display: block; max-width: 100%; height: auto; }
-    ul, ol { list-style: none; }
-    ::selection { background: var(--cobalt-400); color: var(--white); }
+    ul { list-style: none; }
+    ::selection { background: var(--accent); color: var(--white); }
 
-    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; padding: 16px 40px; }
-    @media (min-width: 1024px) { .header-inner { padding: 18px 56px; } }
-    .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    /* Header — matching homepage */
+    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px clamp(16px, 3vw, 56px); }
+    .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
     .header-logo a { transition: opacity 0.3s ease; }
-    .header-logo a:hover { opacity: 0.6; }
+    .header-logo a:hover { opacity: 0.5; }
     .header-nav { display: none; align-items: center; gap: 32px; }
     @media (min-width: 1024px) { .header-nav { display: flex; } }
-    .header-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); position: relative; transition: color 0.3s ease; }
-    .header-nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s var(--ease-out-expo); }
-    .header-nav a:hover { color: var(--text-primary); }
-    .header-nav a:hover::after { width: 100%; }
-    .header-nav a.active { color: var(--accent); }
-    .header-nav a.active::after { width: 100%; background: var(--accent); }
+    .header-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); position: relative; overflow: hidden; transition: color 0.3s ease; }
+    .header-nav a .nav-label { display: inline-block; transition: transform 0.5s var(--ease); }
+    .header-nav a .nav-duplicate { position: absolute; top: 100%; left: 0; display: inline-block; color: var(--accent); transition: transform 0.5s var(--ease); }
+    .header-nav a:hover .nav-label { transform: translateY(-100%); }
+    .header-nav a:hover .nav-duplicate { transform: translateY(-100%); }
+    .header-nav a.active { color: var(--text); }
+    .header-nav a.active .nav-label { color: var(--accent); }
     .header-cta { display: none; }
-    @media (min-width: 1024px) { .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; } .header-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,108,176,0.25); } }
-    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--text-primary); }
+    @media (min-width: 1024px) {
+      .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .header-cta::before { content: ''; position: absolute; inset: 0; background: var(--cobalt-300); clip-path: inset(0 50% 0 50%); transition: clip-path 0.5s var(--ease); z-index: 0; }
+      .header-cta:hover::before { clip-path: inset(0); }
+      .header-cta span { position: relative; z-index: 1; }
+      .header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,108,176,0.3); }
+    }
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--text); }
     @media (min-width: 1024px) { .menu-toggle { display: none; } }
     .menu-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
     .menu-icon span { display: block; height: 1.5px; background: currentColor; transition: transform 0.3s ease, opacity 0.3s ease; }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    .mobile-menu { position: fixed; inset: 0; background: var(--bg-primary); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .mobile-menu { position: fixed; inset: 0; background: var(--bg-dark); color: var(--text-light); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .mobile-menu.active { opacity: 1; visibility: visible; }
     .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 28px; }
-    .mobile-menu-nav a { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--text-secondary); transition: color 0.3s ease; }
-    .mobile-menu-nav a:hover { color: var(--text-primary); }
+    .mobile-menu-nav a { font-size: clamp(32px, 6vw, 48px); font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--warm-gray-500); transition: color 0.3s ease; }
+    .mobile-menu-nav a:hover { color: var(--text-light); }
     .mobile-menu-cta { margin-top: 48px; }
 
-    .page-hero { padding: 140px 40px 80px; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
-    @media (min-width: 1024px) { .page-hero { padding: 160px 56px 100px; } }
-    .page-hero .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    /* Page Hero — Editorial weight 400 */
+    .page-hero { padding: clamp(160px, 18vw, 220px) clamp(16px, 3vw, 56px) clamp(80px, 10vw, 160px); background: var(--bg); border-bottom: 1px solid var(--border); }
+    .page-hero .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
     .page-hero .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    .page-hero h1 { font-size: clamp(40px, 7vw, 88px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; max-width: 900px; }
+    .page-hero h1 { font-size: clamp(3.5rem, 9vw, 9rem); font-weight: 400; letter-spacing: -0.05em; line-height: 0.9; text-transform: uppercase; max-width: 900px; }
     .page-hero h1 .accent { color: var(--accent); }
-    .page-hero p { max-width: 520px; margin-top: 20px; color: var(--text-secondary); font-size: 16px; line-height: 1.6; }
+    .page-hero p { max-width: 520px; margin-top: 20px; color: var(--text-muted); font-size: 16px; line-height: 1.6; }
 
-    .section-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-    @media (min-width: 1024px) { .section-container { padding: 0 56px; } }
+    .section-container { padding: 0 clamp(16px, 3vw, 56px); }
     .section-header { margin-bottom: 48px; }
-    .section-header .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .section-header .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .section-header .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    .section-header h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; }
+    .section-header h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; }
 
     /* Services Grid */
-    .services-section { padding: 100px 0; }
-    @media (min-width: 1024px) { .services-section { padding: 120px 0; } }
+    .services-section { padding: clamp(80px, 10vw, 160px) 0; }
     .services-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
-    .service-card { position: relative; padding: 36px; background: var(--white); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s ease, transform 0.5s var(--ease-out-expo), box-shadow 0.3s ease; }
+    .service-card { position: relative; padding: 36px; background: var(--white); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s ease, transform 0.5s var(--ease), box-shadow 0.3s ease; }
     .service-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
     .service-number { position: absolute; top: 20px; right: 24px; font-size: 48px; font-weight: 800; color: var(--warm-gray-100); line-height: 1; }
     .service-card h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; position: relative; z-index: 1; }
-    .service-card > p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; position: relative; z-index: 1; }
+    .service-card > p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; position: relative; z-index: 1; }
     .service-features { position: relative; z-index: 1; border-top: 1px solid var(--border); padding-top: 20px; }
-    .service-features li { font-size: 13px; color: var(--text-secondary); padding: 5px 0; display: flex; align-items: center; gap: 10px; }
+    .service-features li { font-size: 13px; color: var(--text-muted); padding: 5px 0; display: flex; align-items: center; gap: 10px; }
     .service-features li::before { content: ''; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
 
     /* Process */
-    .process-section { padding: 100px 0; background: var(--bg-secondary); }
-    @media (min-width: 1024px) { .process-section { padding: 120px 0; } }
+    .process-section { padding: clamp(80px, 10vw, 160px) 0; background: var(--warm-gray-100); }
     .process-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
     @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
-    .process-step { text-align: left; padding: 32px; background: var(--white); border: 1px solid var(--border); transition: border-color 0.3s ease, transform 0.5s var(--ease-out-expo); }
+    .process-step { text-align: left; padding: 32px; background: var(--white); border: 1px solid var(--border); transition: border-color 0.3s ease, transform 0.5s var(--ease); }
     .process-step:hover { border-color: var(--accent); transform: translateY(-4px); }
     .step-number { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 16px; font-variant-numeric: tabular-nums; }
     .process-step h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
-    .process-step p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .process-step p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
     /* Pricing */
-    .pricing-section { padding: 100px 0; }
-    @media (min-width: 1024px) { .pricing-section { padding: 120px 0; } }
+    .pricing-section { padding: clamp(80px, 10vw, 160px) 0; }
     .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1000px; margin: 0 auto; }
     @media (min-width: 768px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
-    .pricing-card { padding: 36px; background: var(--white); border: 1px solid var(--border); text-align: center; transition: border-color 0.3s ease, transform 0.5s var(--ease-out-expo); }
+    .pricing-card { padding: 36px; background: var(--white); border: 1px solid var(--border); text-align: center; transition: border-color 0.3s ease, transform 0.5s var(--ease); }
     .pricing-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .pricing-card.featured { border-color: var(--accent); position: relative; box-shadow: 0 8px 32px rgba(43,108,176,0.08); }
     .pricing-card.featured::before { content: 'Most Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--white); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; }
     .pricing-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
     .pricing-price { font-size: 42px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 24px; }
-    .pricing-price span { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+    .pricing-price span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
     .pricing-card ul { text-align: left; margin-bottom: 28px; }
-    .pricing-card li { font-size: 14px; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border-light, var(--warm-gray-100)); display: flex; align-items: center; gap: 10px; }
+    .pricing-card li { font-size: 14px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--warm-gray-100); display: flex; align-items: center; gap: 10px; }
     .pricing-card li::before { content: '✓'; color: var(--accent); font-weight: 600; font-size: 12px; }
-    .pricing-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: var(--warm-gray-100); color: var(--text-primary); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, color 0.3s ease; }
+    .pricing-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: var(--warm-gray-100); color: var(--text); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, color 0.3s ease; }
     .pricing-cta:hover { background: var(--accent); color: var(--white); }
     .pricing-card.featured .pricing-cta { background: var(--accent); color: var(--white); }
-    .pricing-card.featured .pricing-cta:hover { background: var(--accent-hover); }
+    .pricing-card.featured .pricing-cta:hover { background: var(--cobalt-300); }
 
     /* CTA */
-    .cta-banner { background: var(--text-primary); padding: 80px 0; text-align: center; }
-    @media (min-width: 1024px) { .cta-banner { padding: 100px 0; } }
-    .cta-banner h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; color: var(--off-white); margin-bottom: 20px; }
-    .cta-banner p { font-size: 16px; line-height: 1.6; color: var(--warm-gray-400); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
-    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--accent); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-    .primary-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,108,176,0.3); }
-    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out-expo); }
+    .cta-banner { background: var(--bg-dark); padding: clamp(80px, 10vw, 140px) 0; text-align: center; }
+    .cta-banner h2 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 400; letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px; }
+    .cta-banner p { font-size: 16px; line-height: 1.6; color: var(--warm-gray-500); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--accent); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .primary-cta::before { content: ''; position: absolute; inset: 0; background: var(--cobalt-300); clip-path: inset(0 50% 0 50%); transition: clip-path 0.5s var(--ease); z-index: 0; }
+    .primary-cta:hover::before { clip-path: inset(0); }
+    .primary-cta span, .primary-cta svg { position: relative; z-index: 1; }
+    .primary-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,108,176,0.3); }
+    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
     .primary-cta:hover svg { transform: translateX(4px); }
 
-    /* Footer */
-    .footer { background: var(--text-primary); color: var(--off-white); overflow: hidden; }
-    .footer-main { padding: 80px 0; }
-    @media (min-width: 1024px) { .footer-main { padding: 100px 0 80px; } }
+    /* Footer — matching homepage */
+    .footer { background: var(--bg-dark); color: var(--text-light); overflow: hidden; }
+    .footer-main { padding: clamp(60px, 8vw, 100px) 0 clamp(40px, 5vw, 80px); }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 32px; } }
     .footer-brand { grid-column: 1 / -1; margin-bottom: 16px; }
     @media (min-width: 768px) { .footer-brand { grid-column: 1 / 3; } }
-    .footer-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--off-white); margin-bottom: 16px; }
+    .footer-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
     .footer-brand p { font-size: 14px; line-height: 1.6; color: var(--warm-gray-500); max-width: 320px; }
-    .footer-column h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray-500); margin-bottom: 20px; }
+    .footer-column h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray-600); margin-bottom: 20px; }
     .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
-    .footer-column a { font-size: 14px; color: var(--warm-gray-400); transition: color 0.3s ease; }
-    .footer-column a:hover { color: var(--off-white); }
+    .footer-column a { font-size: 14px; color: var(--warm-gray-500); transition: color 0.3s ease; }
+    .footer-column a:hover { color: var(--text-light); }
     .footer-social { display: flex; gap: 12px; margin-top: 24px; }
-    .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--warm-gray-700); color: var(--warm-gray-500); transition: border-color 0.3s ease, color 0.3s ease; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--warm-gray-800); color: var(--warm-gray-600); transition: border-color 0.3s ease, color 0.3s ease; }
     .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
     .footer-social svg { width: 16px; height: 16px; }
-    .marquee-section { border-top: 1px solid var(--warm-gray-800); padding: 40px 0; overflow: hidden; }
+    .marquee-section { border-top: 1px solid var(--warm-gray-800); padding: clamp(30px, 4vw, 50px) 0; overflow: hidden; }
     .marquee-track { display: flex; width: max-content; animation: marqueeScroll 20s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
     @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .marquee-item { display: flex; align-items: center; gap: 48px; flex-shrink: 0; padding-right: 48px; }
-    .marquee-text { font-size: clamp(48px, 8vw, 120px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; color: var(--off-white); white-space: nowrap; opacity: 0.15; }
+    .marquee-text { font-size: clamp(48px, 8vw, 120px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; white-space: nowrap; opacity: 0.2; transition: opacity 0.3s ease; }
+    .marquee-track:hover .marquee-text { opacity: 0.35; }
     .marquee-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
     .footer-bottom { padding: 24px 0; border-top: 1px solid var(--warm-gray-800); display: flex; flex-direction: column; gap: 16px; align-items: center; }
     @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
-    .footer-bottom p { font-size: 12px; color: var(--warm-gray-600); }
+    .footer-bottom p { font-size: 12px; color: var(--warm-gray-700); }
     .footer-legal { display: flex; gap: 24px; }
-    .footer-legal a { font-size: 12px; color: var(--warm-gray-600); transition: color 0.3s ease; }
-    .footer-legal a:hover { color: var(--warm-gray-400); }
+    .footer-legal a { font-size: 12px; color: var(--warm-gray-700); transition: color 0.3s ease; }
+    .footer-legal a:hover { color: var(--warm-gray-500); }
 
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
-    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-    .animate-on-scroll:nth-child(1) { transition-delay: 0s; }
-    .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
-    .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
-    .animate-on-scroll:nth-child(4) { transition-delay: 0.24s; }
-    .animate-on-scroll:nth-child(5) { transition-delay: 0.32s; }
-    .animate-on-scroll:nth-child(6) { transition-delay: 0.4s; }
-    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { opacity: 1; transform: none; transition: none; } * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+    .gs-reveal { opacity: 0; transform: translateY(60px); }
+    @media (prefers-reduced-motion: reduce) {
+      .gs-reveal { opacity: 1; transform: none; }
+      .marquee-track { animation: none; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -182,13 +185,13 @@
     <div class="header-inner">
       <div class="header-logo"><a href="index.html">Sofia Bodger</a></div>
       <nav class="header-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="case-studies.html">Work</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html"><span class="nav-label">Home</span><span class="nav-duplicate" aria-hidden="true">Home</span></a>
+        <a href="about.html"><span class="nav-label">About</span><span class="nav-duplicate" aria-hidden="true">About</span></a>
+        <a href="services.html" class="active"><span class="nav-label">Services</span><span class="nav-duplicate" aria-hidden="true">Services</span></a>
+        <a href="case-studies.html"><span class="nav-label">Work</span><span class="nav-duplicate" aria-hidden="true">Work</span></a>
+        <a href="contact.html"><span class="nav-label">Contact</span><span class="nav-duplicate" aria-hidden="true">Contact</span></a>
       </nav>
-      <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">Book Consultation</a>
+      <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;"><span>Book Consultation</span></a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span class="menu-icon"><span></span><span></span><span></span></span>
       </button>
@@ -214,86 +217,41 @@
     <section class="services-section">
       <div class="section-container">
         <div class="services-grid">
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">01</span>
-            <h3>Brand Strategy</h3>
-            <p>Translating cultural insights into brand positioning that resonates with target audiences and drives measurable business results.</p>
-            <ul class="service-features"><li>Brand Positioning & Architecture</li><li>Competitive Analysis</li><li>Audience Research</li><li>Market Entry Strategy</li></ul>
-          </article>
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">02</span>
-            <h3>Cultural Intelligence</h3>
-            <p>Deep research and analysis of youth culture across music, fashion, sport, and entertainment to inform creative direction.</p>
-            <ul class="service-features"><li>Youth Culture Research</li><li>Trend Analysis & Forecasting</li><li>Subculture Mapping</li><li>Influencer Identification</li></ul>
-          </article>
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">03</span>
-            <h3>Campaign Development</h3>
-            <p>End-to-end campaign development from concept to execution, spanning digital, experiential, and traditional channels.</p>
-            <ul class="service-features"><li>Creative Direction</li><li>Content Strategy</li><li>Multi-channel Planning</li><li>Campaign Analytics</li></ul>
-          </article>
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">04</span>
-            <h3>Audience Strategy</h3>
-            <p>Data-driven audience segmentation and targeting that connects brands with the communities that matter most.</p>
-            <ul class="service-features"><li>Audience Segmentation</li><li>Consumer Journey Mapping</li><li>Behavioral Analytics</li><li>Media Strategy</li></ul>
-          </article>
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">05</span>
-            <h3>Innovation Strategy</h3>
-            <p>Identifying emerging trends and opportunities for brands to stay ahead of cultural currents and consumer shifts.</p>
-            <ul class="service-features"><li>Trend Scouting</li><li>Opportunity Identification</li><li>Innovation Workshops</li><li>Future Planning</li></ul>
-          </article>
-          <article class="service-card animate-on-scroll">
-            <span class="service-number">06</span>
-            <h3>Workshops & Training</h3>
-            <p>Interactive sessions to build internal cultural intelligence and strategic thinking capabilities within your team.</p>
-            <ul class="service-features"><li>Cultural Intelligence Training</li><li>Strategy Bootcamps</li><li>Team Building</li><li>Executive Coaching</li></ul>
-          </article>
+          <article class="service-card gs-reveal"><span class="service-number">01</span><h3>Brand Strategy</h3><p>Translating cultural insights into brand positioning that resonates with target audiences and drives measurable business results.</p><ul class="service-features"><li>Brand Positioning & Architecture</li><li>Competitive Analysis</li><li>Audience Research</li><li>Market Entry Strategy</li></ul></article>
+          <article class="service-card gs-reveal"><span class="service-number">02</span><h3>Cultural Intelligence</h3><p>Deep research and analysis of youth culture across music, fashion, sport, and entertainment to inform creative direction.</p><ul class="service-features"><li>Youth Culture Research</li><li>Trend Analysis & Forecasting</li><li>Subculture Mapping</li><li>Influencer Identification</li></ul></article>
+          <article class="service-card gs-reveal"><span class="service-number">03</span><h3>Campaign Development</h3><p>End-to-end campaign development from concept to execution, spanning digital, experiential, and traditional channels.</p><ul class="service-features"><li>Creative Direction</li><li>Content Strategy</li><li>Multi-channel Planning</li><li>Campaign Analytics</li></ul></article>
+          <article class="service-card gs-reveal"><span class="service-number">04</span><h3>Audience Strategy</h3><p>Data-driven audience segmentation and targeting that connects brands with the communities that matter most.</p><ul class="service-features"><li>Audience Segmentation</li><li>Consumer Journey Mapping</li><li>Behavioral Analytics</li><li>Media Strategy</li></ul></article>
+          <article class="service-card gs-reveal"><span class="service-number">05</span><h3>Innovation Strategy</h3><p>Identifying emerging trends and opportunities for brands to stay ahead of cultural currents and consumer shifts.</p><ul class="service-features"><li>Trend Scouting</li><li>Opportunity Identification</li><li>Innovation Workshops</li><li>Future Planning</li></ul></article>
+          <article class="service-card gs-reveal"><span class="service-number">06</span><h3>Workshops & Training</h3><p>Interactive sessions to build internal cultural intelligence and strategic thinking capabilities within your team.</p><ul class="service-features"><li>Cultural Intelligence Training</li><li>Strategy Bootcamps</li><li>Team Building</li><li>Executive Coaching</li></ul></article>
         </div>
       </div>
     </section>
 
     <section class="process-section">
       <div class="section-container">
-        <div class="section-header"><div class="section-label">Process</div><h2>How I Work</h2></div>
+        <div class="section-header gs-reveal"><div class="section-label">Process</div><h2>How I Work</h2></div>
         <div class="process-grid">
-          <article class="process-step animate-on-scroll"><div class="step-number">01</div><h3>Discovery</h3><p>Deep dive into your brand, market position, and strategic goals through collaborative workshops and research.</p></article>
-          <article class="process-step animate-on-scroll"><div class="step-number">02</div><h3>Research</h3><p>Cultural research and audience analysis to uncover insights that will inform strategic direction.</p></article>
-          <article class="process-step animate-on-scroll"><div class="step-number">03</div><h3>Strategy</h3><p>Synthesis of insights into clear strategic recommendations and creative direction.</p></article>
-          <article class="process-step animate-on-scroll"><div class="step-number">04</div><h3>Activation</h3><p>Collaborative execution support to bring strategy to life across channels and touchpoints.</p></article>
+          <article class="process-step gs-reveal"><div class="step-number">01</div><h3>Discovery</h3><p>Deep dive into your brand, market position, and strategic goals through collaborative workshops and research.</p></article>
+          <article class="process-step gs-reveal"><div class="step-number">02</div><h3>Research</h3><p>Cultural research and audience analysis to uncover insights that will inform strategic direction.</p></article>
+          <article class="process-step gs-reveal"><div class="step-number">03</div><h3>Strategy</h3><p>Synthesis of insights into clear strategic recommendations and creative direction.</p></article>
+          <article class="process-step gs-reveal"><div class="step-number">04</div><h3>Activation</h3><p>Collaborative execution support to bring strategy to life across channels and touchpoints.</p></article>
         </div>
       </div>
     </section>
 
     <section class="pricing-section">
       <div class="section-container">
-        <div class="section-header"><div class="section-label">Engagement</div><h2>Ways to Work Together</h2></div>
+        <div class="section-header gs-reveal"><div class="section-label">Engagement</div><h2>Ways to Work Together</h2></div>
         <div class="pricing-grid">
-          <article class="pricing-card animate-on-scroll">
-            <h3>Project-Based</h3>
-            <div class="pricing-price">From $8K<span>/project</span></div>
-            <ul><li>Brand Strategy Workshop</li><li>Cultural Intelligence Audit</li><li>Campaign Development</li><li>Positioning Refresh</li></ul>
-            <a href="contact.html" class="pricing-cta">Get Started</a>
-          </article>
-          <article class="pricing-card featured animate-on-scroll">
-            <h3>Retainer</h3>
-            <div class="pricing-price">From $15K<span>/month</span></div>
-            <ul><li>Ongoing Strategic Support</li><li>Regular Cultural Briefings</li><li>Campaign Oversight</li><li>Priority Access</li></ul>
-            <a href="contact.html" class="pricing-cta">Get Started</a>
-          </article>
-          <article class="pricing-card animate-on-scroll">
-            <h3>Workshop</h3>
-            <div class="pricing-price">From $5K<span>/day</span></div>
-            <ul><li>Cultural Intelligence Training</li><li>Strategy Bootcamp</li><li>Team Alignment Session</li><li>Follow-up Report</li></ul>
-            <a href="contact.html" class="pricing-cta">Get Started</a>
-          </article>
+          <article class="pricing-card gs-reveal"><h3>Project-Based</h3><div class="pricing-price">From $8K<span>/project</span></div><ul><li>Brand Strategy Workshop</li><li>Cultural Intelligence Audit</li><li>Campaign Development</li><li>Positioning Refresh</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
+          <article class="pricing-card featured gs-reveal"><h3>Retainer</h3><div class="pricing-price">From $15K<span>/month</span></div><ul><li>Ongoing Strategic Support</li><li>Regular Cultural Briefings</li><li>Campaign Oversight</li><li>Priority Access</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
+          <article class="pricing-card gs-reveal"><h3>Workshop</h3><div class="pricing-price">From $5K<span>/day</span></div><ul><li>Cultural Intelligence Training</li><li>Strategy Bootcamp</li><li>Team Alignment Session</li><li>Follow-up Report</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
         </div>
       </div>
     </section>
 
     <section class="cta-banner">
-      <div class="section-container">
+      <div class="section-container gs-reveal">
         <h2>Ready to Make Your Brand Culturally Alive?</h2>
         <p>Let's discuss how we can transform your brand positioning and create meaningful connections with your audience.</p>
         <a href="https://calendly.com/your-calendly-link" class="primary-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">
@@ -323,26 +281,38 @@
       </div>
       <div class="footer-column"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-column"><h4>Services</h4><ul><li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li></ul></div>
-      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="#">New York, USA</a></li></ul></div>
+      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="contact.html">New York, USA</a></li></ul></div>
       <div class="footer-column"><h4>Elsewhere</h4><ul><li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li></ul></div>
     </div></div></div>
     <div class="section-container"><div class="footer-bottom"><p>&copy; 2026 Sofia Bodger. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div>
   </footer>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+  <noscript><style>.gs-reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script type="module">
     import Lenis from 'https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.mjs';
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), orientation: 'vertical', smoothWheel: true });
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, touchMultiplier: 2 });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; },
+      getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; }
+    });
+    ScrollTrigger.defaults({ scroller: document.documentElement });
+    gsap.utils.toArray('.gs-reveal').forEach(el => {
+      gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
+    });
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     if (menuToggle && mobileMenu) {
       menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; });
       document.querySelectorAll('.mobile-menu-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); });
     }
+    ScrollTrigger.refresh();
   </script>
 </body>
 </html>

@@ -11,84 +11,89 @@
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <style>
     :root {
-      --cobalt-500: #1E4D8C; --cobalt-400: #2B6CB0; --cobalt-300: #4299E1; --cobalt-200: #63B3ED;
-      --white: #FFFFFF; --off-white: #F5F3EF; --warm-gray-50: #FAF9F7;
-      --warm-gray-100: #F0EDE8; --warm-gray-200: #E2DED6; --warm-gray-300: #C9C3B8;
-      --warm-gray-400: #A8A096; --warm-gray-500: #7A736A; --warm-gray-600: #5C564E;
-      --warm-gray-700: #3D3833; --warm-gray-800: #2A2622; --black: #0A0A0A;
-      --bg-primary: var(--off-white); --bg-secondary: var(--warm-gray-100);
-      --text-primary: var(--black); --text-secondary: var(--warm-gray-500); --text-muted: var(--warm-gray-400);
-      --accent: var(--cobalt-400); --accent-hover: var(--cobalt-300);
+      --cobalt-400: #2B6CB0; --cobalt-300: #4299E1;
+      --white: #FFFFFF; --off-white: #F3F3EF; --warm-gray-100: #EBEBE7;
+      --warm-gray-200: #DCD8D0; --warm-gray-300: #C4BEB4; --warm-gray-400: #A8A096;
+      --warm-gray-500: #7A736A; --warm-gray-600: #5C564E; --warm-gray-700: #3D3833;
+      --warm-gray-800: #2A2622; --black: #121212; --dark-bg: #0f0f0f;
+      --bg: var(--off-white); --bg-dark: var(--dark-bg);
+      --text: var(--black); --text-light: var(--off-white);
+      --text-muted: var(--warm-gray-500); --accent: var(--cobalt-400);
       --border: var(--warm-gray-200);
-      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.19, 1, 0.22, 1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { font-family: var(--font-primary); font-size: 15px; line-height: 1.5; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; }
+    body { font-family: var(--font); font-size: 15px; line-height: 1.5; background: var(--bg); color: var(--text); overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     img { display: block; max-width: 100%; height: auto; }
-    ul, ol { list-style: none; }
-    ::selection { background: var(--cobalt-400); color: var(--white); }
+    ul { list-style: none; }
+    ::selection { background: var(--accent); color: var(--white); }
 
-    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; padding: 16px 40px; }
-    @media (min-width: 1024px) { .header-inner { padding: 18px 56px; } }
-    .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    /* Header */
+    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px clamp(16px, 3vw, 56px); }
+    .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
     .header-logo a { transition: opacity 0.3s ease; }
-    .header-logo a:hover { opacity: 0.6; }
+    .header-logo a:hover { opacity: 0.5; }
     .header-nav { display: none; align-items: center; gap: 32px; }
     @media (min-width: 1024px) { .header-nav { display: flex; } }
-    .header-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); position: relative; transition: color 0.3s ease; }
-    .header-nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s var(--ease-out-expo); }
-    .header-nav a:hover { color: var(--text-primary); }
-    .header-nav a:hover::after { width: 100%; }
-    .header-nav a.active { color: var(--accent); }
-    .header-nav a.active::after { width: 100%; background: var(--accent); }
+    .header-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); position: relative; overflow: hidden; transition: color 0.3s ease; }
+    .header-nav a .nav-label { display: inline-block; transition: transform 0.5s var(--ease); }
+    .header-nav a .nav-duplicate { position: absolute; top: 100%; left: 0; display: inline-block; color: var(--accent); transition: transform 0.5s var(--ease); }
+    .header-nav a:hover .nav-label { transform: translateY(-100%); }
+    .header-nav a:hover .nav-duplicate { transform: translateY(-100%); }
+    .header-nav a.active { color: var(--text); }
+    .header-nav a.active .nav-label { color: var(--accent); }
     .header-cta { display: none; }
-    @media (min-width: 1024px) { .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; } .header-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,108,176,0.25); } }
-    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--text-primary); }
+    @media (min-width: 1024px) {
+      .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .header-cta::before { content: ''; position: absolute; inset: 0; background: var(--cobalt-300); clip-path: inset(0 50% 0 50%); transition: clip-path 0.5s var(--ease); z-index: 0; }
+      .header-cta:hover::before { clip-path: inset(0); }
+      .header-cta span { position: relative; z-index: 1; }
+      .header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,108,176,0.3); }
+    }
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--text); }
     @media (min-width: 1024px) { .menu-toggle { display: none; } }
     .menu-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
     .menu-icon span { display: block; height: 1.5px; background: currentColor; transition: transform 0.3s ease, opacity 0.3s ease; }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
     .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    .mobile-menu { position: fixed; inset: 0; background: var(--bg-primary); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .mobile-menu { position: fixed; inset: 0; background: var(--bg-dark); color: var(--text-light); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .mobile-menu.active { opacity: 1; visibility: visible; }
     .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 28px; }
-    .mobile-menu-nav a { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--text-secondary); transition: color 0.3s ease; }
-    .mobile-menu-nav a:hover { color: var(--text-primary); }
+    .mobile-menu-nav a { font-size: clamp(32px, 6vw, 48px); font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--warm-gray-500); transition: color 0.3s ease; }
+    .mobile-menu-nav a:hover { color: var(--text-light); }
     .mobile-menu-cta { margin-top: 48px; }
 
-    .page-hero { padding: 140px 40px 80px; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
-    @media (min-width: 1024px) { .page-hero { padding: 160px 56px 100px; } }
-    .page-hero .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    /* Page Hero — Editorial weight 400 */
+    .page-hero { padding: clamp(160px, 18vw, 220px) clamp(16px, 3vw, 56px) clamp(80px, 10vw, 160px); background: var(--bg); border-bottom: 1px solid var(--border); }
+    .page-hero .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
     .page-hero .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    .page-hero h1 { font-size: clamp(40px, 7vw, 88px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; max-width: 800px; }
+    .page-hero h1 { font-size: clamp(3.5rem, 9vw, 9rem); font-weight: 400; letter-spacing: -0.05em; line-height: 0.9; text-transform: uppercase; max-width: 800px; }
     .page-hero h1 .accent { color: var(--accent); }
 
-    .section-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-    @media (min-width: 1024px) { .section-container { padding: 0 56px; } }
+    .section-container { padding: 0 clamp(16px, 3vw, 56px); }
     .section-header { margin-bottom: 48px; }
-    .section-header .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .section-header .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .section-header .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    .section-header h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; }
+    .section-header h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; }
 
     /* Contact */
-    .contact-section { padding: 100px 0; }
-    @media (min-width: 1024px) { .contact-section { padding: 120px 0; } }
-    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    .contact-section { padding: clamp(80px, 10vw, 160px) 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px); }
     @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
-    .contact-info h2 { font-size: clamp(28px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; margin-bottom: 20px; }
-    .contact-info > p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 36px; }
+    .contact-info h2 { font-size: clamp(28px, 3.5vw, 42px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; margin-bottom: 20px; }
+    .contact-info > p { font-size: 16px; color: var(--text-muted); line-height: 1.6; margin-bottom: 36px; }
     .contact-details { display: flex; flex-direction: column; gap: 28px; }
     .contact-item { display: flex; align-items: flex-start; gap: 16px; }
     .contact-icon { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
     .contact-item-content h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-    .contact-item-content p, .contact-item-content a { font-size: 15px; color: var(--text-secondary); transition: color 0.3s ease; }
-    .contact-item-content a:hover { color: var(--text-primary); }
+    .contact-item-content p, .contact-item-content a { font-size: 15px; color: var(--text-muted); transition: color 0.3s ease; }
+    .contact-item-content a:hover { color: var(--text); }
     .contact-item-content a { display: block; }
     .social-links { display: flex; gap: 12px; margin-top: 36px; }
     .social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--border); color: var(--text-muted); transition: all 0.3s ease; }
@@ -96,77 +101,80 @@
     .social-link svg { width: 18px; height: 18px; }
 
     /* Calendly */
-    .calendly-section { padding: 0 0 100px; }
-    @media (min-width: 1024px) { .calendly-section { padding: 0 0 120px; } }
+    .calendly-section { padding: 0 0 clamp(80px, 10vw, 160px); }
     .calendly-wrapper { max-width: 800px; margin: 0 auto; text-align: center; }
-    .calendly-wrapper h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .calendly-wrapper > p { font-size: 15px; color: var(--text-secondary); margin-bottom: 36px; }
+    .calendly-wrapper h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .calendly-wrapper > p { font-size: 15px; color: var(--text-muted); margin-bottom: 36px; }
     .calendly-inline-widget { min-height: 680px; border: 1px solid var(--border); overflow: hidden; }
     .calendly-cta-alt { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
-    .calendly-cta-alt p { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+    .calendly-cta-alt p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
     .email-link { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; color: var(--accent); transition: color 0.3s ease; }
-    .email-link:hover { color: var(--accent-hover); }
+    .email-link:hover { color: var(--cobalt-300); }
     .email-link svg { width: 20px; height: 20px; }
 
     /* FAQ */
-    .faq-section { padding: 100px 0; background: var(--bg-secondary); }
-    @media (min-width: 1024px) { .faq-section { padding: 120px 0; } }
+    .faq-section { padding: clamp(80px, 10vw, 160px) 0; background: var(--warm-gray-100); }
     .faq-list { display: flex; flex-direction: column; max-width: 800px; }
     .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-question { display: flex; align-items: center; justify-content: space-between; width: 100%; text-align: left; font-size: 16px; font-weight: 600; color: var(--text-primary); padding: 20px 0; cursor: pointer; transition: color 0.3s ease; }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; width: 100%; text-align: left; font-size: 16px; font-weight: 600; color: var(--text); padding: 20px 0; cursor: pointer; transition: color 0.3s ease; }
     @media (min-width: 1024px) { .faq-question { font-size: 18px; } }
     .faq-question:hover { color: var(--accent); }
     .faq-question svg { width: 18px; height: 18px; color: var(--accent); transition: transform 0.3s ease; flex-shrink: 0; margin-left: 16px; }
     .faq-item.active .faq-question svg { transform: rotate(180deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease-out-expo); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
     .faq-item.active .faq-answer { max-height: 300px; }
-    .faq-answer p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; padding-bottom: 20px; }
+    .faq-answer p { font-size: 15px; color: var(--text-muted); line-height: 1.65; padding-bottom: 20px; }
 
     /* CTA */
-    .cta-banner { background: var(--text-primary); padding: 80px 0; text-align: center; }
-    @media (min-width: 1024px) { .cta-banner { padding: 100px 0; } }
-    .cta-banner h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; color: var(--off-white); margin-bottom: 20px; }
-    .cta-banner p { font-size: 16px; line-height: 1.6; color: var(--warm-gray-400); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
-    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--accent); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-    .primary-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,108,176,0.3); }
-    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out-expo); }
+    .cta-banner { background: var(--bg-dark); padding: clamp(80px, 10vw, 140px) 0; text-align: center; }
+    .cta-banner h2 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 400; letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px; }
+    .cta-banner p { font-size: 16px; line-height: 1.6; color: var(--warm-gray-500); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--accent); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .primary-cta::before { content: ''; position: absolute; inset: 0; background: var(--cobalt-300); clip-path: inset(0 50% 0 50%); transition: clip-path 0.5s var(--ease); z-index: 0; }
+    .primary-cta:hover::before { clip-path: inset(0); }
+    .primary-cta span, .primary-cta svg { position: relative; z-index: 1; }
+    .primary-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,108,176,0.3); }
+    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
     .primary-cta:hover svg { transform: translateX(4px); }
 
     /* Footer */
-    .footer { background: var(--text-primary); color: var(--off-white); overflow: hidden; }
-    .footer-main { padding: 80px 0; }
-    @media (min-width: 1024px) { .footer-main { padding: 100px 0 80px; } }
+    .footer { background: var(--bg-dark); color: var(--text-light); overflow: hidden; }
+    .footer-main { padding: clamp(60px, 8vw, 100px) 0 clamp(40px, 5vw, 80px); }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 32px; } }
     .footer-brand { grid-column: 1 / -1; margin-bottom: 16px; }
     @media (min-width: 768px) { .footer-brand { grid-column: 1 / 3; } }
-    .footer-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--off-white); margin-bottom: 16px; }
+    .footer-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
     .footer-brand p { font-size: 14px; line-height: 1.6; color: var(--warm-gray-500); max-width: 320px; }
-    .footer-column h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray-500); margin-bottom: 20px; }
+    .footer-column h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray-600); margin-bottom: 20px; }
     .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
-    .footer-column a { font-size: 14px; color: var(--warm-gray-400); transition: color 0.3s ease; }
-    .footer-column a:hover { color: var(--off-white); }
+    .footer-column a { font-size: 14px; color: var(--warm-gray-500); transition: color 0.3s ease; }
+    .footer-column a:hover { color: var(--text-light); }
     .footer-social { display: flex; gap: 12px; margin-top: 24px; }
-    .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--warm-gray-700); color: var(--warm-gray-500); transition: border-color 0.3s ease, color 0.3s ease; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--warm-gray-800); color: var(--warm-gray-600); transition: border-color 0.3s ease, color 0.3s ease; }
     .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
     .footer-social svg { width: 16px; height: 16px; }
-    .marquee-section { border-top: 1px solid var(--warm-gray-800); padding: 40px 0; overflow: hidden; }
+    .marquee-section { border-top: 1px solid var(--warm-gray-800); padding: clamp(30px, 4vw, 50px) 0; overflow: hidden; }
     .marquee-track { display: flex; width: max-content; animation: marqueeScroll 20s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
     @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .marquee-item { display: flex; align-items: center; gap: 48px; flex-shrink: 0; padding-right: 48px; }
-    .marquee-text { font-size: clamp(48px, 8vw, 120px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; color: var(--off-white); white-space: nowrap; opacity: 0.15; }
+    .marquee-text { font-size: clamp(48px, 8vw, 120px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; white-space: nowrap; opacity: 0.2; transition: opacity 0.3s ease; }
+    .marquee-track:hover .marquee-text { opacity: 0.35; }
     .marquee-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
     .footer-bottom { padding: 24px 0; border-top: 1px solid var(--warm-gray-800); display: flex; flex-direction: column; gap: 16px; align-items: center; }
     @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
-    .footer-bottom p { font-size: 12px; color: var(--warm-gray-600); }
+    .footer-bottom p { font-size: 12px; color: var(--warm-gray-700); }
     .footer-legal { display: flex; gap: 24px; }
-    .footer-legal a { font-size: 12px; color: var(--warm-gray-600); transition: color 0.3s ease; }
-    .footer-legal a:hover { color: var(--warm-gray-400); }
+    .footer-legal a { font-size: 12px; color: var(--warm-gray-700); transition: color 0.3s ease; }
+    .footer-legal a:hover { color: var(--warm-gray-500); }
 
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
-    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { opacity: 1; transform: none; transition: none; } * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+    .gs-reveal { opacity: 0; transform: translateY(60px); }
+    @media (prefers-reduced-motion: reduce) {
+      .gs-reveal { opacity: 1; transform: none; }
+      .marquee-track { animation: none; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -175,13 +183,13 @@
     <div class="header-inner">
       <div class="header-logo"><a href="index.html">Sofia Bodger</a></div>
       <nav class="header-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="case-studies.html">Work</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="index.html"><span class="nav-label">Home</span><span class="nav-duplicate" aria-hidden="true">Home</span></a>
+        <a href="about.html"><span class="nav-label">About</span><span class="nav-duplicate" aria-hidden="true">About</span></a>
+        <a href="services.html"><span class="nav-label">Services</span><span class="nav-duplicate" aria-hidden="true">Services</span></a>
+        <a href="case-studies.html"><span class="nav-label">Work</span><span class="nav-duplicate" aria-hidden="true">Work</span></a>
+        <a href="contact.html" class="active"><span class="nav-label">Contact</span><span class="nav-duplicate" aria-hidden="true">Contact</span></a>
       </nav>
-      <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">Book Consultation</a>
+      <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;"><span>Book Consultation</span></a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span class="menu-icon"><span></span><span></span><span></span></span>
       </button>
@@ -206,7 +214,7 @@
     <section class="contact-section">
       <div class="section-container">
         <div class="contact-grid">
-          <div class="contact-info animate-on-scroll">
+          <div class="contact-info gs-reveal">
             <h2>Get in Touch</h2>
             <p>Ready to make your brand culturally alive? I'd love to hear about your project and explore how we can work together.</p>
             <div class="contact-details">
@@ -230,7 +238,7 @@
             </div>
           </div>
 
-          <div class="calendly-wrapper animate-on-scroll">
+          <div class="calendly-wrapper gs-reveal">
             <h2>Schedule a Consultation</h2>
             <p>Book a free 30-minute call to discuss your project and explore how we can work together.</p>
             <div class="calendly-inline-widget" data-url="https://calendly.com/your-calendly-link" style="min-width:320px;"></div>
@@ -248,25 +256,25 @@
 
     <section class="faq-section">
       <div class="section-container">
-        <div class="section-header"><div class="section-label">FAQ</div><h2>Common Questions</h2></div>
+        <div class="section-header gs-reveal"><div class="section-label">FAQ</div><h2>Common Questions</h2></div>
         <div class="faq-list">
-          <div class="faq-item">
+          <div class="faq-item gs-reveal">
             <button class="faq-question" aria-expanded="false"><span>What types of brands do you work with?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="faq-answer"><p>I specialize in working with high-end agencies and culture-first brands that want to authentically connect with youth audiences. This includes fashion, sport, music, entertainment, and lifestyle brands looking to strengthen their cultural positioning.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item gs-reveal">
             <button class="faq-question" aria-expanded="false"><span>What's your typical project timeline?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="faq-answer"><p>Project timelines vary based on scope. Brand strategy projects typically run 4-8 weeks, while campaign development can range from 6-12 weeks. I also offer retainer arrangements for ongoing strategic support.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item gs-reveal">
             <button class="faq-question" aria-expanded="false"><span>Do you work with early-stage or established brands?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="faq-answer"><p>Both! I've worked with challenger brands building their cultural identity from the ground up, as well as established global brands refreshing their positioning for new audiences. What matters most is having a genuine connection to culture.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item gs-reveal">
             <button class="faq-question" aria-expanded="false"><span>Can you work remotely with brands outside New York?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="faq-answer"><p>Absolutely. While I'm based in New York, I regularly work with brands and agencies globally. I have experience working across different time zones and have collaborated with teams in Europe, Asia, and throughout the Americas.</p></div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item gs-reveal">
             <button class="faq-question" aria-expanded="false"><span>What deliverables can I expect?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="faq-answer"><p>Deliverables are tailored to each project but typically include: cultural insight reports, brand positioning documents, audience personas, creative direction briefs, campaign strategies, and implementation roadmaps. I'll always define the scope clearly at the start of our engagement.</p></div>
           </div>
@@ -275,7 +283,7 @@
     </section>
 
     <section class="cta-banner">
-      <div class="section-container">
+      <div class="section-container gs-reveal">
         <h2>Ready to Make Your Brand Culturally Alive?</h2>
         <p>Let's discuss how we can transform your brand positioning and create meaningful connections with your audience.</p>
         <a href="https://calendly.com/your-calendly-link" class="primary-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">
@@ -305,27 +313,37 @@
       </div>
       <div class="footer-column"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-column"><h4>Services</h4><ul><li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li></ul></div>
-      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="#">New York, USA</a></li></ul></div>
+      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="contact.html">New York, USA</a></li></ul></div>
       <div class="footer-column"><h4>Elsewhere</h4><ul><li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li></ul></div>
     </div></div></div>
     <div class="section-container"><div class="footer-bottom"><p>&copy; 2026 Sofia Bodger. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div>
   </footer>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+  <noscript><style>.gs-reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script type="module">
     import Lenis from 'https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.mjs';
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), orientation: 'vertical', smoothWheel: true });
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, touchMultiplier: 2 });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; },
+      getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; }
+    });
+    ScrollTrigger.defaults({ scroller: document.documentElement });
+    gsap.utils.toArray('.gs-reveal').forEach(el => {
+      gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
+    });
     // FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
+    document.querySelectorAll('.faq-item').forEach(item => {
       const question = item.querySelector('.faq-question');
       question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
-        faqItems.forEach(i => { i.classList.remove('active'); i.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
+        document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('active'); i.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
         if (!isActive) { item.classList.add('active'); question.setAttribute('aria-expanded', 'true'); }
       });
     });
@@ -335,6 +353,7 @@
       menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; });
       document.querySelectorAll('.mobile-menu-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); });
     }
+    ScrollTrigger.refresh();
   </script>
 </body>
 </html>
