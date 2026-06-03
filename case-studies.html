@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis lenis-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | Sofia Bodger | Making Brands Culturally Alive</title>
+  <meta name="description" content="Selected brand strategy and campaign development projects for Nike, Adidas, Spotify, and other culture-first brands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cobalt-500: #1E4D8C; --cobalt-400: #2B6CB0; --cobalt-300: #4299E1; --cobalt-200: #63B3ED;
+      --white: #FFFFFF; --off-white: #F5F3EF; --warm-gray-50: #FAF9F7;
+      --warm-gray-100: #F0EDE8; --warm-gray-200: #E2DED6; --warm-gray-300: #C9C3B8;
+      --warm-gray-400: #A8A096; --warm-gray-500: #7A736A; --warm-gray-600: #5C564E;
+      --warm-gray-700: #3D3833; --warm-gray-800: #2A2622; --black: #0A0A0A;
+      --bg-primary: var(--off-white); --bg-secondary: var(--warm-gray-100);
+      --text-primary: var(--black); --text-secondary: var(--warm-gray-500); --text-muted: var(--warm-gray-400);
+      --accent: var(--cobalt-400); --accent-hover: var(--cobalt-300);
+      --border: var(--warm-gray-200);
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--font-primary); font-size: 15px; line-height: 1.5; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    ul, ol { list-style: none; }
+    ::selection { background: var(--cobalt-400); color: var(--white); }
+
+    .page-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; padding: 16px 40px; }
+    @media (min-width: 1024px) { .header-inner { padding: 18px 56px; } }
+    .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .header-logo a { transition: opacity 0.3s ease; }
+    .header-logo a:hover { opacity: 0.6; }
+    .header-nav { display: none; align-items: center; gap: 32px; }
+    @media (min-width: 1024px) { .header-nav { display: flex; } }
+    .header-nav a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); position: relative; transition: color 0.3s ease; }
+    .header-nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s var(--ease-out-expo); }
+    .header-nav a:hover { color: var(--text-primary); }
+    .header-nav a:hover::after { width: 100%; }
+    .header-nav a.active { color: var(--accent); }
+    .header-nav a.active::after { width: 100%; background: var(--accent); }
+    .header-cta { display: none; }
+    @media (min-width: 1024px) { .header-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--accent); color: var(--white); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; } .header-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,108,176,0.25); } }
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--text-primary); }
+    @media (min-width: 1024px) { .menu-toggle { display: none; } }
+    .menu-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
+    .menu-icon span { display: block; height: 1.5px; background: currentColor; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--bg-primary); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .mobile-menu.active { opacity: 1; visibility: visible; }
+    .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .mobile-menu-nav a { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--text-secondary); transition: color 0.3s ease; }
+    .mobile-menu-nav a:hover { color: var(--text-primary); }
+    .mobile-menu-cta { margin-top: 48px; }
+
+    .page-hero { padding: 140px 40px 80px; background: var(--bg-primary); border-bottom: 1px solid var(--border); }
+    @media (min-width: 1024px) { .page-hero { padding: 160px 56px 100px; } }
+    .page-hero .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .page-hero .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    .page-hero h1 { font-size: clamp(40px, 7vw, 88px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; max-width: 900px; }
+    .page-hero h1 .accent { color: var(--accent); }
+
+    .section-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+    @media (min-width: 1024px) { .section-container { padding: 0 56px; } }
+
+    /* Filters */
+    .work-filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+    .filter-btn { padding: 10px 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 2px; transition: all 0.3s ease; background: transparent; }
+    .filter-btn:hover, .filter-btn.active { color: var(--white); border-color: var(--accent); background: var(--accent); }
+
+    /* Work Grid — Editorial typographic style */
+    .work-section { padding: 100px 0; }
+    @media (min-width: 1024px) { .work-section { padding: 120px 0; } }
+    .work-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+    @media (min-width: 1200px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+    .work-item { position: relative; }
+    .work-item-link { display: block; position: relative; overflow: hidden; }
+    .work-media { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--warm-gray-100); }
+    .work-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out-expo); }
+    .work-item:hover .work-media img { transform: scale(1.05); }
+    .work-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.7) 100%); opacity: 0; transition: opacity 0.5s ease; }
+    .work-item:hover .work-overlay { opacity: 1; }
+    .work-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; transform: translateY(16px); opacity: 0; transition: transform 0.5s var(--ease-out-expo), opacity 0.5s ease; }
+    .work-item:hover .work-content { transform: translateY(0); opacity: 1; }
+    .work-category { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cobalt-200); margin-bottom: 4px; }
+    .work-content h3 { color: var(--white); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+    .work-info { padding-top: 16px; }
+    .work-info h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .work-info .work-client { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* Featured */
+    .featured-section { padding: 80px 0 100px; background: var(--bg-secondary); }
+    @media (min-width: 1024px) { .featured-section { padding: 100px 0 120px; } }
+    .featured-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media (min-width: 1024px) { .featured-grid { grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: center; } }
+    .featured-media { position: relative; overflow: hidden; }
+    .featured-media img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.8s var(--ease-out-expo); }
+    @media (min-width: 1024px) { .featured-media img { aspect-ratio: 4/3; } }
+    .featured-item:hover .featured-media img { transform: scale(1.03); }
+    .featured-content .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .featured-content .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    .featured-content h3 { font-size: clamp(28px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; text-transform: uppercase; margin-bottom: 16px; }
+    .featured-content p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
+    .featured-link { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); transition: gap 0.3s ease; }
+    .featured-link:hover { gap: 16px; }
+    .featured-link svg { width: 16px; height: 16px; }
+
+    /* CTA */
+    .cta-banner { background: var(--text-primary); padding: 80px 0; text-align: center; }
+    @media (min-width: 1024px) { .cta-banner { padding: 100px 0; } }
+    .cta-banner h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase; color: var(--off-white); margin-bottom: 20px; }
+    .cta-banner p { font-size: 16px; line-height: 1.6; color: var(--warm-gray-400); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--accent); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+    .primary-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,108,176,0.3); }
+    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease-out-expo); }
+    .primary-cta:hover svg { transform: translateX(4px); }
+
+    /* Footer */
+    .footer { background: var(--text-primary); color: var(--off-white); overflow: hidden; }
+    .footer-main { padding: 80px 0; }
+    @media (min-width: 1024px) { .footer-main { padding: 100px 0 80px; } }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 32px; } }
+    .footer-brand { grid-column: 1 / -1; margin-bottom: 16px; }
+    @media (min-width: 768px) { .footer-brand { grid-column: 1 / 3; } }
+    .footer-logo { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--off-white); margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; line-height: 1.6; color: var(--warm-gray-500); max-width: 320px; }
+    .footer-column h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray-500); margin-bottom: 20px; }
+    .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+    .footer-column a { font-size: 14px; color: var(--warm-gray-400); transition: color 0.3s ease; }
+    .footer-column a:hover { color: var(--off-white); }
+    .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--warm-gray-700); color: var(--warm-gray-500); transition: border-color 0.3s ease, color 0.3s ease; }
+    .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .marquee-section { border-top: 1px solid var(--warm-gray-800); padding: 40px 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 20s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .marquee-item { display: flex; align-items: center; gap: 48px; flex-shrink: 0; padding-right: 48px; }
+    .marquee-text { font-size: clamp(48px, 8vw, 120px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; color: var(--off-white); white-space: nowrap; opacity: 0.15; }
+    .marquee-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .footer-bottom { padding: 24px 0; border-top: 1px solid var(--warm-gray-800); display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+    .footer-bottom p { font-size: 12px; color: var(--warm-gray-600); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: 12px; color: var(--warm-gray-600); transition: color 0.3s ease; }
+    .footer-legal a:hover { color: var(--warm-gray-400); }
+
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    .animate-on-scroll:nth-child(1) { transition-delay: 0s; }
+    .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
+    .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+    .animate-on-scroll:nth-child(4) { transition-delay: 0.24s; }
+    .animate-on-scroll:nth-child(5) { transition-delay: 0.32s; }
+    .animate-on-scroll:nth-child(6) { transition-delay: 0.4s; }
+    @media (prefers-reduced-motion: reduce) { .animate-on-scroll { opacity: 1; transform: none; transition: none; } * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="header-inner">
+      <div class="header-logo"><a href="index.html">Sofia Bodger</a></div>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="case-studies.html" class="active">Work</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">Book Consultation</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-icon"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-nav">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="case-studies.html">Work</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="mobile-menu-cta">
+      <a href="contact.html" class="primary-cta"><span>Book Consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="section-label">Selected Work</div>
+      <h1>Projects That<br><span class="accent">Made Impact</span></h1>
+    </section>
+
+    <section class="work-section">
+      <div class="section-container">
+        <div class="work-filters">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">Campaign</button>
+          <button class="filter-btn">Brand Identity</button>
+          <button class="filter-btn">Digital</button>
+          <button class="filter-btn">Experiential</button>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Nike x Patta campaign" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Campaign</div><h3>Nike x Patta</h3></div>
+            </a>
+            <div class="work-info"><h3>Nike x Patta</h3><span class="work-client">Nike Europe</span></div>
+          </article>
+
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="Adidas Originals brand campaign" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Brand Identity</div><h3>Adidas Originals</h3></div>
+            </a>
+            <div class="work-info"><h3>Adidas Originals</h3><span class="work-client">Adidas</span></div>
+          </article>
+
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1600269452121-4f2416f55d5e?w=800&q=80" alt="Spotify youth culture campaign" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Digital</div><h3>Spotify Culture</h3></div>
+            </a>
+            <div class="work-info"><h3>Spotify Culture</h3><span class="work-client">Spotify</span></div>
+          </article>
+
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80" alt="Puma sport lifestyle campaign" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Experiential</div><h3>Puma Sport</h3></div>
+            </a>
+            <div class="work-info"><h3>Puma Sport</h3><span class="work-client">Puma</span></div>
+          </article>
+
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&q=80" alt="Converse brand positioning" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Brand Identity</div><h3>Converse</h3></div>
+            </a>
+            <div class="work-info"><h3>Converse</h3><span class="work-client">Converse</span></div>
+          </article>
+
+          <article class="work-item animate-on-scroll">
+            <a href="#" class="work-item-link">
+              <div class="work-media">
+                <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&q=80" alt="ESPN sports culture campaign" loading="lazy">
+                <div class="work-overlay"></div>
+              </div>
+              <div class="work-content"><div class="work-category">Campaign</div><h3>ESPN Culture</h3></div>
+            </a>
+            <div class="work-info"><h3>ESPN Culture</h3><span class="work-client">ESPN</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section">
+      <div class="section-container">
+        <div class="featured-grid animate-on-scroll">
+          <div class="featured-media">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1200&q=80" alt="Nike x Patta collaboration deep dive" loading="lazy">
+          </div>
+          <div class="featured-content">
+            <div class="section-label">Featured Case Study</div>
+            <h3>Nike x Patta: When Culture Meets Sport</h3>
+            <p>A deep dive into how we positioned a collaborative collection at the intersection of Amsterdam street culture and global athletic performance.</p>
+            <a href="#" class="featured-link">
+              <span>Read the Case Study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="section-container">
+        <h2>Have a Project in Mind?</h2>
+        <p>Let's discuss how we can work together to create meaningful cultural connections for your brand.</p>
+        <a href="https://calendly.com/your-calendly-link" class="primary-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">
+          <span>Book Free Consultation</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
+      </div>
+    </div>
+    <div class="footer-main"><div class="section-container"><div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">Sofia Bodger</div><p>Senior Strategy Director helping high-end agencies and culture-first brands connect with youth culture.</p>
+        <div class="footer-social">
+          <a href="https://linkedin.com/in/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://instagram.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://twitter.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-column"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-column"><h4>Services</h4><ul><li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li></ul></div>
+      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="#">New York, USA</a></li></ul></div>
+      <div class="footer-column"><h4>Elsewhere</h4><ul><li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li></ul></div>
+    </div></div></div>
+    <div class="section-container"><div class="footer-bottom"><p>&copy; 2026 Sofia Bodger. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div>
+  </footer>
+
+  <script type="module">
+    import Lenis from 'https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.mjs';
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), orientation: 'vertical', smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => { btn.addEventListener('click', () => { filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); }); });
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; });
+      document.querySelectorAll('.mobile-menu-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); });
+    }
+  </script>
+</body>
+</html>
