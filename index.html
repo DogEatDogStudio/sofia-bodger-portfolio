@@ -1,693 +1,451 @@
 <!DOCTYPE html>
-<html lang="en" class="lenis lenis-smooth">
+<html dir="ltr" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sofia Bodger | Making Brands Culturally Alive</title>
-  <meta name="description" content="Senior Strategy Director specializing in impactful strategy led by empathy, behavior understanding, and cultural intelligence. Based in Amsterdam.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <style>
-    :root {
-      --cobalt: #0044FF; --cobalt-light: #3366FF;
-      --pink: #FF66CC; --lime: #CCFF00;
-      --white: #FFFFFF; --off-white: #FAFAF8; --charcoal: #1A1A2E;
-      --gray-100: #F0F0EC; --gray-200: #E0E0DC; --gray-300: #C0C0BA;
-      --gray-500: #7A7A72; --gray-700: #3A3A34;
-      --bg: var(--off-white); --text: var(--charcoal); --text-muted: var(--gray-500);
-      --accent: var(--cobalt); --border: var(--gray-200);
-      --font-pixel: 'Press Start 2P', monospace;
-      --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
-      --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-      --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: auto; }
-    body {
-      font-family: var(--font-body); font-size: 15px; line-height: 1.6;
-      color: var(--text); overflow-x: hidden;
-      background-color: var(--bg);
-      background-image:
-        linear-gradient(rgba(0,68,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,68,255,0.06) 1px, transparent 1px);
-      background-size: 32px 32px;
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%230044FF'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%233366FF'/%3E%3C/svg%3E") 4 4, auto;
-    }
-    a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%23CC66FF'/%3E%3C/svg%3E") 4 4, pointer; }
-    a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    img { display: block; max-width: 100%; height: auto; }
-    ul { list-style: none; }
-    ::selection { background: var(--pink); color: var(--white); }
-
-    /* Scroll progress bar */
-    .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 999; width: 0%; transition: width 0.1s linear; }
-
-    /* Sticker effect */
-    .sticker { border: 4px solid var(--white); outline: 3px solid var(--cobalt); box-shadow: 6px 6px 0 var(--cobalt); transition: transform 0.3s var(--bounce), box-shadow 0.3s ease; }
-    .sticker:hover { box-shadow: 8px 8px 0 var(--pink); transform: rotate(-1deg) scale(1.02); }
-    .draggable { position: relative; cursor: grab; transition: transform 0.3s var(--spring), box-shadow 0.3s ease; }
-    .draggable:active { cursor: grabbing; }
-    .draggable.dragging { z-index: 9000 !important; box-shadow: 12px 12px 0 rgba(0,68,255,0.25); transform: scale(1.05) rotate(0deg) !important; }
-
-    /* Wiggle */
-    @keyframes wiggle { 0%,100%{transform:rotate(0deg)} 15%{transform:rotate(-3deg)} 30%{transform:rotate(2deg)} 45%{transform:rotate(-2deg)} 60%{transform:rotate(1deg)} 75%{transform:rotate(-1deg)} }
-    .wiggle-hover:hover { animation: wiggle 0.6s ease; }
-
-    /* Pixel art decorations */
-    .pixel-star { position: absolute; width: 24px; height: 24px; pointer-events: none; z-index: 1; background: var(--lime); opacity: 0.5; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
-    .pixel-cross { position: absolute; width: 16px; height: 16px; pointer-events: none; z-index: 1; }
-    .pixel-cross::before, .pixel-cross::after { content: ''; position: absolute; background: var(--pink); opacity: 0.4; }
-    .pixel-cross::before { width: 16px; height: 4px; top: 6px; left: 0; }
-    .pixel-cross::after { width: 4px; height: 16px; top: 0; left: 6px; }
-    .pixel-diamond { position: absolute; width: 12px; height: 12px; pointer-events: none; z-index: 1; background: var(--cobalt); opacity: 0.3; clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
-    /* Floating emoji stickers */
-    .emoji-sticker { position: absolute; font-size: 32px; pointer-events: none; z-index: 1; animation: floatEmoji 4s ease-in-out infinite; }
-    @keyframes floatEmoji { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(5deg)} }
-
-    /* ============================================
-       HERO — STICKY FULL-SCREEN with VIDEO
-       ============================================ */
-    .hero {
-      position: sticky; top: 0; left: 0; width: 100%; height: 100vh; height: 100svh;
-      display: flex; flex-direction: column;
-      background: var(--charcoal); color: var(--white);
-      overflow: hidden; z-index: 1;
-    }
-    /* Video background */
-    .hero-video {
-      position: absolute; inset: 0; z-index: 0; overflow: hidden;
-    }
-    .hero-video video {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.3) saturate(1.2);
-    }
-    .hero-video::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(26,26,46,0.4) 0%, rgba(26,26,46,0.7) 50%, rgba(26,26,46,0.95) 100%);
-    }
-    /* Scanline overlay */
-    .hero::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-    }
-    /* Grid overlay */
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
-      background-image: linear-gradient(rgba(0,68,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,68,255,0.08) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    .hero-top {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 10;
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 56px);
-    }
-    .hero-logo { font-family: var(--font-pixel); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cobalt); }
-    .hero-logo a { transition: color 0.2s var(--bounce); }
-    .hero-logo a:hover { color: var(--lime); }
-    .hero-meta { display: none; align-items: center; gap: 24px; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); }
-    @media (min-width: 1024px) { .hero-meta { display: flex; } }
-    .hero-meta .divider { width: 1px; height: 14px; background: var(--gray-700); }
-    .hero-clock { font-variant-numeric: tabular-nums; }
-    .hero-cta-top { display: none; }
-    @media (min-width: 1024px) {
-      .hero-cta-top { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--cobalt); color: var(--white); font-family: var(--font-pixel); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; border: 3px solid var(--white); box-shadow: 4px 4px 0 var(--lime); position: absolute; top: 28px; right: 56px; transition: transform 0.2s var(--bounce), box-shadow 0.2s ease, background 0.2s ease; }
-      .hero-cta-top:hover { background: var(--pink); transform: translateY(-2px) scale(1.03); box-shadow: 6px 6px 0 var(--lime); }
-      .hero-cta-top:active { transform: translateY(2px) scale(0.97); box-shadow: 2px 2px 0 var(--lime); }
-    }
-    .hero-nav { position: absolute; left: clamp(16px, 3vw, 56px); top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left center; z-index: 10; display: none; }
-    @media (min-width: 1024px) { .hero-nav { display: flex; align-items: center; gap: 36px; } }
-    .hero-nav a { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); position: relative; transition: color 0.2s var(--bounce); }
-    .hero-nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--lime); transition: width 0.3s var(--bounce); }
-    .hero-nav a:hover { color: var(--white); }
-    .hero-nav a:hover::after { width: 100%; }
-    .hero-nav a.active { color: var(--lime); }
-    .hero-nav a.active::after { width: 100%; background: var(--lime); }
-    .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(16px, 3vw, 56px) clamp(40px, 5vw, 80px); padding-left: clamp(16px, 3vw, 120px); position: relative; z-index: 5; }
-    .hero-mobile-nav { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding-left: 0; }
-    @media (min-width: 1024px) { .hero-mobile-nav { display: none; } }
-    .hero-mobile-nav a { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); transition: color 0.2s var(--bounce); }
-    .hero-mobile-nav a:hover { color: var(--lime); }
-    .hero-title { overflow: hidden; margin-bottom: 32px; }
-    .hero-title .title-line { display: block; overflow: hidden; }
-    .hero-title .title-word { display: inline-block; opacity: 0; transform: translateY(110%); }
-    .hero-title h1 { font-family: var(--font-pixel); font-size: clamp(1.8rem, 5.5vw, 5rem); font-weight: 400; letter-spacing: 0; line-height: 1.15; text-transform: uppercase; color: var(--cobalt); text-shadow: 4px 4px 0 rgba(0,68,255,0.15); position: relative; }
-    .hero-title h1::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 4px; background: repeating-linear-gradient(90deg, var(--cobalt) 0px, var(--cobalt) 8px, transparent 8px, transparent 16px); animation: borderSlide 3s linear infinite; }
-    @keyframes borderSlide { 0%{transform:translateX(0)} 100%{transform:translateX(-16px)} }
-    .hero-subtitle { font-family: var(--font-body); font-size: clamp(14px, 1.5vw, 18px); font-weight: 600; color: var(--gray-300); margin-top: 24px; max-width: 600px; }
-    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-    .play-button { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gray-500); transition: color 0.2s var(--bounce); }
-    .play-button .play-icon { width: 44px; height: 44px; border: 3px solid var(--gray-700); border-radius: 0; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s var(--bounce), background 0.2s ease, transform 0.2s var(--bounce), box-shadow 0.2s ease; }
-    .play-button .play-icon svg { width: 12px; height: 12px; margin-left: 2px; }
-    .play-button:hover { color: var(--white); }
-    .play-button:hover .play-icon { border-color: var(--lime); background: var(--lime); color: var(--charcoal); transform: scale(1.1) rotate(-3deg); box-shadow: 4px 4px 0 var(--pink); }
-    .hero-scroll-hint { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); display: none; align-items: center; gap: 12px; }
-    @media (min-width: 1024px) { .hero-scroll-hint { display: flex; } }
-    .hero-scroll-hint .scroll-line { width: 40px; height: 2px; background: var(--gray-700); position: relative; overflow: hidden; }
-    .hero-scroll-hint .scroll-line::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--lime); animation: scrollLine 2s ease-in-out infinite; }
-    @keyframes scrollLine { 0%{left:-100%} 50%{left:0} 100%{left:100%} }
-
-    /* Showreel modal */
-    .showreel-overlay { position: fixed; inset: 0; z-index: 9999; background: rgba(26,26,46,0.97); display: none; align-items: center; justify-content: center; }
-    .showreel-overlay.active { display: flex; }
-    .showreel-close { position: absolute; top: 28px; right: 40px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .showreel-close::before, .showreel-close::after { content: ''; position: absolute; width: 28px; height: 3px; background: var(--pink); transition: transform 0.2s var(--bounce); }
-    .showreel-close::before { transform: rotate(45deg); }
-    .showreel-close::after { transform: rotate(-45deg); }
-    .showreel-close:hover::before { transform: rotate(45deg) scale(1.2); }
-    .showreel-close:hover::after { transform: rotate(-45deg) scale(1.2); }
-    .showreel-content { width: 85vw; max-width: 1200px; aspect-ratio: 16/9; background: var(--charcoal); border: 4px solid var(--white); outline: 3px solid var(--cobalt); box-shadow: 12px 12px 0 var(--cobalt); overflow: hidden; position: relative; }
-    .showreel-content video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    /* Mobile Menu */
-    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--white); }
-    @media (min-width: 1024px) { .menu-toggle { display: none; } }
-    .menu-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
-    .menu-icon span { display: block; height: 3px; background: currentColor; transition: transform 0.3s var(--bounce), opacity 0.3s ease; }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .mobile-menu { position: fixed; inset: 0; background: var(--charcoal); color: var(--white); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
-    .mobile-menu.active { opacity: 1; visibility: visible; }
-    .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 28px; }
-    .mobile-menu-nav a { font-family: var(--font-pixel); font-size: clamp(16px, 4vw, 28px); text-transform: uppercase; color: var(--gray-500); transition: color 0.2s var(--bounce), transform 0.2s var(--bounce); }
-    .mobile-menu-nav a:hover { color: var(--lime); transform: scale(1.05); }
-    .mobile-menu-cta { margin-top: 48px; }
-
-    /* ============================================
-       MAIN CONTENT — scrolls OVER the sticky hero
-       ============================================ */
-    .main-content {
-      position: relative; z-index: 2;
-      background: var(--off-white);
-      background-image:
-        linear-gradient(rgba(0,68,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,68,255,0.06) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    /* ============================================
-       PROJECTS
-       ============================================ */
-    .projects-section { padding: clamp(80px, 10vw, 180px) 0; position: relative; }
-    .section-container { max-width: 1400px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 56px); }
-    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(40px, 5vw, 80px); padding-bottom: 20px; border-bottom: 3px solid var(--cobalt); }
-    .section-label { font-family: var(--font-pixel); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cobalt); display: flex; align-items: center; gap: 12px; }
-    .section-label::before { content: ''; width: 32px; height: 3px; background: var(--lime); }
-    .section-title { font-family: var(--font-body); font-size: clamp(11px, 1.2vw, 13px); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .section-header::after { content: ''; display: block; height: 4px; margin-top: 16px; background: repeating-linear-gradient(90deg, var(--cobalt) 0px, var(--cobalt) 8px, var(--pink) 8px, var(--pink) 16px, var(--lime) 16px, var(--lime) 24px, transparent 24px, transparent 32px); }
-    .project-list { border-top: 3px solid var(--cobalt); }
-    .project-row { display: grid; grid-template-columns: 1fr; gap: 8px; padding: clamp(20px, 3vw, 40px) 0; border-bottom: 2px solid var(--border); cursor: pointer; position: relative; transition: padding-left 0.4s var(--bounce), background 0.3s ease; }
-    @media (min-width: 768px) { .project-row { grid-template-columns: 160px 1fr 140px; align-items: center; gap: 24px; } }
-    @media (min-width: 1024px) { .project-row { grid-template-columns: 200px 1fr 180px; } }
-    .project-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, rgba(0,68,255,0.06), transparent); transition: width 0.5s var(--bounce); }
-    .project-row:hover { padding-left: 16px; }
-    .project-row:hover::before { width: 100%; }
-    .project-client { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); order: 2; }
-    @media (min-width: 768px) { .project-client { order: 0; } }
-    .project-title-wrap { order: 1; display: flex; align-items: center; gap: 16px; overflow: hidden; }
-    @media (min-width: 768px) { .project-title-wrap { order: 0; } }
-    .project-number { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--charcoal); color: var(--lime); font-family: var(--font-pixel); font-size: 8px; flex-shrink: 0; }
-    .project-title { font-family: var(--font-pixel); font-size: clamp(12px, 2.5vw, 22px); line-height: 1.3; text-transform: uppercase; color: var(--text); transition: color 0.2s var(--bounce); }
-    .project-row:hover .project-title { color: var(--cobalt); }
-    .project-category { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); order: 3; }
-    @media (min-width: 768px) { .project-category { text-align: right; order: 0; } }
-    .project-arrow { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 3px solid var(--gray-200); border-radius: 0; color: var(--text-muted); opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s var(--bounce), border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; }
-    .project-row:hover .project-arrow { opacity: 1; transform: translateX(0); border-color: var(--cobalt); color: var(--cobalt); box-shadow: 3px 3px 0 var(--lime); }
-    .project-arrow svg { width: 14px; height: 14px; }
-    .view-all { margin-top: 48px; display: flex; justify-content: flex-end; }
-    .view-all-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-pixel); font-size: 9px; text-transform: uppercase; color: var(--cobalt); transition: color 0.2s var(--bounce), gap 0.3s var(--bounce); }
-    .view-all-link:hover { color: var(--pink); gap: 16px; }
-    .view-all-link svg { width: 16px; height: 16px; transition: transform 0.3s var(--bounce); }
-    .view-all-link:hover svg { transform: translateX(6px) rotate(15deg); }
-
-    /* Cursor-follow media */
-    .cursor-media { position: fixed; top: 0; left: 0; width: clamp(240px, 22vw, 360px); height: clamp(180px, 16vw, 280px); pointer-events: none; z-index: 50; overflow: hidden; opacity: 0; transform: scale(0.85); border: 4px solid var(--white); outline: 3px solid var(--cobalt); box-shadow: 8px 8px 0 var(--cobalt); transition: opacity 0.3s var(--bounce), transform 0.3s var(--bounce); }
-    .cursor-media.active { opacity: 1; transform: scale(1); }
-    .cursor-media img { width: 100%; height: 100%; object-fit: cover; }
-    .project-list.has-hover .project-row { opacity: 0.3; transition: opacity 0.3s ease; }
-    .project-list.has-hover .project-row.is-hovered { opacity: 1; }
-    @media (hover: none) { .cursor-media { display: none !important; } .project-list.has-hover .project-row { opacity: 1 !important; } }
-
-    /* ============================================
-       ABOUT TEASER
-       ============================================ */
-    .about-teaser { padding: clamp(80px, 10vw, 180px) 0; background: var(--gray-100); border-top: 4px solid var(--cobalt); border-bottom: 4px solid var(--cobalt); position: relative; }
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(40px, 5vw, 80px); align-items: center; }
-    @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1.2fr; } }
-    .about-image-wrap { position: relative; }
-    .about-image-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border: 5px solid var(--white); outline: 3px solid var(--cobalt); box-shadow: 8px 8px 0 var(--cobalt); filter: none; transition: transform 0.3s var(--bounce), box-shadow 0.3s ease; }
-    .about-image-wrap img:hover { transform: rotate(-2deg); box-shadow: 10px 10px 0 var(--pink); }
-    .about-content h2 { font-family: var(--font-pixel); font-size: clamp(14px, 2.5vw, 22px); line-height: 1.4; text-transform: uppercase; color: var(--cobalt); margin-bottom: 24px; }
-    .about-content p { font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: var(--text-muted); margin-bottom: 32px; max-width: 480px; }
-    .about-stats { display: flex; gap: clamp(24px, 3vw, 48px); margin-bottom: 36px; }
-    .about-stats > div { padding: 16px 20px; background: var(--white); border: 2px solid var(--cobalt); box-shadow: 3px 3px 0 var(--cobalt); transition: transform 0.2s var(--bounce), box-shadow 0.2s ease; }
-    .about-stats > div:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 5px 5px 0 var(--pink); }
-    .stat-value { font-family: var(--font-pixel); font-size: clamp(16px, 2.5vw, 24px); color: var(--pink); line-height: 1; }
-    .stat-label { font-family: var(--font-body); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
-
-    /* CTA Button */
-    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--cobalt); color: var(--white); font-family: var(--font-pixel); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; border: 3px solid var(--white); box-shadow: 5px 5px 0 var(--lime); transition: transform 0.2s var(--bounce), box-shadow 0.2s ease, background 0.2s ease; }
-    .primary-cta:hover { background: var(--pink); transform: translateY(-3px) scale(1.03); box-shadow: 7px 7px 0 var(--lime); }
-    .primary-cta:active { transform: translateY(3px) scale(0.97); box-shadow: 2px 2px 0 var(--lime); }
-    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.2s var(--bounce); }
-    .primary-cta:hover svg { transform: translateX(4px); }
-
-    /* CTA Banner */
-    .cta-banner { background: var(--charcoal); color: var(--white); padding: clamp(80px, 10vw, 140px) 0; text-align: center; border-top: 5px solid var(--cobalt); border-bottom: 5px solid var(--cobalt); position: relative; }
-    .cta-banner h2 { font-family: var(--font-pixel); font-size: clamp(16px, 3.5vw, 32px); line-height: 1.3; text-transform: uppercase; color: var(--cobalt); margin-bottom: 20px; }
-    .cta-banner p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--gray-500); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
-
-    /* FOOTER */
-    .footer { background: var(--charcoal); color: var(--white); overflow: hidden; border-top: 4px solid var(--cobalt); }
-    .footer-main { padding: clamp(60px, 8vw, 100px) 0 clamp(40px, 5vw, 80px); }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 32px; } }
-    .footer-brand { grid-column: 1 / -1; margin-bottom: 16px; }
-    @media (min-width: 768px) { .footer-brand { grid-column: 1 / 3; } }
-    .footer-logo { font-family: var(--font-pixel); font-size: 11px; color: var(--cobalt); margin-bottom: 16px; }
-    .footer-brand p { font-size: 14px; line-height: 1.6; color: var(--gray-500); max-width: 320px; }
-    .footer-column h4 { font-family: var(--font-pixel); font-size: 8px; color: var(--lime); margin-bottom: 20px; }
-    .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
-    .footer-column a { font-size: 14px; color: var(--gray-500); transition: color 0.2s var(--bounce), transform 0.2s var(--bounce); display: inline-block; }
-    .footer-column a:hover { color: var(--pink); transform: translateX(4px); }
-    .footer-social { display: flex; gap: 12px; margin-top: 24px; }
-    .footer-social a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px solid var(--gray-700); color: var(--gray-500); transition: border-color 0.2s var(--bounce), color 0.2s var(--bounce), transform 0.2s var(--bounce), box-shadow 0.2s ease; }
-    .footer-social a:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-3px) rotate(-3deg); box-shadow: 3px 3px 0 var(--pink); }
-    .footer-social svg { width: 16px; height: 16px; }
-    .marquee-section { border-top: 3px solid var(--cobalt); padding: clamp(30px, 4vw, 50px) 0; overflow: hidden; }
-    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 20s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    .marquee-item { display: flex; align-items: center; gap: 48px; flex-shrink: 0; padding-right: 48px; }
-    .marquee-text { font-family: var(--font-pixel); font-size: clamp(20px, 4vw, 48px); line-height: 1; text-transform: uppercase; white-space: nowrap; opacity: 0.25; transition: opacity 0.3s ease; color: var(--cobalt); }
-    .marquee-track:hover .marquee-text { opacity: 0.5; }
-    .marquee-dot { width: 10px; height: 10px; background: var(--pink); flex-shrink: 0; }
-    .footer-bottom { padding: 24px 0; border-top: 2px solid var(--gray-700); display: flex; flex-direction: column; gap: 16px; align-items: center; }
-    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
-    .footer-bottom p { font-size: 12px; color: var(--gray-700); }
-    .footer-legal { display: flex; gap: 24px; }
-    .footer-legal a { font-size: 12px; color: var(--gray-700); transition: color 0.2s var(--bounce); }
-    .footer-legal a:hover { color: var(--pink); }
-
-    .gs-reveal { opacity: 0; transform: translateY(60px); }
-    @media (prefers-reduced-motion: reduce) { .gs-reveal { opacity: 1; transform: none; } .hero-title .title-word { opacity: 1; transform: none !important; } .marquee-track { animation: none; } .pixel-star, .pixel-cross, .pixel-diamond, .emoji-sticker { display: none; } .wiggle-hover { animation: none !important; } * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
-  </style>
+  <meta name="description" content="Senior Strategy Director specializing in brand strategy, cultural intelligence, and youth culture. Based in Amsterdam, working globally.">
+  
+  <!-- Favicon -->
+  <link rel="icon" sizes="32x32" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%230f0f0d' width='32' height='32'/%3E%3Ctext x='4' y='24' font-size='18' fill='%23f0f2f1'%3ESB%3C/text%3E%3C/svg%3E">
+  
+  <!-- Preload fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family/Space+Grotesk:wght@400;500&display=swap" as="style">
+  <link rel="stylesheet" href="shared.css">
 </head>
-<body>
-
-  <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- HERO — Sticky with video background -->
-  <section class="hero">
-    <div class="hero-video">
-      <video src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" muted loop playsinline autoplay preload="none" id="hero-video-bg"></video>
-    </div>
-
-    <!-- Decorative pixel art & emoji stickers -->
-    <div class="pixel-star" style="top:15%; right:8%;"></div>
-    <div class="pixel-cross" style="top:25%; right:15%;"></div>
-    <div class="pixel-diamond" style="bottom:20%; right:12%;"></div>
-    <div class="pixel-star" style="bottom:30%; left:5%;"></div>
-    <div class="pixel-cross" style="top:60%; right:5%;"></div>
-    <div class="emoji-sticker" style="top:18%; right:22%;">✦</div>
-    <div class="emoji-sticker" style="bottom:35%; left:8%; animation-delay: -1.5s;">◆</div>
-    <div class="emoji-sticker" style="top:45%; right:8%; animation-delay: -2.5s;">★</div>
-
-    <div class="hero-top">
-      <div class="hero-logo"><a href="index.html">Sofia Bodger</a></div>
-      <div class="hero-meta">
-        <span>Amsterdam, NL</span>
-        <span class="divider"></span>
-        <span class="hero-clock" id="hero-clock">00:00</span>
-      </div>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span class="menu-icon"><span></span><span></span><span></span></span>
-      </button>
-    </div>
-
-    <a href="https://calendly.com/your-calendly-link" class="hero-cta-top" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">
-      Book Consultation
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-    </a>
-
-    <nav class="hero-nav" aria-label="Main navigation">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="case-studies.html">Work</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="hero-content">
-      <div class="hero-mobile-nav">
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="case-studies.html">Work</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="hero-title">
-        <h1>
-          <span class="title-line"><span class="title-word">Making</span> <span class="title-word">Brands</span></span>
-          <span class="title-line"><span class="title-word">Culturally</span> <span class="title-word">Alive</span></span>
-        </h1>
-      </div>
-      <p class="hero-subtitle">Senior Strategy Director — Integrating purpose and brand action through empathy, behavior understanding, and cultural intelligence.</p>
-      <div class="hero-bottom">
-        <button class="play-button" id="play-showreel" aria-label="Play showreel">
-          <span class="play-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="8 5 19 12 8 19 8 5"/></svg></span>
-          <span>Play Showreel</span>
-        </button>
-        <div class="hero-scroll-hint">
-          <span>Scroll</span>
-          <span class="scroll-line"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <nav class="mobile-menu-nav">
-      <a href="index.html" data-menu-link>Home</a>
-      <a href="about.html" data-menu-link>About</a>
-      <a href="services.html" data-menu-link>Services</a>
-      <a href="case-studies.html" data-menu-link>Work</a>
-      <a href="contact.html" data-menu-link>Contact</a>
-    </nav>
-    <div class="mobile-menu-cta">
-      <a href="contact.html" class="primary-cta"><span>Book Consultation</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+<body class="index-page">
+  <!-- Custom Cursor - Desktop Only -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="media-cursor-wrapper" aria-hidden="true">
+    <div class="img-wrapper">
+      <img src="" alt="">
     </div>
   </div>
 
-  <!-- Showreel Modal -->
-  <div class="showreel-overlay" id="showreel-overlay" aria-hidden="true">
-    <button class="showreel-close" id="close-showreel" aria-label="Close showreel"></button>
-    <div class="showreel-content"><video id="showreel-video" src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"></video></div>
+  <!-- Page Transition Overlays - YARD exact -->
+  <div class="transitions-overlays" aria-hidden="true">
+    <div class="transition-overlay"></div>
+    <div class="transition-overlay transition-overlay-2">
+      <svg viewBox="0 0 200 60" fill="currentColor">
+        <text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text>
+        <text x="110" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text>
+      </svg>
+    </div>
   </div>
 
-  <!-- MAIN CONTENT — scrolls over the sticky hero -->
-  <div class="main-content">
-
-    <!-- PROJECTS — Real case studies from Sofia's portfolio -->
-    <section class="projects-section" id="work">
-      <div class="pixel-star" style="top:5%; left:3%;"></div>
-      <div class="pixel-diamond" style="top:12%; right:6%;"></div>
-      <div class="pixel-cross" style="bottom:8%; left:5%;"></div>
-      <div class="emoji-sticker" style="top:3%; right:12%;">⚡</div>
-
-      <div class="section-container">
-        <div class="section-header gs-reveal">
-          <div><div class="section-label">Selected Work</div></div>
-          <div class="section-title">2019 — 2026</div>
-        </div>
-        <div class="project-list">
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80">
-            <span class="project-client">Nike</span>
-            <div class="project-title-wrap">
-              <span class="project-number">01</span>
-              <span class="project-title">Nike AirTopia × Roblox</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Digital Strategy</span>
-          </a>
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=80">
-            <span class="project-client">Beats By Dre</span>
-            <div class="project-title-wrap">
-              <span class="project-number">02</span>
-              <span class="project-title">BeatsDaisyChallenge</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Campaign — 8.1B Views</span>
-          </a>
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=700&q=80">
-            <span class="project-client">Foot Locker</span>
-            <div class="project-title-wrap">
-              <span class="project-number">03</span>
-              <span class="project-title">Shoes Don't Change The World</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Brand Platform</span>
-          </a>
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=80">
-            <span class="project-client">Nike</span>
-            <div class="project-title-wrap">
-              <span class="project-number">04</span>
-              <span class="project-title">Nike FlyEase — Why The Design</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Cultural Positioning</span>
-          </a>
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=700&q=80">
-            <span class="project-client">H&M</span>
-            <div class="project-title-wrap">
-              <span class="project-number">05</span>
-              <span class="project-title">H&M Social Relaunch</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Content Strategy</span>
-          </a>
-          <a href="case-studies.html" class="project-row gs-reveal" data-img="https://images.unsplash.com/photo-1600269452121-4f2416f55d5e?w=700&q=80">
-            <span class="project-client">Audi</span>
-            <div class="project-title-wrap">
-              <span class="project-number">06</span>
-              <span class="project-title">Audi Synchronised Swimming</span>
-              <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
-            </div>
-            <span class="project-category">Campaign Strategy</span>
-          </a>
-        </div>
-        <div class="cursor-media" id="cursor-media" aria-hidden="true">
-          <img src="" alt="" id="cursor-media-img">
-        </div>
-        <div class="view-all gs-reveal">
-          <a href="case-studies.html" class="view-all-link">
-            View All Case Studies
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT TEASER — Real bio -->
-    <section class="about-teaser" id="about">
-      <div class="pixel-star" style="top:10%; right:4%;"></div>
-      <div class="pixel-diamond" style="bottom:15%; left:3%;"></div>
-      <div class="emoji-sticker draggable" style="top:8%; left:6%; z-index: 10;">📌</div>
-      <div class="emoji-sticker draggable" style="bottom:12%; right:5%; z-index: 10; animation-delay: -2s;">🎨</div>
-
-      <div class="section-container">
-        <div class="about-grid">
-          <div class="about-image-wrap gs-reveal draggable" data-tilt>
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&q=80" alt="Sofia Bodger, Senior Strategy Director">
-          </div>
-          <div class="about-content gs-reveal">
-            <div class="section-label">About</div>
-            <h2>Strategy Led by Empathy & Cultural Intelligence</h2>
-            <p>With 8+ years leading strategy at BBH, AnalogFolk, and Highsnobiety, I integrate purpose and brand action to drive meaningful change. My work spans Nike, Foot Locker, Beats By Dre, Johnnie Walker, and Tommy Hilfiger — always rooted in understanding behavior and culture.</p>
-            <div class="about-stats">
-              <div><div class="stat-value">8+</div><div class="stat-label">Years Experience</div></div>
-              <div><div class="stat-value">15+</div><div class="stat-label">Global Brands</div></div>
-              <div><div class="stat-value">8.1B</div><div class="stat-label">Campaign Views</div></div>
-            </div>
-            <a href="about.html" class="primary-cta wiggle-hover">
-              <span>More About Me</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <!-- Header - YARD Exact Structure -->
+  <header class="layout-header lh">
+    <div class="wrapper">
+      <div class="top">
+        <div class="logo-wrapper">
+          <div class="logo-outer">
+            <a href="index.html" aria-label="Sofia Bodger - Home">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 382 61" fill="currentColor">
+                <text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text>
+                <text x="180" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text>
+              </svg>
             </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- DRAGGABLE STICKER WALL — More dopamine elements -->
-    <section style="padding: clamp(60px, 8vw, 120px) 0; position: relative; overflow: hidden;">
-      <div class="section-container" style="position: relative; min-height: 200px;">
-        <div class="sticker draggable" style="position: absolute; top: 10px; left: 5%; transform: rotate(-3deg); padding: 20px 28px; background: var(--white); font-family: var(--font-pixel); font-size: 10px; color: var(--cobalt);">
-          ★ BIMA100 Rising Star
+        
+        <!-- Mobile menu button -->
+        <div class="right">
+          <button aria-controls="menu-mobile" aria-expanded="false">Menu</button>
         </div>
-        <div class="sticker draggable" style="position: absolute; top: 40px; left: 35%; transform: rotate(2deg); padding: 20px 28px; background: var(--white); font-family: var(--font-pixel); font-size: 10px; color: var(--pink);">
-          ◆ D&I Council Member
-        </div>
-        <div class="sticker draggable" style="position: absolute; top: 5px; right: 8%; transform: rotate(-1deg); padding: 20px 28px; background: var(--white); font-family: var(--font-pixel); font-size: 10px; color: var(--lime); background: var(--charcoal);">
-          ⚡ Co-Founder: Unsigned
-        </div>
-        <div class="sticker draggable" style="position: absolute; top: 80px; left: 15%; transform: rotate(3deg); padding: 16px 24px; background: var(--white); font-family: var(--font-pixel); font-size: 9px; color: var(--cobalt);">
-          ✦ Creative Mentor Network
-        </div>
-        <div class="sticker draggable" style="position: absolute; top: 70px; right: 25%; transform: rotate(-2deg); padding: 16px 24px; background: var(--lime); font-family: var(--font-pixel); font-size: 9px; color: var(--charcoal);">
-          ♦ Pitch List: Super People
+        
+        <!-- Desktop right controls -->
+        <div class="right -dk">
+          <div class="location">
+            <span>Amsterdam, NL</span>
+          </div>
+          <span class="live-clock" id="live-clock"></span>
+          <a href="#thinking" class="initiatives-btn">
+            <span class="decorator">
+              <i></i><i></i><i></i>
+            </span>
+            <span class="label-text">Thinking</span>
+          </a>
         </div>
       </div>
-    </section>
-
-    <!-- CTA BANNER -->
-    <section class="cta-banner" id="contact">
-      <div class="pixel-star" style="top:10%; left:8%;"></div>
-      <div class="pixel-cross" style="bottom:15%; right:10%;"></div>
-      <div class="pixel-diamond" style="top:20%; right:5%;"></div>
-      <div class="emoji-sticker" style="top:12%; right:15%;">✦</div>
-
-      <div class="section-container gs-reveal">
-        <h2>Ready to Make Your Brand Culturally Alive?</h2>
-        <p>Let's discuss how purpose-driven strategy and cultural intelligence can transform your brand.</p>
-        <a href="https://calendly.com/your-calendly-link" class="primary-cta wiggle-hover" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;">
-          <span>Book Free Consultation</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-  </div><!-- /.main-content -->
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="marquee-section">
-      <div class="marquee-track">
-        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
-        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
-      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav style="--items:5" class="menu -dk">
+        <ul>
+          <li style="--index:0"><a href="index.html" class="is-active"><span class="link-text">Work</span></a></li>
+          <li style="--index:1"><a href="about.html"><span class="link-text">About</span></a></li>
+          <li style="--index:2"><a href="services.html"><span class="link-text">Services</span></a></li>
+          <li style="--index:3"><a href="case-studies.html"><span class="link-text">Case Studies</span></a></li>
+          <li style="--index:4"><a href="contact.html"><span class="link-text">Contact</span></a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="footer-main">
-      <div class="section-container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">Sofia Bodger</div>
-            <p>Senior Strategy Director helping brands connect with culture through empathy, behavior understanding, and purposeful strategy. Based in Amsterdam.</p>
-            <div class="footer-social">
-              <a href="https://linkedin.com/in/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-              <a href="https://instagram.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-              <a href="https://twitter.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+  </header>
+
+  <!-- Mobile Menu - YARD Exact -->
+  <div id="menu-mobile" class="menu-mobile" role="dialog" aria-label="Navigation menu">
+    <div class="outer" data-lenis-prevent="">
+      <div class="inner">
+        <div class="views">
+          <div class="view view-base">
+            <div class="menus">
+              <ul>
+                <li style="--index:0"><a href="index.html" class="is-active">Work</a></li>
+                <li style="--index:1"><a href="about.html">About</a></li>
+                <li style="--index:2"><a href="services.html">Services</a></li>
+                <li style="--index:3"><a href="case-studies.html">Case Studies</a></li>
+                <li style="--index:4"><a href="contact.html">Contact</a></li>
+              </ul>
+              <ul>
+                <li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li>
+                <li><a href="tel:+316214206136">+31 6 2142 06136</a></li>
+              </ul>
+            </div>
+            <div class="menu-footer">
+              <a href="contact.html" class="mobile-book-cta">
+                Book a consultation
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
+                  <path fill="currentColor" d="M9.5 7H2v-1h7.5l-4-4V7zm4.5 4.5l-7-7 1-1 7 7-1 1z"/>
+                </svg>
+              </a>
+              <div>
+                <p>Amsterdam, NL</p>
+              </div>
+              <div>
+                <p>Senior Strategy Director</p>
+              </div>
             </div>
           </div>
-          <div class="footer-column"><h4>Navigation</h4><ul>
-            <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li>
-          </ul></div>
-          <div class="footer-column"><h4>Services</h4><ul>
-            <li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li>
-          </ul></div>
-          <div class="footer-column"><h4>Contact</h4><ul>
-            <li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="contact.html">Amsterdam, NL</a></li>
-          </ul></div>
-          <div class="footer-column"><h4>Elsewhere</h4><ul>
-            <li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li>
-          </ul></div>
         </div>
       </div>
     </div>
-    <div class="section-container">
-      <div class="footer-bottom">
-        <p>&copy; 2026 Sofia Bodger. All rights reserved.</p>
-        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+
+
+
+  <!-- Main Content -->
+  <main data-v-f3941143>
+    <!-- Hero Section - YARD Exact -->
+    <section class="index-hero">
+      <div class="hero-wrapper">
+        <div class="background">
+          <div class="media animate-load loaded">
+            <video muted autoplay playsinline loop poster="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-businesswoman-walking-through-a-modern-building-40370-large.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-inner">
+            <p class="title">
+              <span>Making brands</span>
+              <span class="l2">culturally alive</span>
+            </p>
+            
+            <!-- Hero Bio -->
+            <p class="hero-bio">
+              Senior Strategy Director with 12+ years shaping cultural moments for Nike, Beats, Foot Locker, and more. Based in Amsterdam, working globally on brand strategy, cultural intelligence, and creative direction.
+            </p>
+            
+            <!-- PRIMARY CTA - Book a Call -->
+            <div class="hero-cta" style="animation-delay: 0.6s;">
+              <a href="contact.html" class="cta-book">
+                Book a consultation
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
+                  <path fill="currentColor" d="M9.5 7H2v-1h7.5l-4-4V7zm4.5 4.5l-7-7 1-1 7 7-1 1z"/>
+                </svg>
+              </a>
+            </div>
+            
+            <!-- Client Credibility Strip -->
+            <div class="credibility-strip">
+              <span class="cred-label">Strategy for</span>
+              <span class="cred-names">Nike · Beats · Foot Locker · H&M · Audi</span>
+            </div>
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+              <span>Scroll</span>
+              <div class="scroll-line"></div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- Thinking Section -->
+    <section id="thinking" class="thinking-section reveal">
+      <div class="section-inner">
+        <h2 class="section-heading">Thinking</h2>
+        <div class="thinking-grid">
+          <a href="thinking-brands.html" class="thinking-card">
+            <span class="thinking-card-tag">Culture</span>
+            <h3>Why Brands Lose Cool</h3>
+            <p>The paradox of trying to be culturally relevant: when brands chase culture, culture runs away.</p>
+            <span class="thinking-card-arrow">→</span>
+          </a>
+          <a href="thinking-audience.html" class="thinking-card">
+            <span class="thinking-card-tag">Strategy</span>
+            <h3>The Audience Is The Brief</h3>
+            <p>Why the best creative briefs start with deep human understanding, not demographic checkboxes.</p>
+            <span class="thinking-card-arrow">→</span>
+          </a>
+          <a href="thinking-subculture.html" class="thinking-card">
+            <span class="thinking-card-tag">Insight</span>
+            <h3>Subculture As Signal</h3>
+            <p>How subcultures forecast mainstream shifts — and why brands should listen before they launch.</p>
+            <span class="thinking-card-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Section - YARD Exact -->
+    <section class="index-works">
+      <div class="works">
+        <nav class="works-selector">
+          <button class="active">Latest Works</button>
+          <span>/</span>
+          <button>Featured Works</button>
+        </nav>
+        <ul>
+          <li class="work js-work-el">
+            <a href="case-studies.html#h-m" aria-label="H&M Social Relaunch">
+              <div class="title">
+                <h2>H&M Social</h2>
+                <span class="copy" aria-hidden="true">H&M Social</span>
+              </div>
+              <div class="metas-wrapper">
+                <div class="metas">
+                  <div class="client">
+                    <span>H&M</span>
+                    <span aria-hidden="true" class="copy">H&M</span>
+                  </div>
+                  <div class="medias">
+                    <div class="overlay"></div>
+                    <div class="media">
+                      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400" alt="" data-cursor-img="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800">
+                    </div>
+                  </div>
+                  <div class="category">
+                    <span>Social Strategy</span>
+                    <span aria-hidden="true" class="copy">Social Strategy</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="work js-work-el">
+            <a href="case-studies.html#nike-dfb" aria-label="Nike DFB Women's Team">
+              <div class="title">
+                <h2>Nike DFB</h2>
+                <span class="copy" aria-hidden="true">Nike DFB</span>
+              </div>
+              <div class="metas-wrapper">
+                <div class="metas">
+                  <div class="client">
+                    <span>Nike</span>
+                    <span aria-hidden="true" class="copy">Nike</span>
+                  </div>
+                  <div class="medias">
+                    <div class="overlay"></div>
+                    <div class="media">
+                      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400" alt="" data-cursor-img="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800">
+                    </div>
+                  </div>
+                  <div class="category">
+                    <span>Campaign</span>
+                    <span aria-hidden="true" class="copy">Campaign</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="work js-work-el">
+            <a href="case-studies.html#nike-airtopia" aria-label="Nike Airtopia">
+              <div class="title">
+                <h2>Nike Airtopia</h2>
+                <span class="copy" aria-hidden="true">Nike Airtopia</span>
+              </div>
+              <div class="metas-wrapper">
+                <div class="metas">
+                  <div class="client">
+                    <span>Nike</span>
+                    <span aria-hidden="true" class="copy">Nike</span>
+                  </div>
+                  <div class="medias">
+                    <div class="overlay"></div>
+                    <div class="media">
+                      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="" data-cursor-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800">
+                    </div>
+                  </div>
+                  <div class="category">
+                    <span>Digital</span>
+                    <span aria-hidden="true" class="copy">Digital</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="work js-work-el">
+            <a href="case-studies.html#beats-daisy" aria-label="Beats By Dre">
+              <div class="title">
+                <h2>Beats Daisy</h2>
+                <span class="copy" aria-hidden="true">Beats Daisy</span>
+              </div>
+              <div class="metas-wrapper">
+                <div class="metas">
+                  <div class="client">
+                    <span>Beats By Dre</span>
+                    <span aria-hidden="true" class="copy">Beats By Dre</span>
+                  </div>
+                  <div class="medias">
+                    <div class="overlay"></div>
+                    <div class="media">
+                      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d6e3?w=400" alt="" data-cursor-img="https://images.unsplash.com/photo-1505740420928-5e560c06d6e3?w=800">
+                    </div>
+                  </div>
+                  <div class="category">
+                    <span>Digital Campaign</span>
+                    <span aria-hidden="true" class="copy">Digital Campaign</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="work js-work-el">
+            <a href="case-studies.html#foot-locker" aria-label="Foot Locker">
+              <div class="title">
+                <h2>Foot Locker</h2>
+                <span class="copy" aria-hidden="true">Foot Locker</span>
+              </div>
+              <div class="metas-wrapper">
+                <div class="metas">
+                  <div class="client">
+                    <span>Foot Locker</span>
+                    <span aria-hidden="true" class="copy">Foot Locker</span>
+                  </div>
+                  <div class="medias">
+                    <div class="overlay"></div>
+                    <div class="media">
+                      <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400" alt="" data-cursor-img="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800">
+                    </div>
+                  </div>
+                  <div class="category">
+                    <span>Brand Platform</span>
+                    <span aria-hidden="true" class="copy">Brand Platform</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Section Marquee -->
+        <div class="section-marquee reveal">
+          <div class="marquee-track">
+            <span>Brand Strategy</span>
+            <span class="divider">—</span>
+            <span>Cultural Intelligence</span>
+            <span class="divider">—</span>
+            <span>Youth Culture</span>
+            <span class="divider">—</span>
+            <span>Campaign Development</span>
+            <span class="divider">—</span>
+            <span>Creative Direction</span>
+            <span class="divider">—</span>
+            <span>Brand Strategy</span>
+            <span class="divider">—</span>
+            <span>Cultural Intelligence</span>
+            <span class="divider">—</span>
+            <span>Youth Culture</span>
+            <span class="divider">—</span>
+            <span>Campaign Development</span>
+            <span class="divider">—</span>
+            <span>Creative Direction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer - YARD Exact -->
+  <footer class="footer">
+    <div class="logo-wrapper-footer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 382 61" fill="currentColor">
+        <text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text>
+        <text x="180" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 382 61" fill="currentColor">
+        <text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text>
+        <text x="180" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text>
+      </svg>
+    </div>
+    
+    <div class="menus">
+      <div class="main-menu">
+        <ul>
+          <li><a href="index.html" class="hover-link"><span data-label="Work">Work</span></a></li>
+          <li><a href="about.html" class="hover-link"><span data-label="About">About</span></a></li>
+          <li><a href="services.html" class="hover-link"><span data-label="Services">Services</span></a></li>
+          <li><a href="case-studies.html" class="hover-link"><span data-label="Case Studies">Case Studies</span></a></li>
+          <li><a href="contact.html" class="hover-link"><span data-label="Contact">Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="initiatives-menu">
+        <ul>
+          <li><a href="thinking-brands.html" class="hover-link"><span data-label="Why Brands Lose Cool">Why Brands Lose Cool</span></a></li>
+          <li><a href="thinking-audience.html" class="hover-link"><span data-label="The Audience Is The Brief">The Audience Is The Brief</span></a></li>
+          <li><a href="thinking-subculture.html" class="hover-link"><span data-label="Subculture As Signal">Subculture As Signal</span></a></li>
+        </ul>
+      </div>
+      <div class="legals">
+        <ul class="menu">
+          <li><a href="mailto:sofiabodger@me.com" class="hover-link"><span data-label="sofiabodger@me.com">sofiabodger@me.com</span></a></li>
+          <li><a href="tel:+316214206136" class="hover-link"><span data-label="+31 6 2142 06136">+31 6 2142 06136</span></a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="bottom-text">
+      <a href="contact.html"><span>Making brands</span></a>
+      <a href="contact.html"><span>culturally alive</span></a>
+    </div>
+    
+    <div class="marquee-2">
+      <a href="contact.html" class="marquee-link">
+        <div class="marquee">
+          <div class="marquee__list">
+            <div class="marquee__item">Book a consultation</div>
+            <div class="marquee__item">—</div>
+            <div class="marquee__item">Making brands culturally alive</div>
+            <div class="marquee__item">—</div>
+            <div class="marquee__item">Book a consultation</div>
+            <div class="marquee__item">—</div>
+            <div class="marquee__item">Making brands culturally alive</div>
+            <div class="marquee__item">—</div>
+            <div class="marquee__item">Book a consultation</div>
+            <div class="marquee__item">—</div>
+            <div class="marquee__item">Making brands culturally alive</div>
+            <div class="marquee__item">—</div>
+          </div>
+        </div>
+      </a>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
-  <noscript><style>.gs-reveal,.hero-title .title-word{opacity:1!important;transform:none!important}</style></noscript>
+
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module">
-    import Lenis from 'https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.mjs';
-
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, touchMultiplier: 2 });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-
-    gsap.registerPlugin(ScrollTrigger);
-    lenis.on('scroll', ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(document.documentElement, {
-      scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; },
-      getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; }
-    });
-    ScrollTrigger.defaults({ scroller: document.documentElement });
-
-    // Hero title reveal
-    gsap.fromTo('.hero-title .title-word', { y: '110%', opacity: 0 }, { y: '0%', opacity: 1, duration: 1, ease: 'back.out(1.7)', stagger: 0.15, delay: 0.3 });
-    gsap.fromTo('.hero-subtitle', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 1.0 });
-    gsap.fromTo('.hero-nav a', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.7)', stagger: 0.08, delay: 0.8 });
-    gsap.fromTo('.hero-cta-top', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'back.out(1.7)', delay: 1.2 });
-    gsap.fromTo('.play-button', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.out', delay: 1.4 });
-
-    // Scroll reveals
-    gsap.utils.toArray('.gs-reveal').forEach(el => {
-      gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'back.out(1.4)', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
-    });
-
-    // Scroll progress bar
-    const progressBar = document.getElementById('scroll-progress');
-    if (progressBar) { lenis.on('scroll', () => { const scrollTop = window.scrollY || document.documentElement.scrollTop; const docHeight = document.documentElement.scrollHeight - window.innerHeight; const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0; progressBar.style.width = progress + '%'; }); }
-
-    // Live clock
-    function updateClock() {
-      const el = document.getElementById('hero-clock');
-      if (!el) return;
-      const now = new Date();
-      el.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
-    }
-    updateClock(); setInterval(updateClock, 1000);
-
-    // Mobile menu
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; });
-      document.querySelectorAll('[data-menu-link]').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); });
-    }
-
-    // Showreel modal
-    const playBtn = document.getElementById('play-showreel');
-    const closeBtn = document.getElementById('close-showreel');
-    const showreelOverlay = document.getElementById('showreel-overlay');
-    const showreelVideo = document.getElementById('showreel-video');
-    if (playBtn && showreelOverlay) {
-      playBtn.addEventListener('click', () => { showreelOverlay.classList.add('active'); showreelOverlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; if (showreelVideo) showreelVideo.play(); });
-      closeBtn.addEventListener('click', () => { showreelOverlay.classList.remove('active'); showreelOverlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; if (showreelVideo) showreelVideo.pause(); });
-      showreelOverlay.addEventListener('click', (e) => { if (e.target === showreelOverlay) closeBtn.click(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && showreelOverlay.classList.contains('active')) closeBtn.click(); });
-    }
-
-    // Draggable elements
-    let highestZ = 100;
-    document.querySelectorAll('.draggable').forEach(el => {
-      const rot = (Math.random() - 0.5) * 6;
-      el.style.transform = `rotate(${rot}deg)`;
-      let isDragging = false, startX, startY;
-      el.addEventListener('mousedown', (e) => { isDragging = true; el.classList.add('dragging'); el.style.zIndex = ++highestZ; startX = e.clientX; startY = e.clientY; e.preventDefault(); });
-      document.addEventListener('mousemove', (e) => { if (!isDragging) return; const dx = e.clientX - startX; const dy = e.clientY - startY; el.style.transform = `translate(${dx}px, ${dy}px) rotate(0deg) scale(1.05)`; });
-      document.addEventListener('mouseup', () => { if (!isDragging) return; isDragging = false; el.classList.remove('dragging'); const newRot = (Math.random() - 0.5) * 4; const match = el.style.transform.match(/translate\(([^)]+)\)/); if (match) el.style.transform = `translate(${match[1]}) rotate(${newRot}deg)`; });
-    });
-
-    // Cursor-follow media
-    const cursorMedia = document.getElementById('cursor-media');
-    const cursorImg = document.getElementById('cursor-media-img');
-    const projectList = document.querySelector('.project-list');
-    const projectRows = document.querySelectorAll('.project-row');
-    let isHovering = false;
-    if (window.matchMedia('(hover: hover)').matches && cursorMedia) {
-      const xTo = gsap.quickTo(cursorMedia, 'left', { duration: 0.4, ease: 'power3.out' });
-      const yTo = gsap.quickTo(cursorMedia, 'top', { duration: 0.4, ease: 'power3.out' });
-      function hideMedia() { isHovering = false; projectList.classList.remove('has-hover'); projectRows.forEach(r => r.classList.remove('is-hovered')); cursorMedia.classList.remove('active'); }
-      projectRows.forEach(row => {
-        const imgSrc = row.getAttribute('data-img');
-        if (!imgSrc) return;
-        row.addEventListener('mouseenter', (e) => { isHovering = true; cursorImg.src = imgSrc; projectList.classList.add('has-hover'); row.classList.add('is-hovered'); gsap.set(cursorMedia, { left: e.clientX - 180, top: e.clientY - 140 }); cursorMedia.classList.add('active'); });
-        row.addEventListener('mouseleave', () => { hideMedia(); });
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    document.querySelectorAll(".works-selector button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".works-selector button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
       });
-      projectList.addEventListener('mouseleave', hideMedia);
-      lenis.on('scroll', () => { if (isHovering) hideMedia(); });
-      document.addEventListener('mousemove', (e) => { if (isHovering) { const mediaW = cursorMedia.offsetWidth; const mediaH = cursorMedia.offsetHeight; const x = Math.min(Math.max(e.clientX - mediaW * 0.5, 20), window.innerWidth - mediaW - 20); const y = e.clientY - mediaH * 0.7; xTo(x); yTo(y); } });
-    }
-
-    // Click-to-front for stickers
-    document.querySelectorAll('.sticker').forEach(el => { el.style.zIndex = 1; el.addEventListener('mousedown', () => { el.style.zIndex = ++highestZ; }); });
-
-    ScrollTrigger.refresh();
+    });
   </script>
 </body>
 </html>
