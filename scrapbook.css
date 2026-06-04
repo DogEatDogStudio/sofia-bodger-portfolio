@@ -244,7 +244,7 @@ ul { list-style: none; }
 .footer-legal a:hover { color: var(--pink); }
 
 /* Scroll progress bar */
-.scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 10000; width: 0%; transition: width 0.1s linear; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 999; width: 0%; transition: width 0.1s linear; }
 
 /* Section divider pixel bars */
 .section-header::after {

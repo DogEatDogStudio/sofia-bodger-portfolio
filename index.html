@@ -27,7 +27,7 @@
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 
     /* Scroll progress bar */
-    .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 10000; width: 0%; transition: width 0.1s linear; }
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 999; width: 0%; transition: width 0.1s linear; }
     /* Grid-paper background */
     body {
       font-family: var(--font-body); font-size: 15px; line-height: 1.6;
@@ -592,7 +592,7 @@
   <!-- Showreel Modal -->
   <div class="showreel-overlay" id="showreel-overlay" aria-hidden="true">
     <button class="showreel-close" id="close-showreel" aria-label="Close showreel"></button>
-    <div class="showreel-content"><video id="showreel-video" src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;"></video></div>
+    <div class="showreel-content"><video id="showreel-video" src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"></video></div>
   </div>
 
   <!-- PROJECTS -->
@@ -839,9 +839,10 @@
     const playBtn = document.getElementById('play-showreel');
     const closeBtn = document.getElementById('close-showreel');
     const showreelOverlay = document.getElementById('showreel-overlay');
+    const showreelVideo = document.getElementById('showreel-video');
     if (playBtn && showreelOverlay) {
-      playBtn.addEventListener('click', () => { showreelOverlay.classList.add('active'); showreelOverlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; });
-      closeBtn.addEventListener('click', () => { showreelOverlay.classList.remove('active'); showreelOverlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; });
+      playBtn.addEventListener('click', () => { showreelOverlay.classList.add('active'); showreelOverlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; if (showreelVideo) showreelVideo.play(); });
+      closeBtn.addEventListener('click', () => { showreelOverlay.classList.remove('active'); showreelOverlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; if (showreelVideo) showreelVideo.pause(); });
       showreelOverlay.addEventListener('click', (e) => { if (e.target === showreelOverlay) closeBtn.click(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && showreelOverlay.classList.contains('active')) closeBtn.click(); });
     }
