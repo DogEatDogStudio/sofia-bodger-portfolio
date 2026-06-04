@@ -956,7 +956,6 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   line-height: 1;
   text-transform: uppercase;
   margin-top: 20rem;
-  opacity: 0;
 }
 
 .index-hero .cta-play .open-showreel {
@@ -1921,7 +1920,6 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
    ======================================== */
 .hero-cta {
   margin-top: 30rem;
-  opacity: 0;
 }
 
 .cta-book {
@@ -1964,7 +1962,6 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   align-items: center;
   gap: 10rem;
   margin-top: 40rem;
-  opacity: 0;
 }
 
 .scroll-indicator span {
@@ -2006,7 +2003,6 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   align-items: center;
   gap: 15rem;
   margin-top: 25rem;
-  opacity: 0;
 }
 
 .cred-label {
@@ -2054,13 +2050,6 @@ body.showreel-open {
   transform: none;
 }
 
-.no-js .hero-cta,
-.no-js .cta-play,
-.no-js .credibility-strip,
-.no-js .scroll-indicator {
-  opacity: 1;
-}
-
 /* ========================================
    WORD-SPLIT TEXT REVEAL - PHASE 2
    ======================================== */
@@ -2090,12 +2079,13 @@ body.showreel-open {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s var(--transition-smooth), visibility .5s;
+  transition: opacity .5s var(--transition-smooth), visibility 0s .5s;
 }
 
 .showreel-overlay.is-active {
   opacity: 1;
   visibility: visible;
+  transition: opacity .5s var(--transition-smooth), visibility 0s 0s;
 }
 
 .showreel-backdrop {
@@ -2142,7 +2132,7 @@ body.showreel-open {
   letter-spacing: .05em;
 }
 
-.showreel-video-wrapper video:not([src=""]) ~ .showreel-placeholder {
+.showreel-video-wrapper.has-video .showreel-placeholder {
   display: none;
 }
 
@@ -2235,10 +2225,6 @@ body.showreel-open {
 @media (min-width: 768px) {
   .services-preview-item {
     padding-right: 30rem;
-    border-top: 1px solid rgba(29, 29, 27, 0.1);
-  }
-  .services-preview-item:last-child {
-    border-top: 1px solid rgba(29, 29, 27, 0.1);
   }
 }
 
