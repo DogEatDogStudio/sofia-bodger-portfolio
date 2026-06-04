@@ -323,6 +323,8 @@
   // DOM READY
   // ========================================
   document.addEventListener('DOMContentLoaded', () => {
+    // Remove no-js class (enables CSS fallbacks if JS fails)
+    document.documentElement.classList.remove('no-js');
     document.body.classList.add('page-finish');
     playPageTransition();
     initScrollReveals();

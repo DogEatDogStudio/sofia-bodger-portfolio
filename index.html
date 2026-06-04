@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="en" class="no-js">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -138,9 +138,17 @@
         <div class="hero-content">
           <div class="hero-inner">
             <p class="title">
-              <span>Making brands</span>
-              <span class="l2">culturally alive</span>
+              <span class="split-text"><span class="word">Making</span> <span class="word">brands</span></span>
+              <span class="l2 split-text"><span class="word">culturally</span> <span class="word">alive</span></span>
             </p>
+            
+            <!-- CTA Play / Showreel Trigger -->
+            <div class="cta-play">
+              <button class="open-showreel" aria-label="Play showreel">
+                <svg viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L11 7L0 14V0Z" fill="currentColor"/></svg>
+                <span>Play Showreel</span>
+              </button>
+            </div>
             
             <!-- Hero Bio -->
             <p class="hero-bio">
@@ -148,7 +156,7 @@
             </p>
             
             <!-- PRIMARY CTA - Book a Call -->
-            <div class="hero-cta" style="animation-delay: 0.6s;">
+            <div class="hero-cta">
               <a href="contact.html" class="cta-book">
                 Book a consultation
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
@@ -199,6 +207,39 @@
       </div>
     </section>
 
+    <!-- Services Preview -->
+    <section class="services-preview reveal">
+      <div class="services-preview-inner">
+        <div class="services-preview-header">
+          <span class="section-tag">Services</span>
+          <h2>What I Do</h2>
+        </div>
+        <div class="services-preview-grid">
+          <div class="services-preview-item">
+            <span class="services-preview-num">01</span>
+            <h3>Brand Strategy</h3>
+            <p>Positioning, purpose, and cultural relevance — built from deep audience understanding.</p>
+          </div>
+          <div class="services-preview-item">
+            <span class="services-preview-num">02</span>
+            <h3>Cultural Intelligence</h3>
+            <p>Reading the signals in subculture, youth movements, and digital behaviour before they hit mainstream.</p>
+          </div>
+          <div class="services-preview-item">
+            <span class="services-preview-num">03</span>
+            <h3>Creative Direction</h3>
+            <p>Bridging strategy and execution — from campaign concept to cultural moment.</p>
+          </div>
+        </div>
+        <a href="services.html" class="services-preview-cta">
+          <span>View All Services</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
+            <path fill="currentColor" d="M9.5 7H2v-1h7.5l-4-4V7zm4.5 4.5l-7-7 1-1 7 7-1 1z"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
     <!-- Works Section - YARD Exact -->
     <section class="index-works">
       <div class="works">
@@ -208,7 +249,7 @@
           <button>Featured Works</button>
         </nav>
         <ul>
-          <li class="work js-work-el">
+          <li class="work work-divider js-work-el">
             <a href="case-studies.html#h-m" aria-label="H&M Social Relaunch">
               <div class="title">
                 <h2>H&M Social</h2>
@@ -234,7 +275,7 @@
               </div>
             </a>
           </li>
-          <li class="work js-work-el">
+          <li class="work work-divider js-work-el">
             <a href="case-studies.html#nike-dfb" aria-label="Nike DFB Women's Team">
               <div class="title">
                 <h2>Nike DFB</h2>
@@ -260,7 +301,7 @@
               </div>
             </a>
           </li>
-          <li class="work js-work-el">
+          <li class="work work-divider js-work-el">
             <a href="case-studies.html#nike-airtopia" aria-label="Nike Airtopia">
               <div class="title">
                 <h2>Nike Airtopia</h2>
@@ -286,7 +327,7 @@
               </div>
             </a>
           </li>
-          <li class="work js-work-el">
+          <li class="work work-divider js-work-el">
             <a href="case-studies.html#beats-daisy" aria-label="Beats By Dre">
               <div class="title">
                 <h2>Beats Daisy</h2>
@@ -312,7 +353,7 @@
               </div>
             </a>
           </li>
-          <li class="work js-work-el">
+          <li class="work work-divider js-work-el">
             <a href="case-studies.html#foot-locker" aria-label="Foot Locker">
               <div class="title">
                 <h2>Foot Locker</h2>
@@ -451,12 +492,129 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <!-- Showreel Overlay -->
+  <div class="showreel-overlay" id="showreel-overlay" aria-hidden="true">
+    <div class="showreel-backdrop"></div>
+    <div class="showreel-container">
+      <button class="showreel-close" aria-label="Close showreel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="showreel-video-wrapper">
+        <video id="showreel-video" controls playsinline preload="none">
+          <source src="" type="video/mp4">
+        </video>
+        <div class="showreel-placeholder">
+          <p>Showreel coming soon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="shared.js"></script>
   <script>
-    document.querySelectorAll(".works-selector button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".works-selector button").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+    /* ===== SHOWREEL OVERLAY ===== */
+    const showreelOverlay = document.getElementById('showreel-overlay');
+    const showreelVideo = document.getElementById('showreel-video');
+    const openShowreelBtns = document.querySelectorAll('.open-showreel');
+    const showreelClose = document.querySelector('.showreel-close');
+    const showreelBackdrop = document.querySelector('.showreel-backdrop');
+
+    function openShowreel() {
+      showreelOverlay.classList.add('is-active');
+      showreelOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('showreel-open');
+      if (window.__lenis) window.__lenis.stop();
+      // Focus trap: focus the close button
+      if (showreelClose) showreelClose.focus();
+      // Trap focus inside modal
+      showreelOverlay.addEventListener('keydown', trapFocus);
+    }
+
+    function closeShowreel() {
+      showreelOverlay.classList.remove('is-active');
+      showreelOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('showreel-open');
+      showreelVideo.pause();
+      showreelVideo.currentTime = 0;
+      if (window.__lenis) window.__lenis.start();
+      showreelOverlay.removeEventListener('keydown', trapFocus);
+    }
+
+    function trapFocus(e) {
+      if (e.key !== 'Tab') return;
+      const focusable = showreelOverlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    openShowreelBtns.forEach(btn => btn.addEventListener('click', openShowreel));
+    if (showreelClose) showreelClose.addEventListener('click', closeShowreel);
+    if (showreelBackdrop) showreelBackdrop.addEventListener('click', closeShowreel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeShowreel(); });
+
+    /* ===== WORD-SPLIT GSAP TEXT REVEAL ===== */
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero tagline word reveal
+      document.querySelectorAll('.split-text').forEach(line => {
+        const words = line.querySelectorAll('.word');
+        words.forEach((word, i) => {
+          // Wrap inner text in a span for clip animation
+          const text = word.textContent;
+          word.innerHTML = '<span class="word-inner">' + text + '</span>';
+        });
+      });
+
+      const heroTl = gsap.timeline({ delay: 0.8 });
+      heroTl.from('.title .word-inner', {
+        yPercent: 110,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.08,
+        ease: 'power3.out'
+      });
+
+      // Fade in bio, CTA, credibility strip, scroll indicator
+      heroTl.from('.hero-bio', {
+        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+      }, '-=0.5');
+      heroTl.from('.cta-book', {
+        opacity: 0, y: 20, duration: 0.6, ease: 'power3.out'
+      }, '-=0.5');
+      heroTl.from('.cta-play', {
+        opacity: 0, y: 15, duration: 0.5, ease: 'power3.out'
+      }, '-=0.4');
+      heroTl.from('.credibility-strip', {
+        opacity: 0, y: 15, duration: 0.5, ease: 'power3.out'
+      }, '-=0.3');
+      heroTl.from('.scroll-indicator', {
+        opacity: 0, y: 15, duration: 0.5, ease: 'power3.out'
+      }, '-=0.2');
+
+      // Services preview stagger
+      gsap.from('.services-preview-item', {
+        scrollTrigger: {
+          trigger: '.services-preview',
+          start: 'top 80%',
+          once: true
+        },
+        opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out'
+      });
+    }
+
+    /* ===== WORKS SELECTOR ===== */
+    document.querySelectorAll('.works-selector button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.works-selector button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       });
     });
   </script>
