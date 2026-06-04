@@ -65,6 +65,7 @@
     <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="menu-icon"><span></span><span></span><span></span></span></button>
   </div></header>
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true"><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="case-studies.html">Work</a><a href="contact.html">Contact</a></nav><div class="mobile-menu-cta"><a href="contact.html" class="primary-cta"><span>Book Consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+  <div class="scroll-progress" id="scroll-progress"></div>
   <main>
     <section class="page-hero">
       <div class="pixel-star" style="top:12%; right:8%;"></div>
@@ -145,6 +146,8 @@
     lenis.on('scroll', ScrollTrigger.update);
     ScrollTrigger.scrollerProxy(document.documentElement, { scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; }, getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; } });
     ScrollTrigger.defaults({ scroller: document.documentElement });
+    const progressBar = document.getElementById("scroll-progress");
+    if (progressBar) { lenis.on("scroll", () => { const scrollTop = window.scrollY || document.documentElement.scrollTop; const docHeight = document.documentElement.scrollHeight - window.innerHeight; const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0; progressBar.style.width = progress + "%"; }); }
     gsap.utils.toArray('.gs-reveal').forEach(el => { gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'back.out(1.4)', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } }); });
     const menuToggle = document.querySelector('.menu-toggle'); const mobileMenu = document.getElementById('mobile-menu');
     if (menuToggle && mobileMenu) { menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; }); document.querySelectorAll('.mobile-menu-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); }); }
