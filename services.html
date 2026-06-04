@@ -4,135 +4,517 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Sofia Bodger | Making Brands Culturally Alive</title>
-  <meta name="description" content="Brand strategy, cultural intelligence, and campaign development services.">
+  <meta name="description" content="Brand strategy, cultural intelligence, campaign development, and strategic workshops from Senior Strategy Director Sofia Bodger.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <link rel="stylesheet" href="scrapbook.css">
   <style>
+    :root {
+      --cobalt: #0044FF; --cobalt-light: #3366FF;
+      --pink: #FF66CC; --lime: #CCFF00;
+      --white: #FFFFFF; --off-white: #FAFAF8; --charcoal: #1A1A2E;
+      --gray-100: #F0F0EC; --gray-200: #E0E0DC; --gray-300: #C0C0BA;
+      --gray-500: #7A7A72; --gray-700: #3A3A34;
+      --bg: var(--off-white); --text: var(--charcoal); --text-muted: var(--gray-500);
+      --accent: var(--cobalt); --border: var(--gray-200);
+      --font-pixel: 'Press Start 2P', monospace;
+      --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: auto; }
+    body {
+      font-family: var(--font-body); font-size: 15px; line-height: 1.6;
+      color: var(--text); overflow-x: hidden;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,68,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,68,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%230044FF'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%233366FF'/%3E%3C/svg%3E") 4 4, auto;
+    }
+    a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%23CC66FF'/%3E%3C/svg%3E") 4 4, pointer; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    ul { list-style: none; }
+    ::selection { background: var(--pink); color: var(--white); }
+
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--cobalt), var(--pink), var(--lime)); z-index: 999; width: 0%; transition: width 0.1s linear; }
+    .sticker { border: 4px solid var(--white); outline: 3px solid var(--cobalt); box-shadow: 6px 6px 0 var(--cobalt); transition: transform 0.3s var(--bounce), box-shadow 0.3s ease; }
+    .sticker:hover { box-shadow: 8px 8px 0 var(--pink); transform: rotate(-1deg) scale(1.02); }
+    .draggable { position: relative; cursor: grab; transition: transform 0.3s var(--spring), box-shadow 0.3s ease; }
+    .draggable:active { cursor: grabbing; }
+    .draggable.dragging { z-index: 9000 !important; box-shadow: 12px 12px 0 rgba(0,68,255,0.25); transform: scale(1.05) rotate(0deg) !important; }
+    @keyframes wiggle { 0%,100%{transform:rotate(0deg)} 15%{transform:rotate(-3deg)} 30%{transform:rotate(2deg)} 45%{transform:rotate(-2deg)} 60%{transform:rotate(1deg)} 75%{transform:rotate(-1deg)} }
+    .wiggle-hover:hover { animation: wiggle 0.6s ease; }
+    .pixel-star { position: absolute; width: 24px; height: 24px; pointer-events: none; z-index: 1; background: var(--lime); opacity: 0.5; clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+    .pixel-cross { position: absolute; width: 16px; height: 16px; pointer-events: none; z-index: 1; }
+    .pixel-cross::before, .pixel-cross::after { content: ''; position: absolute; background: var(--pink); opacity: 0.4; }
+    .pixel-cross::before { width: 16px; height: 4px; top: 6px; left: 0; }
+    .pixel-cross::after { width: 4px; height: 16px; top: 0; left: 6px; }
+    .pixel-diamond { position: absolute; width: 12px; height: 12px; pointer-events: none; z-index: 1; background: var(--cobalt); opacity: 0.3; clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); }
+    .emoji-sticker { position: absolute; font-size: 32px; pointer-events: none; z-index: 1; animation: floatEmoji 4s ease-in-out infinite; }
+    @keyframes floatEmoji { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(5deg)} }
+
+    /* Page hero */
+    .page-hero {
+      background: var(--charcoal); color: var(--white);
+      padding: clamp(160px, 18vw, 220px) 0 clamp(80px, 10vw, 140px);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(0,68,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,68,255,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    }
+    .page-hero-top {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 56px);
+    }
+    .page-hero-logo { font-family: var(--font-pixel); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cobalt); }
+    .page-hero-logo a { transition: color 0.2s var(--bounce); }
+    .page-hero-logo a:hover { color: var(--lime); }
+    .page-hero-meta { display: none; align-items: center; gap: 24px; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); }
+    @media (min-width: 1024px) { .page-hero-meta { display: flex; } }
+    .page-hero-meta .divider { width: 1px; height: 14px; background: var(--gray-700); }
+    .page-hero-cta { display: none; }
+    @media (min-width: 1024px) {
+      .page-hero-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--cobalt); color: var(--white); font-family: var(--font-pixel); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; border: 3px solid var(--white); box-shadow: 4px 4px 0 var(--lime); position: absolute; top: 28px; right: 56px; transition: transform 0.2s var(--bounce), box-shadow 0.2s ease, background 0.2s ease; }
+      .page-hero-cta:hover { background: var(--pink); transform: translateY(-2px) scale(1.03); box-shadow: 6px 6px 0 var(--lime); }
+      .page-hero-cta:active { transform: translateY(2px) scale(0.97); box-shadow: 2px 2px 0 var(--lime); }
+    }
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; position: relative; z-index: 1001; color: var(--white); }
+    @media (min-width: 1024px) { .menu-toggle { display: none; } }
+    .menu-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
+    .menu-icon span { display: block; height: 3px; background: currentColor; transition: transform 0.3s var(--bounce), opacity 0.3s ease; }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--charcoal); color: var(--white); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .mobile-menu.active { opacity: 1; visibility: visible; }
+    .mobile-menu-nav { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .mobile-menu-nav a { font-family: var(--font-pixel); font-size: clamp(16px, 4vw, 28px); text-transform: uppercase; color: var(--gray-500); transition: color 0.2s var(--bounce), transform 0.2s var(--bounce); }
+    .mobile-menu-nav a:hover { color: var(--lime); transform: scale(1.05); }
+    .mobile-menu-cta { margin-top: 48px; }
+    .page-hero-nav { display: none; }
+    @media (min-width: 1024px) {
+      .page-hero-nav { position: absolute; left: clamp(16px, 3vw, 56px); top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left center; z-index: 10; display: flex; align-items: center; gap: 36px; }
+    }
+    .page-hero-nav a { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); position: relative; transition: color 0.2s var(--bounce); }
+    .page-hero-nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--lime); transition: width 0.3s var(--bounce); }
+    .page-hero-nav a:hover { color: var(--white); }
+    .page-hero-nav a:hover::after { width: 100%; }
+    .page-hero-nav a.active { color: var(--lime); }
+    .page-hero-nav a.active::after { width: 100%; background: var(--lime); }
+    .page-hero-content { position: relative; z-index: 5; max-width: 1400px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 56px); padding-left: clamp(16px, 3vw, 120px); }
+    .page-hero-mobile-nav { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+    @media (min-width: 1024px) { .page-hero-mobile-nav { display: none; } }
+    .page-hero-mobile-nav a { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); transition: color 0.2s var(--bounce); }
+    .page-hero-mobile-nav a:hover { color: var(--lime); }
+    .page-hero h1 { font-family: var(--font-pixel); font-size: clamp(1.8rem, 5.5vw, 5rem); font-weight: 400; letter-spacing: 0; line-height: 1.15; text-transform: uppercase; color: var(--cobalt); text-shadow: 4px 4px 0 rgba(0,68,255,0.15); }
+    .page-hero h1::after { content: ''; display: block; margin-top: 16px; width: 100%; height: 4px; background: repeating-linear-gradient(90deg, var(--cobalt) 0px, var(--cobalt) 8px, transparent 8px, transparent 16px); animation: borderSlide 3s linear infinite; }
+    @keyframes borderSlide { 0%{transform:translateX(0)} 100%{transform:translateX(-16px)} }
+    .page-hero .hero-subtitle { font-family: var(--font-body); font-size: clamp(14px, 1.5vw, 18px); font-weight: 600; color: var(--gray-300); margin-top: 24px; max-width: 600px; }
+
+    /* Section system */
+    .section-container { max-width: 1400px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 56px); }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(40px, 5vw, 80px); padding-bottom: 20px; border-bottom: 3px solid var(--cobalt); }
+    .section-header::after { content: ''; display: block; height: 4px; margin-top: 16px; background: repeating-linear-gradient(90deg, var(--cobalt) 0px, var(--cobalt) 8px, var(--pink) 8px, var(--pink) 16px, var(--lime) 16px, var(--lime) 24px, transparent 24px, transparent 32px); }
+    .section-label { font-family: var(--font-pixel); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cobalt); display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; width: 32px; height: 3px; background: var(--lime); }
+    .section-title { font-family: var(--font-body); font-size: clamp(11px, 1.2vw, 13px); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
     .services-section { padding: clamp(80px, 10vw, 160px) 0; position: relative; }
-    .services-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+
+    /* Service cards */
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
     @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
-    .service-card { position: relative; padding: 36px; background: var(--white); border: 3px solid var(--cobalt); box-shadow: 5px 5px 0 var(--cobalt); overflow: hidden; transition: transform 0.3s var(--bounce), box-shadow 0.3s ease, border-color 0.2s ease; }
-    .service-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 8px 8px 0 var(--pink); border-color: var(--pink); }
-    .service-number { position: absolute; top: 16px; right: 20px; font-family: var(--font-pixel); font-size: 28px; color: var(--gray-200); line-height: 1; }
-    .service-card h3 { font-family: var(--font-pixel); font-size: 10px; color: var(--cobalt); margin-bottom: 12px; line-height: 1.5; position: relative; z-index: 1; }
-    .service-card > p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; position: relative; z-index: 1; }
-    .service-features { position: relative; z-index: 1; border-top: 2px solid var(--border); padding-top: 20px; }
-    .service-features li { font-size: 13px; color: var(--text-muted); padding: 5px 0; display: flex; align-items: center; gap: 10px; }
-    .service-features li::before { content: ''; width: 8px; height: 8px; background: var(--lime); flex-shrink: 0; }
+    .service-card {
+      padding: clamp(32px, 4vw, 48px); background: var(--white);
+      border: 3px solid var(--cobalt); box-shadow: 8px 8px 0 var(--cobalt);
+      transition: transform 0.3s var(--bounce), box-shadow 0.3s ease;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+    }
+    .service-card:nth-child(1)::before { background: var(--cobalt); }
+    .service-card:nth-child(2)::before { background: var(--pink); }
+    .service-card:nth-child(3)::before { background: var(--lime); }
+    .service-card:nth-child(4)::before { background: var(--cobalt); }
+    .service-card:nth-child(5)::before { background: var(--pink); }
+    .service-card:nth-child(6)::before { background: var(--lime); }
+    .service-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 10px 10px 0 var(--pink); }
+    .service-number { font-family: var(--font-pixel); font-size: 28px; color: var(--gray-200); margin-bottom: 16px; line-height: 1; }
+    .service-card h3 { font-family: var(--font-pixel); font-size: 11px; text-transform: uppercase; color: var(--cobalt); margin-bottom: 16px; line-height: 1.5; }
+    .service-card p { font-family: var(--font-body); font-size: 15px; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-tag { display: inline-block; padding: 5px 14px; background: var(--charcoal); color: var(--lime); font-family: var(--font-pixel); font-size: 7px; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s var(--bounce), color 0.2s var(--bounce); }
+    .service-tag:hover { background: var(--pink); color: var(--white); }
+
+    /* Process section */
     .process-section { padding: clamp(80px, 10vw, 160px) 0; background: var(--gray-100); border-top: 4px solid var(--cobalt); border-bottom: 4px solid var(--cobalt); position: relative; }
-    .process-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-    @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
-    .process-step { text-align: left; padding: 32px; background: var(--white); border: 3px solid var(--cobalt); box-shadow: 4px 4px 0 var(--cobalt); transition: transform 0.3s var(--bounce), box-shadow 0.3s ease; }
-    .process-step:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 6px 6px 0 var(--pink); }
-    .step-number { font-family: var(--font-pixel); font-size: 10px; color: var(--pink); margin-bottom: 16px; }
-    .process-step h3 { font-family: var(--font-body); font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-    .process-step p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-    .pricing-section { padding: clamp(80px, 10vw, 160px) 0; position: relative; }
-    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1000px; margin: 0 auto; }
-    @media (min-width: 768px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
-    .pricing-card { padding: 36px; background: var(--white); border: 3px solid var(--cobalt); box-shadow: 5px 5px 0 var(--cobalt); text-align: center; transition: transform 0.3s var(--bounce), box-shadow 0.3s ease; }
-    .pricing-card:hover { transform: translateY(-4px); box-shadow: 7px 7px 0 var(--pink); }
-    .pricing-card.featured { border-color: var(--pink); box-shadow: 5px 5px 0 var(--pink); position: relative; }
-    .pricing-card.featured::before { content: '★ MOST POPULAR'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--lime); color: var(--charcoal); font-family: var(--font-pixel); font-size: 7px; padding: 6px 16px; white-space: nowrap; }
-    .pricing-card h3 { font-family: var(--font-pixel); font-size: 10px; color: var(--cobalt); margin-bottom: 16px; line-height: 1.5; }
-    .pricing-price { font-family: var(--font-pixel); font-size: clamp(18px, 2.5vw, 26px); color: var(--pink); line-height: 1; margin-bottom: 24px; }
-    .pricing-price span { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--text-muted); }
-    .pricing-card ul { text-align: left; margin-bottom: 28px; }
-    .pricing-card li { font-size: 14px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-    .pricing-card li::before { content: '✓'; color: var(--cobalt); font-weight: 800; font-size: 14px; }
-    .pricing-cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: var(--gray-100); color: var(--charcoal); font-family: var(--font-pixel); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; border: 2px solid var(--cobalt); transition: background 0.2s var(--bounce), color 0.2s ease, transform 0.2s var(--bounce); }
-    .pricing-cta:hover { background: var(--cobalt); color: var(--white); transform: translateY(2px); }
-    .pricing-card.featured .pricing-cta { background: var(--cobalt); color: var(--white); border-color: var(--pink); }
-    .pricing-card.featured .pricing-cta:hover { background: var(--pink); }
+    .process-steps { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 768px) { .process-steps { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+    .process-step { text-align: center; position: relative; }
+    .process-step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px; background: var(--charcoal); color: var(--lime);
+      font-family: var(--font-pixel); font-size: 16px; margin-bottom: 20px;
+      border: 3px solid var(--white); box-shadow: 4px 4px 0 var(--cobalt);
+      transition: transform 0.3s var(--bounce), box-shadow 0.3s ease;
+    }
+    .process-step:hover .process-step-number { transform: rotate(-5deg) scale(1.1); box-shadow: 6px 6px 0 var(--pink); }
+    .process-step h3 { font-family: var(--font-pixel); font-size: 9px; text-transform: uppercase; color: var(--cobalt); margin-bottom: 12px; line-height: 1.4; }
+    .process-step p { font-family: var(--font-body); font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    @media (min-width: 768px) {
+      .process-step::after { content: ''; position: absolute; top: 32px; right: -12px; width: 24px; height: 3px; background: var(--cobalt); }
+      .process-step:last-child::after { display: none; }
+    }
+
+    /* Clients marquee */
+    .clients-section { padding: clamp(40px, 5vw, 80px) 0; overflow: hidden; }
+    .clients-marquee { display: flex; width: max-content; animation: marqueeScroll 25s linear infinite; }
+    .clients-marquee:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .client-name { font-family: var(--font-pixel); font-size: clamp(14px, 2.5vw, 24px); text-transform: uppercase; white-space: nowrap; padding: 0 32px; color: var(--gray-300); transition: color 0.3s ease; }
+    .client-name:hover { color: var(--cobalt); }
+    .client-dot { width: 8px; height: 8px; background: var(--pink); flex-shrink: 0; align-self: center; }
+
+    /* Primary CTA */
+    .primary-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--cobalt); color: var(--white); font-family: var(--font-pixel); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; border: 3px solid var(--white); box-shadow: 5px 5px 0 var(--lime); transition: transform 0.2s var(--bounce), box-shadow 0.2s ease, background 0.2s ease; }
+    .primary-cta:hover { background: var(--pink); transform: translateY(-3px) scale(1.03); box-shadow: 7px 7px 0 var(--lime); }
+    .primary-cta:active { transform: translateY(3px) scale(0.97); box-shadow: 2px 2px 0 var(--lime); }
+    .primary-cta svg { width: 16px; height: 16px; transition: transform 0.2s var(--bounce); }
+    .primary-cta:hover svg { transform: translateX(4px); }
+
+    /* CTA Banner */
+    .cta-banner { background: var(--charcoal); color: var(--white); padding: clamp(80px, 10vw, 140px) 0; text-align: center; border-top: 5px solid var(--cobalt); border-bottom: 5px solid var(--cobalt); position: relative; }
+    .cta-banner h2 { font-family: var(--font-pixel); font-size: clamp(16px, 3.5vw, 32px); line-height: 1.3; text-transform: uppercase; color: var(--cobalt); margin-bottom: 20px; }
+    .cta-banner p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--gray-500); margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    /* Footer */
+    .footer { background: var(--charcoal); color: var(--white); overflow: hidden; border-top: 4px solid var(--cobalt); }
+    .footer-main { padding: clamp(60px, 8vw, 100px) 0 clamp(40px, 5vw, 80px); }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(5, 1fr); gap: 32px; } }
+    .footer-brand { grid-column: 1 / -1; margin-bottom: 16px; }
+    @media (min-width: 768px) { .footer-brand { grid-column: 1 / 3; } }
+    .footer-logo { font-family: var(--font-pixel); font-size: 11px; color: var(--cobalt); margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; line-height: 1.6; color: var(--gray-500); max-width: 320px; }
+    .footer-column h4 { font-family: var(--font-pixel); font-size: 8px; color: var(--lime); margin-bottom: 20px; }
+    .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+    .footer-column a { font-size: 14px; color: var(--gray-500); transition: color 0.2s var(--bounce), transform 0.2s var(--bounce); display: inline-block; }
+    .footer-column a:hover { color: var(--pink); transform: translateX(4px); }
+    .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px solid var(--gray-700); color: var(--gray-500); transition: border-color 0.2s var(--bounce), color 0.2s var(--bounce), transform 0.2s var(--bounce), box-shadow 0.2s ease; }
+    .footer-social a:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-3px) rotate(-3deg); box-shadow: 3px 3px 0 var(--pink); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .marquee-section { border-top: 3px solid var(--cobalt); padding: clamp(30px, 4vw, 50px) 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: marqueeScroll 20s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item { display: flex; align-items: center; gap: 48px; flex-shrink: 0; padding-right: 48px; }
+    .marquee-text { font-family: var(--font-pixel); font-size: clamp(20px, 4vw, 48px); line-height: 1; text-transform: uppercase; white-space: nowrap; opacity: 0.25; transition: opacity 0.3s ease; color: var(--cobalt); }
+    .marquee-track:hover .marquee-text { opacity: 0.5; }
+    .marquee-dot { width: 10px; height: 10px; background: var(--pink); flex-shrink: 0; }
+    .footer-bottom { padding: 24px 0; border-top: 2px solid var(--gray-700); display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+    .footer-bottom p { font-size: 12px; color: var(--gray-700); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: 12px; color: var(--gray-700); transition: color 0.2s var(--bounce); }
+    .footer-legal a:hover { color: var(--pink); }
+
+    .gs-reveal { opacity: 0; transform: translateY(60px); }
+    @media (prefers-reduced-motion: reduce) { .gs-reveal { opacity: 1; transform: none; } .marquee-track, .clients-marquee { animation: none; } .pixel-star, .pixel-cross, .pixel-diamond, .emoji-sticker { display: none; } .wiggle-hover { animation: none !important; } * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
   </style>
 </head>
 <body>
-  <header class="page-header"><div class="header-inner">
-    <div class="header-logo"><a href="index.html">Sofia Bodger</a></div>
-    <nav class="header-nav">
-      <a href="index.html"><span class="nav-label">Home</span><span class="nav-duplicate" aria-hidden="true">Home</span></a>
-      <a href="about.html"><span class="nav-label">About</span><span class="nav-duplicate" aria-hidden="true">About</span></a>
-      <a href="services.html" class="active"><span class="nav-label">Services</span><span class="nav-duplicate" aria-hidden="true">Services</span></a>
-      <a href="case-studies.html"><span class="nav-label">Work</span><span class="nav-duplicate" aria-hidden="true">Work</span></a>
-      <a href="contact.html"><span class="nav-label">Contact</span><span class="nav-duplicate" aria-hidden="true">Contact</span></a>
-    </nav>
-    <a href="https://calendly.com/your-calendly-link" class="header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;"><span>Book Consultation</span></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="menu-icon"><span></span><span></span><span></span></span></button>
-  </div></header>
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true"><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="case-studies.html">Work</a><a href="contact.html">Contact</a></nav><div class="mobile-menu-cta"><a href="contact.html" class="primary-cta"><span>Book Consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+
   <div class="scroll-progress" id="scroll-progress"></div>
-  <main>
-    <section class="page-hero">
-      <div class="pixel-star" style="top:12%; right:8%;"></div>
-      <div class="pixel-cross" style="bottom:18%; right:15%;"></div>
-      <div class="section-label">Services</div>
-      <h1>Strategic Services<br><span class="accent">for Cultural Impact</span></h1>
-      <p>End-to-end brand strategy and cultural intelligence services to help your brand connect authentically with youth culture.</p>
-    </section>
-    <section class="services-section">
-      <div class="pixel-diamond" style="top:6%; left:4%;"></div>
-      <div class="pixel-star" style="bottom:8%; right:3%;"></div>
-      <div class="section-container">
-        <div class="services-grid">
-          <article class="service-card gs-reveal"><span class="service-number">01</span><h3>Brand Strategy</h3><p>Translating cultural insights into brand positioning that resonates with target audiences.</p><ul class="service-features"><li>Brand Positioning & Architecture</li><li>Competitive Analysis</li><li>Audience Research</li><li>Market Entry Strategy</li></ul></article>
-          <article class="service-card gs-reveal"><span class="service-number">02</span><h3>Cultural Intelligence</h3><p>Deep research and analysis of youth culture across music, fashion, sport, and entertainment.</p><ul class="service-features"><li>Youth Culture Research</li><li>Trend Analysis & Forecasting</li><li>Subculture Mapping</li><li>Influencer Identification</li></ul></article>
-          <article class="service-card gs-reveal"><span class="service-number">03</span><h3>Campaign Development</h3><p>End-to-end campaign development from concept to execution across channels.</p><ul class="service-features"><li>Creative Direction</li><li>Content Strategy</li><li>Multi-channel Planning</li><li>Campaign Analytics</li></ul></article>
-          <article class="service-card gs-reveal"><span class="service-number">04</span><h3>Audience Strategy</h3><p>Data-driven audience segmentation and targeting that connects brands with communities.</p><ul class="service-features"><li>Audience Segmentation</li><li>Consumer Journey Mapping</li><li>Behavioral Analytics</li><li>Media Strategy</li></ul></article>
-          <article class="service-card gs-reveal"><span class="service-number">05</span><h3>Innovation Strategy</h3><p>Identifying emerging trends and opportunities for brands to stay ahead.</p><ul class="service-features"><li>Trend Scouting</li><li>Opportunity Identification</li><li>Innovation Workshops</li><li>Future Planning</li></ul></article>
-          <article class="service-card gs-reveal"><span class="service-number">06</span><h3>Workshops & Training</h3><p>Interactive sessions to build internal cultural intelligence capabilities.</p><ul class="service-features"><li>Cultural Intelligence Training</li><li>Strategy Bootcamps</li><li>Team Building</li><li>Executive Coaching</li></ul></article>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="pixel-star" style="top:15%; right:10%;"></div>
+    <div class="pixel-cross" style="bottom:20%; right:6%;"></div>
+    <div class="emoji-sticker" style="top:20%; right:20%;">⚡</div>
+
+    <div class="page-hero-top">
+      <div class="page-hero-logo"><a href="index.html">Sofia Bodger</a></div>
+      <div class="page-hero-meta">
+        <span>Amsterdam, NL</span>
+        <span class="divider"></span>
+        <span>+31 6 2142 06136</span>
+      </div>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-icon"><span></span><span></span><span></span></span>
+      </button>
+      <a href="https://calendly.com/" class="page-hero-cta" onclick="Calendly.initPopupWidget({url:'https://calendly.com/'}); return false;">
+        Book Consultation
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <nav class="page-hero-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="case-studies.html">Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="page-hero-content">
+      <div class="page-hero-mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="case-studies.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <h1>Services</h1>
+      <p class="hero-subtitle">Strategy rooted in empathy, cultural intelligence, and purposeful action — for brands that want to mean something.</p>
+    </div>
+  </section>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-nav">
+      <a href="index.html" data-menu-link>Home</a>
+      <a href="about.html" data-menu-link>About</a>
+      <a href="services.html" data-menu-link>Services</a>
+      <a href="case-studies.html" data-menu-link>Work</a>
+      <a href="contact.html" data-menu-link>Contact</a>
+    </nav>
+    <div class="mobile-menu-cta">
+      <a href="contact.html" class="primary-cta"><span>Book Consultation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="pixel-star" style="top:3%; left:4%;"></div>
+    <div class="pixel-diamond" style="top:8%; right:5%;"></div>
+    <div class="emoji-sticker draggable" style="top:5%; left:8%; z-index:10;">🎯</div>
+
+    <div class="section-container">
+      <div class="section-header gs-reveal">
+        <div><div class="section-label">What I Do</div></div>
+        <div class="section-title">Core Offerings</div>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">01</div>
+          <h3>Brand Strategy</h3>
+          <p>Building brand platforms that connect purpose to action. From positioning and architecture to go-to-market strategy — rooted in deep audience understanding and cultural context.</p>
+          <div class="service-tags">
+            <span class="service-tag">Brand Positioning</span>
+            <span class="service-tag">Architecture</span>
+            <span class="service-tag">GTM Strategy</span>
+          </div>
+        </div>
+
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">02</div>
+          <h3>Cultural Intelligence</h3>
+          <p>Decoding culture to find where your brand can authentically show up. Trend analysis, subculture mapping, and cultural insight that turns brands from outsiders to insiders.</p>
+          <div class="service-tags">
+            <span class="service-tag">Cultural Mapping</span>
+            <span class="service-tag">Trend Analysis</span>
+            <span class="service-tag">Audience Insight</span>
+          </div>
+        </div>
+
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">03</div>
+          <h3>Campaign Development</h3>
+          <p>From concept to execution — developing campaigns that cut through noise and drive real engagement. Including social-first strategy, influencer frameworks, and digital activations.</p>
+          <div class="service-tags">
+            <span class="service-tag">Social Strategy</span>
+            <span class="service-tag">Digital Activations</span>
+            <span class="service-tag">Influencer</span>
+          </div>
+        </div>
+
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">04</div>
+          <h3>Purpose & D&I Strategy</h3>
+          <p>Helping brands move beyond statements to meaningful action. Diversity and inclusion frameworks, purpose-driven brand strategy, and authentic community engagement.</p>
+          <div class="service-tags">
+            <span class="service-tag">Purpose Strategy</span>
+            <span class="service-tag">D&I Frameworks</span>
+            <span class="service-tag">Community</span>
+          </div>
+        </div>
+
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">05</div>
+          <h3>Workshops & Facilitation</h3>
+          <p>Interactive strategy workshops designed to align teams, unlock creative thinking, and build actionable roadmaps. From brand sprints to cultural immersion sessions.</p>
+          <div class="service-tags">
+            <span class="service-tag">Brand Sprints</span>
+            <span class="service-tag">Team Alignment</span>
+            <span class="service-tag">Creative Sessions</span>
+          </div>
+        </div>
+
+        <div class="service-card gs-reveal draggable">
+          <div class="service-number">06</div>
+          <h3>Youth & Digital Culture</h3>
+          <p>Specialized strategy for brands targeting Gen Z and millennial audiences. Gaming, metaverse, social-first approaches, and platform-native content strategy.</p>
+          <div class="service-tags">
+            <span class="service-tag">Gen Z Strategy</span>
+            <span class="service-tag">Gaming & Metaverse</span>
+            <span class="service-tag">Platform Native</span>
+          </div>
         </div>
       </div>
-    </section>
-    <section class="process-section">
-      <div class="pixel-cross" style="top:8%; left:5%;"></div>
-      <div class="pixel-diamond" style="bottom:10%; right:4%;"></div>
-      <div class="section-container">
-        <div class="section-header gs-reveal"><div class="section-label">Process</div><h2>How I Work</h2></div>
-        <div class="process-grid">
-          <article class="process-step gs-reveal"><div class="step-number">01</div><h3>Discovery</h3><p>Deep dive into your brand, market position, and strategic goals.</p></article>
-          <article class="process-step gs-reveal"><div class="step-number">02</div><h3>Research</h3><p>Cultural research and audience analysis to uncover key insights.</p></article>
-          <article class="process-step gs-reveal"><div class="step-number">03</div><h3>Strategy</h3><p>Synthesis of insights into clear strategic recommendations.</p></article>
-          <article class="process-step gs-reveal"><div class="step-number">04</div><h3>Activation</h3><p>Collaborative execution support to bring strategy to life.</p></article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="pixel-cross" style="top:8%; right:6%;"></div>
+    <div class="pixel-star" style="bottom:10%; left:4%;"></div>
+
+    <div class="section-container">
+      <div class="section-header gs-reveal">
+        <div><div class="section-label">How I Work</div></div>
+        <div class="section-title">My Process</div>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step gs-reveal">
+          <div class="process-step-number">01</div>
+          <h3>Discover</h3>
+          <p>Deep dive into your brand, audience, and cultural landscape. Immersive research and stakeholder interviews.</p>
+        </div>
+        <div class="process-step gs-reveal">
+          <div class="process-step-number">02</div>
+          <h3>Define</h3>
+          <p>Synthesize insights into clear strategic direction. Define positioning, platform, and opportunity spaces.</p>
+        </div>
+        <div class="process-step gs-reveal">
+          <div class="process-step-number">03</div>
+          <h3>Develop</h3>
+          <p>Build creative territories and campaign concepts. Collaborate with creative teams to bring strategy to life.</p>
+        </div>
+        <div class="process-step gs-reveal">
+          <div class="process-step-number">04</div>
+          <h3>Deliver</h3>
+          <p>Activate across channels with measurement frameworks. Iterate based on performance and cultural shifts.</p>
         </div>
       </div>
-    </section>
-    <section class="pricing-section">
-      <div class="pixel-star" style="top:5%; right:6%;"></div>
-      <div class="section-container">
-        <div class="section-header gs-reveal"><div class="section-label">Engagement</div><h2>Ways to Work Together</h2></div>
-        <div class="pricing-grid">
-          <article class="pricing-card gs-reveal"><h3>Project-Based</h3><div class="pricing-price">From $8K<span>/project</span></div><ul><li>Brand Strategy Workshop</li><li>Cultural Intelligence Audit</li><li>Campaign Development</li><li>Positioning Refresh</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
-          <article class="pricing-card featured gs-reveal"><h3>Retainer</h3><div class="pricing-price">From $15K<span>/month</span></div><ul><li>Ongoing Strategic Support</li><li>Regular Cultural Briefings</li><li>Campaign Oversight</li><li>Priority Access</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
-          <article class="pricing-card gs-reveal"><h3>Workshop</h3><div class="pricing-price">From $5K<span>/day</span></div><ul><li>Cultural Intelligence Training</li><li>Strategy Bootcamp</li><li>Team Alignment Session</li><li>Follow-up Report</li></ul><a href="contact.html" class="pricing-cta">Get Started</a></article>
-        </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS MARQUEE -->
+  <section class="clients-section">
+    <div class="clients-marquee">
+      <span class="client-name">Nike</span><span class="client-dot"></span>
+      <span class="client-name">Beats By Dre</span><span class="client-dot"></span>
+      <span class="client-name">Foot Locker</span><span class="client-dot"></span>
+      <span class="client-name">H&M</span><span class="client-dot"></span>
+      <span class="client-name">Johnnie Walker</span><span class="client-dot"></span>
+      <span class="client-name">Audi</span><span class="client-dot"></span>
+      <span class="client-name">Tommy Hilfiger</span><span class="client-dot"></span>
+      <span class="client-name">Nike</span><span class="client-dot"></span>
+      <span class="client-name">Beats By Dre</span><span class="client-dot"></span>
+      <span class="client-name">Foot Locker</span><span class="client-dot"></span>
+      <span class="client-name">H&M</span><span class="client-dot"></span>
+      <span class="client-name">Johnnie Walker</span><span class="client-dot"></span>
+      <span class="client-name">Audi</span><span class="client-dot"></span>
+      <span class="client-name">Tommy Hilfiger</span><span class="client-dot"></span>
+    </div>
+  </section>
+
+  <!-- DRAGGABLE STICKERS -->
+  <section style="padding: clamp(60px, 8vw, 120px) 0; position: relative; overflow: hidden;">
+    <div class="section-container" style="position: relative; min-height: 200px;">
+      <div class="sticker draggable" style="position: absolute; top: 10px; left: 8%; transform: rotate(-2deg); padding: 20px 28px; background: var(--white); font-family: var(--font-pixel); font-size: 10px; color: var(--cobalt);">
+        ★ 8+ Years Strategy
       </div>
-    </section>
-    <section class="cta-banner">
-      <div class="pixel-star" style="top:10%; left:8%;"></div>
-      <div class="pixel-cross" style="bottom:12%; right:10%;"></div>
-      <div class="section-container gs-reveal">
-        <h2>Ready to Make Your Brand Culturally Alive?</h2>
-        <p>Let's discuss how we can transform your brand positioning.</p>
-        <a href="https://calendly.com/your-calendly-link" class="primary-cta wiggle-hover" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'}); return false;"><span>Book Free Consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <div class="sticker draggable" style="position: absolute; top: 30px; left: 40%; transform: rotate(2deg); padding: 20px 28px; background: var(--charcoal); font-family: var(--font-pixel); font-size: 10px; color: var(--pink);">
+        ◆ Nike + Beats + H&M
       </div>
-    </section>
-  </main>
+      <div class="sticker draggable" style="position: absolute; top: 5px; right: 10%; transform: rotate(-1deg); padding: 20px 28px; background: var(--lime); font-family: var(--font-pixel); font-size: 10px; color: var(--charcoal);">
+        ⚡ 8.1B Campaign Views
+      </div>
+      <div class="sticker draggable" style="position: absolute; top: 70px; left: 20%; transform: rotate(3deg); padding: 16px 24px; background: var(--white); font-family: var(--font-pixel); font-size: 9px; color: var(--cobalt);">
+        ✦ BBH · AnalogFolk · Highsnobiety
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="pixel-star" style="top:10%; left:8%;"></div>
+    <div class="pixel-cross" style="bottom:15%; right:10%;"></div>
+    <div class="emoji-sticker" style="top:12%; right:15%;">✦</div>
+
+    <div class="section-container gs-reveal">
+      <h2>Ready to Start a Project?</h2>
+      <p>Let's discuss how strategic thinking can transform your brand's relationship with culture.</p>
+      <a href="https://calendly.com/" class="primary-cta wiggle-hover" onclick="Calendly.initPopupWidget({url:'https://calendly.com/'}); return false;">
+        <span>Book Free Consultation</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="marquee-section"><div class="marquee-track"><div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div><div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div><div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div><div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div></div></div>
-    <div class="footer-main"><div class="section-container"><div class="footer-grid">
-      <div class="footer-brand"><div class="footer-logo">Sofia Bodger</div><p>Senior Strategy Director helping high-end agencies and culture-first brands connect with youth culture.</p><div class="footer-social"><a href="https://linkedin.com/in/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://instagram.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://twitter.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div></div>
-      <div class="footer-column"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-column"><h4>Services</h4><ul><li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li></ul></div>
-      <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:hello@sofiabodger.com">hello@sofiabodger.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="contact.html">New York, USA</a></li></ul></div>
-      <div class="footer-column"><h4>Elsewhere</h4><ul><li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li></ul></div>
-    </div></div></div>
-    <div class="section-container"><div class="footer-bottom"><p>&copy; 2026 Sofia Bodger. All rights reserved.</p><div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div></div>
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Making Brands Culturally Alive</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Strategy × Culture × Impact</span><span class="marquee-dot"></span></div>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="section-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">Sofia Bodger</div>
+            <p>Senior Strategy Director helping brands connect with culture through empathy, behavior understanding, and purposeful strategy. Based in Amsterdam.</p>
+            <div class="footer-social">
+              <a href="https://linkedin.com/in/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+              <a href="https://instagram.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+              <a href="https://twitter.com/sofiabodger" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            </div>
+          </div>
+          <div class="footer-column"><h4>Navigation</h4><ul>
+            <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li>
+          </ul></div>
+          <div class="footer-column"><h4>Services</h4><ul>
+            <li><a href="services.html">Brand Strategy</a></li><li><a href="services.html">Cultural Intelligence</a></li><li><a href="services.html">Campaign Development</a></li><li><a href="services.html">Workshops</a></li>
+          </ul></div>
+          <div class="footer-column"><h4>Contact</h4><ul>
+            <li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li><li><a href="https://calendly.com/" target="_blank">Book a Call</a></li><li><a href="contact.html">Amsterdam, NL</a></li>
+          </ul></div>
+          <div class="footer-column"><h4>Elsewhere</h4><ul>
+            <li><a href="https://linkedin.com/in/sofiabodger" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com/sofiabodger" target="_blank">Instagram</a></li><li><a href="https://twitter.com/sofiabodger" target="_blank">Twitter / X</a></li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sofia Bodger. All rights reserved.</p>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+    </div>
   </footer>
+
+  <!-- SCRIPTS -->
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
   <noscript><style>.gs-reveal{opacity:1!important;transform:none!important}</style></noscript>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -142,15 +524,40 @@
     const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, touchMultiplier: 2 });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
+
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(document.documentElement, { scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; }, getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; } });
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) { return arguments.length ? lenis.scrollTo(value) : lenis.scroll; },
+      getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; }
+    });
     ScrollTrigger.defaults({ scroller: document.documentElement });
-    const progressBar = document.getElementById("scroll-progress");
-    if (progressBar) { lenis.on("scroll", () => { const scrollTop = window.scrollY || document.documentElement.scrollTop; const docHeight = document.documentElement.scrollHeight - window.innerHeight; const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0; progressBar.style.width = progress + "%"; }); }
-    gsap.utils.toArray('.gs-reveal').forEach(el => { gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'back.out(1.4)', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } }); });
-    const menuToggle = document.querySelector('.menu-toggle'); const mobileMenu = document.getElementById('mobile-menu');
-    if (menuToggle && mobileMenu) { menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; }); document.querySelectorAll('.mobile-menu-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); }); }
+
+    gsap.utils.toArray('.gs-reveal').forEach(el => {
+      gsap.fromTo(el, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'back.out(1.4)', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
+    });
+
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) { lenis.on('scroll', () => { const scrollTop = window.scrollY || document.documentElement.scrollTop; const docHeight = document.documentElement.scrollHeight - window.innerHeight; const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0; progressBar.style.width = progress + '%'; }); }
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => { const isOpen = mobileMenu.classList.contains('active'); mobileMenu.classList.toggle('active'); menuToggle.setAttribute('aria-expanded', !isOpen); mobileMenu.setAttribute('aria-hidden', isOpen); document.body.style.overflow = isOpen ? '' : 'hidden'; });
+      document.querySelectorAll('[data-menu-link]').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }); });
+    }
+
+    let highestZ = 100;
+    document.querySelectorAll('.draggable').forEach(el => {
+      const rot = (Math.random() - 0.5) * 6;
+      el.style.transform = `rotate(${rot}deg)`;
+      let isDragging = false, startX, startY;
+      el.addEventListener('mousedown', (e) => { isDragging = true; el.classList.add('dragging'); el.style.zIndex = ++highestZ; startX = e.clientX; startY = e.clientY; e.preventDefault(); });
+      document.addEventListener('mousemove', (e) => { if (!isDragging) return; const dx = e.clientX - startX; const dy = e.clientY - startY; el.style.transform = `translate(${dx}px, ${dy}px) rotate(0deg) scale(1.05)`; });
+      document.addEventListener('mouseup', () => { if (!isDragging) return; isDragging = false; el.classList.remove('dragging'); const newRot = (Math.random() - 0.5) * 4; const match = el.style.transform.match(/translate\(([^)]+)\)/); if (match) el.style.transform = `translate(${match[1]}) rotate(${newRot}deg)`; });
+    });
+    document.querySelectorAll('.sticker').forEach(el => { el.style.zIndex = 1; el.addEventListener('mousedown', () => { el.style.zIndex = ++highestZ; }); });
+
     ScrollTrigger.refresh();
   </script>
 </body>
