@@ -2,8 +2,8 @@
  * Exact YARD Design System Implementation
  * ======================================== */
 
-/* Google Font - Space Grotesk as PP Neue Montreal fallback */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap');
+/* Google Font - Inter as PP Neue Montreal match (neo-grotesque, similar metrics) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* ========================================
    FLUID TYPE SCALE - YARD EXACT
@@ -44,7 +44,7 @@
   --accent-red: #FF0000;
   
   /* Typography */
-  --font-family: 'Space Grotesk', system-ui, sans-serif;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --font-medium: 500;
   --font-regular: 400;
   
@@ -55,6 +55,8 @@
   
   /* Layout */
   --header-height: 80rem;
+  --content-padding: 12rem;
+  --content-padding-dk: 20rem;
 }
 
 /* ========================================
@@ -1333,7 +1335,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
    ======================================== */
 .marquee, .marquee__scroller { overflow: hidden; }
 
-.marquee__list { display: flex; width: max-content; }
+.marquee__list { display: flex; width: max-content; animation: marquee 30s linear infinite; }
 
 .marquee__item {
   -webkit-clip-path: inset(0);
@@ -1344,9 +1346,11 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0 20rem;
+  color: var(--text-dark);
+  transition: color .3s ease;
 }
 
-.disabled .marquee__list { width: auto; }
+.disabled .marquee__list { width: auto; animation: none; }
 
 /* Section Marquee */
 .section-marquee {
@@ -1925,7 +1929,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 
 .cta-book:hover {
   background: #0033cc;
-  transform: translateX(5px);
+  transform: translate3d(5px, 0, 0);
 }
 
 .cta-book svg {
