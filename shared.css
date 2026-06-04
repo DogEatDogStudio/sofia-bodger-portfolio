@@ -113,12 +113,12 @@ img, video { display: block; max-width: 100%; height: auto; }
    LAYOUT - YARD EXACT
    ======================================== */
 .px-layout {
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
 }
 
 @media (min-width: 1024px) {
-  .px-layout { padding-left: 20rem; padding-right: 20rem; }
+  .px-layout { padding-left: var(--content-padding-dk); padding-right: var(--content-padding-dk); }
 }
 
 .page-container { min-height: 100dvh; position: relative; }
@@ -368,13 +368,13 @@ main[data-v-f3941143] {
 }
 
 .layout-header .wrapper {
-  padding: 15rem 12rem;
+  padding: 15rem var(--content-padding);
 }
 
 @media (min-width: 1024px) {
   .layout-header .wrapper {
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: var(--content-padding-dk);
+    padding-right: var(--content-padding-dk);
     padding-top: 27rem;
   }
 }
@@ -652,15 +652,15 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   display: flex;
   flex-direction: column;
   padding-bottom: 30rem;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
   padding-top: var(--header-height);
 }
 
 @media (min-width: 1024px) {
   .menu-mobile .view-base {
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: var(--content-padding-dk);
+    padding-right: var(--content-padding-dk);
   }
 }
 
@@ -929,14 +929,14 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   align-items: flex-end;
   display: flex;
   min-height: 100svh;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
   position: relative;
   z-index: 2;
 }
 
 @media (min-width: 1024px) {
-  .index-hero .hero-content { padding-left: 20rem; padding-right: 20rem; }
+  .index-hero .hero-content { padding-left: var(--content-padding-dk); padding-right: var(--content-padding-dk); }
 }
 
 .index-hero .hero-inner {
@@ -1022,10 +1022,10 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   .index-works { margin-top: 110rem; }
 }
 
-.works { padding-left: 12rem; padding-right: 12rem; }
+.works { padding-left: var(--content-padding); padding-right: var(--content-padding); }
 
 @media (min-width: 1024px) {
-  .works { padding-left: 20rem; padding-right: 20rem; }
+  .works { padding-left: var(--content-padding-dk); padding-right: var(--content-padding-dk); }
 }
 
 .works ul {
@@ -1221,12 +1221,12 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
 }
 
 @media (min-width: 1024px) {
-  .footer .logo-wrapper-footer { padding-left: 20rem; padding-right: 20rem; }
+  .footer .logo-wrapper-footer { padding-left: var(--content-padding-dk); padding-right: var(--content-padding-dk); }
 }
 
 .footer .logo-wrapper-footer svg { height: auto; width: 100%; }
@@ -1248,16 +1248,16 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   justify-content: space-between;
   line-height: 1.4;
   margin-top: 40rem;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
   text-transform: uppercase;
 }
 
 @media (min-width: 1024px) {
   .footer .menus {
     margin-top: 70rem;
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding-left: var(--content-padding-dk);
+    padding-right: var(--content-padding-dk);
   }
   .footer .menus > * { flex: 1; }
 }
@@ -1287,7 +1287,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   gap: 50rem;
   letter-spacing: -.34rem;
   line-height: .9;
-  padding: 0 12rem;
+  padding: 0 var(--content-padding);
   text-transform: uppercase;
   margin-top: 40rem;
 }
@@ -1345,7 +1345,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   letter-spacing: .05em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 0 20rem;
+  padding: 0 var(--content-padding-dk);
   color: var(--text-dark);
   transition: color .3s ease;
 }
@@ -1395,10 +1395,10 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
    ======================================== */
 .page-about { padding-top: 150rem; }
 
-.about-hero { padding: 0 12rem; }
+.about-hero { padding: 0 var(--content-padding); }
 
 @media (min-width: 1024px) {
-  .about-hero { padding: 0 20rem; }
+  .about-hero { padding: 0 var(--content-padding-dk); }
 }
 
 .about-hero h1 {
@@ -1427,7 +1427,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   grid-template-columns: 1fr;
   gap: 60rem;
   margin-top: 60rem;
-  padding: 0 12rem;
+  padding: 0 var(--content-padding);
 }
 
 @media (min-width: 1024px) {
@@ -1435,7 +1435,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
     grid-template-columns: repeat(12, 1fr);
     gap: 30rem;
     margin-top: 100rem;
-    padding: 0 20rem;
+    padding: 0 var(--content-padding-dk);
   }
 }
 
@@ -1467,17 +1467,17 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 30rem;
-  padding: 0 12rem;
+  padding: 0 var(--content-padding);
 }
 
 @media (min-width: 1024px) {
-  .section-label { padding: 0 20rem; }
+  .section-label { padding: 0 var(--content-padding-dk); }
 }
 
-.experience-section { margin-top: 80rem; padding: 0 12rem; }
+.experience-section { margin-top: 80rem; padding: 0 var(--content-padding); }
 
 @media (min-width: 1024px) {
-  .experience-section { padding: 0 20rem; }
+  .experience-section { padding: 0 var(--content-padding-dk); }
 }
 
 .timeline { margin-top: 40rem; }
@@ -1493,7 +1493,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 
 @media (hover: hover) {
   .timeline-item:hover {
-    padding-left: 12rem;
+    padding-left: var(--content-padding);
     border-color: var(--primary);
   }
   .timeline-item:hover .timeline-year { color: var(--primary); }
@@ -1519,10 +1519,10 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 .timeline-content p { font-size: 14rem; color: var(--text-muted); line-height: 1.5; }
 .timeline-content .company { font-size: 12rem; color: var(--text-dark); margin-bottom: 5rem; }
 
-.values-section { margin-top: 100rem; padding: 0 12rem; }
+.values-section { margin-top: 100rem; padding: 0 var(--content-padding); }
 
 @media (min-width: 1024px) {
-  .values-section { padding: 0 20rem; }
+  .values-section { padding: 0 var(--content-padding-dk); }
 }
 
 .values-grid {
