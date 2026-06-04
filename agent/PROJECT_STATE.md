@@ -2,7 +2,8 @@
 
 ## Current Sprint Phase
 *   **Phase 0: Legacy Codebase Audit & Refactor — COMPLETE**
-*   **Phase 1: Global Foundations & UI System — IN PROGRESS**
+*   **Phase 1: Global Foundations & UI System — COMPLETE**
+*   **Phase 2: Homepage Build-Out (Vibe Check Lock) — COMPLETE**
 
 ---
 
@@ -18,9 +19,9 @@
 ## Page Implementation Roadmap
 
 ### 1. Homepage (`index.html`)
-- [ ] Code full-bleed background video component layer under content overlays[cite: 2]
-- [ ] Implement word-splitting layout tracking tagline text configurations[cite: 2]
-- [ ] Map active click-events launching the cinematic showreel overlay frame[cite: 2]
+- [x] Code full-bleed background video component layer under content overlays[cite: 2]
+- [x] Implement word-splitting layout tracking tagline text configurations[cite: 2]
+- [x] Map active click-events launching the cinematic showreel overlay frame[cite: 2]
 
 ### 2. About Page (`about.html`)
 - [ ] Design asymmetric lookbook grids highlighting strategic experience parameters
@@ -61,7 +62,17 @@
 - [x] **All 8 pages updated:** HTML files now reference `shared.js` instead of inline scripts; page-specific scripts (works selector, contact form) retained as separate `<script>` blocks
 - [x] **Code review passed:** No broken references, HTML structure intact across all pages
 
+## Phase 2 Completed Tasks (Homepage Build-Out)
+- [x] **Word-split text reveal:** Hero tagline wrapped in `.split-text > .word > .word-inner` markup; GSAP timeline animates `yPercent: 110 → 0` with staggered word reveal
+- [x] **Showreel overlay:** Fixed-position modal with 16:9 video wrapper, backdrop click-to-close, ESC key handler, focus trap, `body.showreel-open` overflow lock, Lenis stop/start
+- [x] **CTA Play trigger:** `.cta-play` button with play icon + "Play Showreel" label wired to overlay open
+- [x] **Services preview section:** 3-column numbered grid (Brand Strategy / Cultural Intelligence / Creative Direction) with hover states and CTA to services page
+- [x] **Works grid flush-list dividers:** `.work-divider` class adds `border-top` separators; inline styles removed
+- [x] **GSAP animation ownership:** Removed CSS `keyframe` animations from `.hero-cta`, `.credibility-strip`, `.scroll-indicator` — GSAP timeline now exclusively controls hero element reveals
+- [x] **no-js fallback:** `<html class="no-js">` removed by shared.js on DOMContentLoaded; CSS rule ensures `.word-inner` stays visible if GSAP fails
+- [x] **Code review fixes:** Fixed opacity 0→0 conflict, showreel overlay DOM placement, visibility transition-delay, services preview redundant border-top
+
 ## Immediate Next Steps
-1. **Vibe Check — Homepage Lock:** Confirm `index.html` structural layout (hero video, word-split tagline, CTA, works grid) renders correctly before proceeding to inner pages.
-2. **Shared JS Refinement:** Consider extracting header/footer HTML into a template partial system to eliminate remaining duplication across 8 pages.
-3. **Footer Marquee Animation:** The footer `.marquee__list` is currently static — add `animation: marquee 25s linear infinite` to match section marquee behavior.
+1. **Inner Pages Build-Out (Phase 3):** Apply the same treatment to about.html, services.html, case-studies.html, and contact.html — each needs its own section-level animations and polish.
+2. **Video Replacement:** The hero background video (Mixkit CDN) is broken. Replace with a working video source or a high-quality still image with Ken Burns parallax.
+3. **Shared Template Partials:** Header/footer HTML is still duplicated across 8 pages. Consider a build-time partial system or JS-based injection to eliminate maintenance overhead.
