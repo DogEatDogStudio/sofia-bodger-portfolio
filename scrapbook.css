@@ -26,6 +26,7 @@ body {
     linear-gradient(90deg, rgba(0,68,255,0.06) 1px, transparent 1px);
   background-size: 32px 32px;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%230044FF'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%230044FF'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%233366FF'/%3E%3C/svg%3E") 4 4, auto;
+  a, button, [role="button"] { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='2' y='2' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='6' width='4' height='4' fill='%23FF66CC'/%3E%3Crect x='2' y='10' width='4' height='4' fill='%23CC66FF'/%3E%3C/svg%3E") 4 4, pointer; }
 }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -247,5 +248,7 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .gs-reveal { opacity: 1; transform: none; }
   .marquee-track { animation: none; }
+  .pixel-star, .pixel-cross, .pixel-diamond { display: none; }
+  .wiggle-hover { animation: none !important; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
