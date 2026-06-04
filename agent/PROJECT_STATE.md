@@ -7,11 +7,11 @@
 ---
 
 ## Global Architecture Checklist
-- [ ] **Fluid Scaling & Root Variable Setup:** Code exact `:root` fluid type parameters (`0.2666vw` scaling up to `0.0595vw` across target device breakpoints) inside global CSS sheets[cite: 2].
-- [ ] **Typography Ingestion:** Inject universal clean fonts (`PP Neue Montreal` family weights) with forced anti-aliasing rendering values (`-webkit-font-smoothing`)[cite: 2].
-- [ ] **Lenis Smooth Scroll Configuration:** Initialise the Lenis scroll package script loop, binding mouse mechanics and completely hiding native browser scrollbars[cite: 2].
-- [ ] **Dual-Overlay Transition Framework:** Code fixed DOM containers (`#page-transition-overlay` center polygon horizontal wipe and `#page-transition-overlay-2` bottom logo reveal clip)[cite: 2].
-- [ ] **Persistent Global Header Shell:** Implement shared navigation header elements featuring active-link opacity dims, slot-machine flip text logic (`.hover-link`), live local clock script execution, and the 3-dot interactive toggle macro button[cite: 2].
+- [x] **Fluid Scaling & Root Variable Setup:** Code exact `:root` fluid type parameters (`0.2666vw` scaling up to `0.0595vw` across target device breakpoints) inside global CSS sheets[cite: 2].
+- [x] **Typography Ingestion:** Inject universal clean fonts (`PP Neue Montreal` family weights) with forced anti-aliasing rendering values (`-webkit-font-smoothing`)[cite: 2].
+- [x] **Lenis Smooth Scroll Configuration:** Initialise the Lenis scroll package script loop, binding mouse mechanics and completely hiding native browser scrollbars[cite: 2].
+- [x] **Dual-Overlay Transition Framework:** Code fixed DOM containers (`#page-transition-overlay` center polygon horizontal wipe and `#page-transition-overlay-2` bottom logo reveal clip)[cite: 2].
+- [x] **Persistent Global Header Shell:** Implement shared navigation header elements featuring active-link opacity dims, slot-machine flip text logic (`.hover-link`), live local clock script execution, and the 3-dot interactive toggle macro button[cite: 2].
 
 ---
 
