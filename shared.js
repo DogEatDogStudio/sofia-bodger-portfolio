@@ -32,8 +32,11 @@
 
     // --- Cursor divs ---
     let cursorHTML = '<div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>';
-    if (isIndex) {
+    if (isIndex || page === 'case-studies') {
       cursorHTML += '<div class="media-cursor-wrapper" aria-hidden="true"><div class="img-wrapper"><img src="" alt=""></div></div>';
+    }
+    if (page === 'case-studies') {
+      cursorHTML += '<div class="media-cursor-wrapper media-cursor-trail" aria-hidden="true"><div class="img-wrapper"><img src="" alt=""></div></div>';
     }
 
     // --- Transition overlays ---
@@ -213,11 +216,15 @@
   // ========================================
   const cursorDot = document.querySelector('.cursor-dot');
   const cursorRing = document.querySelector('.cursor-ring');
-  const mediaCursorWrapper = document.querySelector('.media-cursor-wrapper');
+  const mediaCursorWrapper = document.querySelector('.media-cursor-wrapper:not(.media-cursor-trail)');
   const mediaCursorImg = mediaCursorWrapper?.querySelector('img');
+  // Dual-trail for case studies: grayscale leader (0.08 LERP) + color trailer (0.05 LERP)
+  const trailWrapper = document.querySelector('.media-cursor-trail');
+  const trailImg = trailWrapper?.querySelector('img');
   let mouseX = 0, mouseY = 0;
   let ringX = 0, ringY = 0;
   let mediaX = 0, mediaY = 0, mediaTargetX = 0, mediaTargetY = 0;
+  let trailX = 0, trailY = 0, trailTargetX = 0, trailTargetY = 0;
   let cursorVisible = false;
 
   document.addEventListener('mousemove', (e) => {
@@ -255,11 +262,17 @@
       cursorRing.style.left = ringX + 'px';
       cursorRing.style.top = ringY + 'px';
     }
-    // Media cursor follow
-    mediaX += (mediaTargetX - mediaX) * 0.1;
-    mediaY += (mediaTargetY - mediaY) * 0.1;
+    // Media cursor follow (grayscale leader - 0.08 LERP)
+    mediaX += (mediaTargetX - mediaX) * 0.08;
+    mediaY += (mediaTargetY - mediaY) * 0.08;
     if (mediaCursorWrapper?.classList.contains('visible')) {
       mediaCursorWrapper.style.transform = `translate(${mediaX - 102}px, ${mediaY - 78}px)`;
+    }
+    // Trail cursor follow (color trailer - 0.05 LERP)
+    trailX += (trailTargetX - trailX) * 0.05;
+    trailY += (trailTargetY - trailY) * 0.05;
+    if (trailWrapper?.classList.contains('visible')) {
+      trailWrapper.style.transform = `translate(${trailX - 102}px, ${trailY - 78}px)`;
     }
     requestAnimationFrame(animateCursors);
   }
@@ -302,6 +315,41 @@
         cursorDot?.classList.remove('cursor--work');
         cursorRing?.classList.remove('cursor--work');
         mediaCursorWrapper?.classList.remove('visible');
+      });
+    });
+  }
+
+  // ========================================
+  // CASE STUDIES HOVER EFFECT (dual-trail image preview)
+  // ========================================
+  const caseStudyItems = document.querySelectorAll('.case-study-item');
+  if (caseStudyItems.length && trailWrapper && mediaCursorWrapper) {
+    caseStudyItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const img = item.querySelector('.media-wrapper img');
+        if (img) {
+          const src = img.getAttribute('src');
+          // Grayscale leader
+          if (mediaCursorImg) { mediaCursorImg.src = src; }
+          mediaCursorWrapper.classList.add('visible');
+          // Color trailer
+          if (trailImg) { trailImg.src = src; }
+          trailWrapper.classList.add('visible');
+        }
+        cursorDot?.classList.add('cursor--work');
+        cursorRing?.classList.add('cursor--work');
+      });
+      item.addEventListener('mousemove', (e) => {
+        mediaTargetX = e.clientX;
+        mediaTargetY = e.clientY;
+        trailTargetX = e.clientX;
+        trailTargetY = e.clientY;
+      });
+      item.addEventListener('mouseleave', () => {
+        mediaCursorWrapper.classList.remove('visible');
+        trailWrapper.classList.remove('visible');
+        cursorDot?.classList.remove('cursor--work');
+        cursorRing?.classList.remove('cursor--work');
       });
     });
   }

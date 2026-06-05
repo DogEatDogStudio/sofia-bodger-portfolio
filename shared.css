@@ -301,7 +301,9 @@ main[data-v-f3941143] {
   .cursor-dot, .cursor-ring { display: none !important; }
 }
 
-/* Media cursor wrapper (image preview on work hover) */
+/* Media cursor wrapper — dual-trail system
+   Grayscale leader: 0.08 LERP (fast)
+   Color trailer: 0.05 LERP (slow) */
 .media-cursor-wrapper {
   display: none;
   height: 100%;
@@ -336,11 +338,18 @@ main[data-v-f3941143] {
   width: 100%;
 }
 
-.media-cursor-wrapper .img-wrapper.grayscale {
+.media-cursor-wrapper .img-wrapper.grayscale,
+.media-cursor-wrapper:not(.media-cursor-trail) .img-wrapper {
   filter: grayscale(1);
   left: 0;
   position: absolute;
   top: 0;
+}
+
+/* Trail wrapper — color trailer (slower LERP) */
+.media-cursor-trail .img-wrapper {
+  filter: none;
+  opacity: 0.85;
 }
 
 @media (hover: hover) and (min-width: 1024px) {
@@ -693,7 +702,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 .menu-mobile .menus ul + ul::before {
   background: var(--text-light);
   content: "";
-  height: 1px;
+  height: 0.0625rem;
   left: 0;
   position: absolute;
   top: 0;
@@ -791,7 +800,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 .util-button {
   align-items: center;
   border: 1px solid var(--button-border);
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   display: inline-flex;
   font-size: 12rem;
   font-weight: var(--font-medium);
@@ -836,12 +845,12 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   -webkit-clip-path: inset(0 50% 0 50%);
   clip-path: inset(0 50% 0 50%);
   content: "";
-  height: calc(100% + 2px);
-  left: -1px;
+  height: calc(100% + 0.125rem);
+  left: -0.0625rem;
   position: absolute;
-  top: -1px;
+  top: -0.0625rem;
   transition: -webkit-clip-path .5s var(--transition-bounce), clip-path .5s var(--transition-bounce);
-  width: calc(100% + 2px);
+  width: calc(100% + 0.125rem);
 }
 
 @media (hover: hover) {
@@ -1899,7 +1908,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3rem rgba(0, 68, 255, .08);
+  box-shadow: 0 0 0 0.1875rem rgba(0, 68, 255, .08);
 }
 
 .form-group select {
@@ -1970,7 +1979,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 }
 
 .cta-book:hover svg {
-  transform: translateX(3px);
+  transform: translateX(0.1875rem);
 }
 
 @keyframes fadeInUp {
@@ -1997,7 +2006,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 }
 
 .scroll-line {
-  width: 1px;
+  width: 0.0625rem;
   height: 40rem;
   background: rgba(240, 242, 241, .3);
   position: relative;
@@ -2320,8 +2329,8 @@ body.showreel-open {
    ======================================== */
 .visually-hidden {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
   margin: -1px;
   overflow: hidden;
@@ -2331,8 +2340,8 @@ body.showreel-open {
 }
 
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 4px;
+  outline: 0.125rem solid var(--primary);
+  outline-offset: 0.25rem;
 }
 
 /* ========================================
