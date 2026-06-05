@@ -44,6 +44,12 @@
         <div class="zendesk-note">
           <p>For ongoing projects, client communication and asset collection are handled via our dedicated <a href="mailto:sofiabodger@me.com?subject=Zendesk Portal Access">Zendesk client portal</a>.</p>
         </div>
+
+        <!-- Live Amsterdam Clock -->
+        <div class="contact-clock">
+          <span class="contact-clock-label">Amsterdam, NL</span>
+          <span class="contact-clock-time" id="contact-clock-time"></span>
+        </div>
       </div>
       
       <form class="contact-form" id="contact-form">
@@ -90,6 +96,23 @@
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="shared.js"></script>
   <script>
+    /* Live Amsterdam Clock */
+    (function() {
+      const clockEl = document.getElementById('contact-clock-time');
+      if (!clockEl) return;
+      function update() {
+        const now = new Date();
+        const month = now.getMonth();
+        const isDST = month >= 2 && month <= 9 && (month > 2 || now.getDate() >= 25) && (month < 9 || now.getDate() < 25);
+        clockEl.textContent = now.toLocaleTimeString('en-GB', {
+          timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+        }) + ' ' + (isDST ? 'CEST' : 'CET');
+      }
+      update(); setInterval(update, 1000);
+    })();
+  </script>
+  <script>
+    /* Contact form handler */
     const contactForm = document.getElementById("contact-form");
     contactForm?.addEventListener("submit", function(e) {
       e.preventDefault();

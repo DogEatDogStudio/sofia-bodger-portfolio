@@ -83,6 +83,16 @@
         <p><strong>$2,000 USD</strong> per day — standard rate for project partnerships. Flexible based on scope and commitment.</p>
       </div>
       
+      <!-- Book a Consultation CTA -->
+      <div class="services-cta-section reveal">
+        <a href="contact.html" class="cta-book">
+          Book a consultation
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
+            <path fill="currentColor" d="M9.5 7H2v-1h7.5l-4-4V7zm4.5 4.5l-7-7 1-1 7 7-1 1z"/>
+          </svg>
+        </a>
+      </div>
+
       <!-- Process Section -->
       <div class="process-section reveal">
         <p class="section-label">Process</p>
@@ -134,6 +144,23 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="shared.js"></script>
-  
+  <script>
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        // Service cards stagger reveal
+        gsap.from('.service-card', {
+          scrollTrigger: { trigger: '.services-grid', start: 'top 80%', once: true },
+          opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out'
+        });
+        // Process items stagger
+        gsap.from('.process-item', {
+          scrollTrigger: { trigger: '.process-grid', start: 'top 85%', once: true },
+          opacity: 0, y: 30, duration: 0.6, stagger: 0.12, ease: 'power3.out'
+        });
+      }
+    }
+  </script>
 </body>
 </html>

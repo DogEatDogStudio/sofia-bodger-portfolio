@@ -2436,3 +2436,77 @@ a:focus-visible, button:focus-visible {
 }
 
 ::selection { background: var(--primary); color: var(--text-light); }
+
+/* ========================================
+   PHASE 3 — INNER PAGE ENHANCEMENTS
+   ======================================== */
+
+/* About hero word reveal */
+.about-hero h1 span {
+  display: inline-block;
+  overflow: hidden;
+}
+.about-hero h1 span > * {
+  display: inline-block;
+}
+
+/* Case studies scroll-triggered line reveal */
+.case-study-item {
+  opacity: 0;
+  transform: translateY(40rem);
+  transition: opacity .8s var(--transition-smooth), transform .8s var(--transition-smooth);
+}
+.case-study-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Case study title clip-path reveal */
+.case-study-item .title {
+  overflow: hidden;
+}
+
+/* Contact live clock widget */
+.contact-clock {
+  display: flex;
+  align-items: baseline;
+  gap: 12rem;
+  margin-top: 40rem;
+  padding: 24rem 0;
+  border-top: 1px solid rgba(29, 29, 27, 0.1);
+}
+
+.contact-clock-label {
+  font-size: 10rem;
+  font-weight: var(--font-medium);
+  letter-spacing: .12rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-clock-time {
+  font-size: 32rem;
+  font-weight: var(--font-medium);
+  letter-spacing: -.02rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Services booking CTA */
+.services-cta-section {
+  margin-top: 80rem;
+  padding: 60rem 0;
+  border-top: 1px solid rgba(29, 29, 27, 0.1);
+}
+
+.services-cta-section .cta-book {
+  font-size: 14rem;
+}
+
+/* Inner page section padding top for header offset */
+.page-about .about-hero,
+.page-about .about-intro,
+.page-about .experience-section,
+.page-about .values-section {
+  position: relative;
+  z-index: 1;
+}

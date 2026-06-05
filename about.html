@@ -140,6 +140,33 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="shared.js"></script>
-  
+  <script>
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReduced) {
+        // Hero word stagger reveal
+        document.querySelectorAll('.about-hero h1 span').forEach((span, i) => {
+          gsap.from(span, {
+            yPercent: 110, opacity: 0, duration: 1, delay: 0.3 + i * 0.12,
+            ease: 'power3.out'
+          });
+        });
+
+        // Timeline items scroll reveal
+        gsap.from('.timeline-item', {
+          scrollTrigger: { trigger: '.timeline', start: 'top 80%', once: true },
+          opacity: 0, y: 30, duration: 0.7, stagger: 0.1, ease: 'power3.out'
+        });
+
+        // Values grid scroll reveal
+        gsap.from('.value-item', {
+          scrollTrigger: { trigger: '.values-grid', start: 'top 80%', once: true },
+          opacity: 0, y: 30, duration: 0.6, stagger: 0.08, ease: 'power3.out'
+        });
+      }
+    }
+  </script>
 </body>
 </html>

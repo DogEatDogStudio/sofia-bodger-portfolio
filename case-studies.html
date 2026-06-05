@@ -193,6 +193,24 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="shared.js"></script>
-  
+  <script>
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        // Case study items scroll reveal
+        document.querySelectorAll('.case-study-item').forEach((item, i) => {
+          ScrollTrigger.create({
+            trigger: item,
+            start: 'top 85%',
+            onEnter: () => { item.classList.add('revealed'); },
+            once: true
+          });
+        });
+      } else {
+        document.querySelectorAll('.case-study-item').forEach(item => item.classList.add('revealed'));
+      }
+    }
+  </script>
 </body>
 </html>
