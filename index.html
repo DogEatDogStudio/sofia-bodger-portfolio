@@ -595,6 +595,31 @@
         opacity: 0, y: 15, duration: 0.5, ease: 'power3.out'
       }, '-=0.2');
 
+      // Hero scroll parallax — background moves slower than scroll
+      gsap.to('.index-hero .background', {
+        y: '18%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.index-hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.5
+        }
+      });
+
+      // Hero content fade-out on scroll
+      gsap.to('.hero-content', {
+        opacity: 0,
+        y: -60,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.index-hero',
+          start: '60% top',
+          end: 'bottom top',
+          scrub: 0.3
+        }
+      });
+
       // Services preview stagger
       gsap.from('.services-preview-item', {
         scrollTrigger: {
