@@ -4,6 +4,7 @@
 *   **Phase 0: Legacy Codebase Audit & Refactor — COMPLETE**
 *   **Phase 1: Global Foundations & UI System — COMPLETE**
 *   **Phase 2: Homepage Build-Out (Vibe Check Lock) — COMPLETE**
+*   **Template Consolidation & Vibe Check — COMPLETE**
 
 ---
 
@@ -72,7 +73,16 @@
 - [x] **no-js fallback:** `<html class="no-js">` removed by shared.js on DOMContentLoaded; CSS rule ensures `.word-inner` stays visible if GSAP fails
 - [x] **Code review fixes:** Fixed opacity 0→0 conflict, showreel overlay DOM placement, visibility transition-delay, services preview redundant border-top
 
+## Phase 2.5 Completed Tasks (Template Consolidation & Hero Polish)
+- [x] **Hero video replaced:** Broken Mixkit CDN video replaced with high-quality Unsplash still image (`photo-1497366216548`) with Ken Burns parallax animation (25s infinite alternate, scale 1→1.12, translate -2%/-3%)
+- [x] **Scroll parallax:** GSAP ScrollTrigger translates `.index-hero .background` at 18% scroll speed (`scrub: 0.5`) for depth effect; hero content fades out on scroll (`opacity: 0, y: -60` at 60% scroll)
+- [x] **Reduced-motion guard:** Both parallax and fade-out animations wrapped in `prefers-reduced-motion: reduce` check
+- [x] **Template consolidation:** Header, footer, mobile menu, cursor divs, and transition overlays injected from `shared.js` via `injectTemplates()` function. Reads `data-page` attribute on `<body>` to set active nav state per page.
+- [x] **~1,350 lines of duplicated HTML removed** from all 8 pages — each page now contains only `<head>` + `<body data-page>` + `<main>` content + page-specific scripts
+- [x] **All 8 pages verified:** Automated browser vibe check passed on Homepage, About, Services, Case Studies, Contact, and Thinking pages — header/footer render, active nav states correct, no JS errors (one benign CORB warning from font preloading)
+- [x] **Code audit passed:** All 8 pages have perfectly balanced HTML tags inside `<main>`, shared.js passes Node.js syntax check, template injection ordering correct (runs before DOM queries)
+
 ## Immediate Next Steps
 1. **Inner Pages Build-Out (Phase 3):** Apply the same treatment to about.html, services.html, case-studies.html, and contact.html — each needs its own section-level animations and polish.
-2. **Video Replacement:** The hero background video (Mixkit CDN) is broken. Replace with a working video source or a high-quality still image with Ken Burns parallax.
-3. **Shared Template Partials:** Header/footer HTML is still duplicated across 8 pages. Consider a build-time partial system or JS-based injection to eliminate maintenance overhead.
+2. **Booking Integration:** Embed Calendly/Cal.com widget into contact page and services page.
+3. **Technical SEO:** Inject universal meta tracking, OpenGraph tags, and micro-device layout parameters across all pages.
