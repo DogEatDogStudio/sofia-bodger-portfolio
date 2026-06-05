@@ -925,6 +925,30 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   width: 100%;
 }
 
+.index-hero .background .media .hero-bg-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  animation: kenBurns 25s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate(-2%, -3%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .index-hero .background .media .hero-bg-img {
+    animation: none;
+  }
+}
+
 .index-hero .hero-content {
   align-items: flex-end;
   display: flex;
