@@ -63,6 +63,13 @@
 - [x] **All 8 pages updated:** HTML files now reference `shared.js` instead of inline scripts; page-specific scripts (works selector, contact form) retained as separate `<script>` blocks
 - [x] **Code review passed:** No broken references, HTML structure intact across all pages
 
+## Phase 1 Completed Tasks (Global Foundations & UI System)
+- [x] **Typography upgrade:** Switched from Space Grotesk to Inter (closest free PP Neue Montreal match) across shared.css and all 8 HTML preload links. Weights: 400 (body), 500 (headers), 600 (emphasis)
+- [x] **Footer marquee animation:** Added `animation: marquee 30s linear infinite` to `.marquee__list`; duplicated items in all 8 pages for seamless infinite scroll
+- [x] **CSS design tokens:** Added `--content-padding` (12rem) and `--content-padding-dk` (20rem) layout variables
+- [x] **Hardcoded padding purge:** Replaced ~35 hardcoded `12rem`/`20rem` padding values with CSS variable tokens for consistency
+- [x] **CTA hover fix:** Updated `.cta-book:hover` to use `translate3d` instead of `translateX(5px)` for GPU acceleration
+
 ## Phase 2 Completed Tasks (Homepage Build-Out)
 - [x] **Word-split text reveal:** Hero tagline wrapped in `.split-text > .word > .word-inner` markup; GSAP timeline animates `yPercent: 110 → 0` with staggered word reveal
 - [x] **Showreel overlay:** Fixed-position modal with 16:9 video wrapper, backdrop click-to-close, ESC key handler, focus trap, `body.showreel-open` overflow lock, Lenis stop/start
@@ -74,7 +81,7 @@
 - [x] **Code review fixes:** Fixed opacity 0→0 conflict, showreel overlay DOM placement, visibility transition-delay, services preview redundant border-top
 
 ## Phase 2.5 Completed Tasks (Template Consolidation & Hero Polish)
-- [x] **Hero video replaced:** Broken Mixkit CDN video replaced with high-quality Unsplash still image (`photo-1497366216548`) with Ken Burns parallax animation (25s infinite alternate, scale 1→1.12, translate -2%/-3%)
+- [x] **Hero video replaced (interim):** Broken Mixkit CDN video replaced with high-quality Unsplash still image (`photo-1497366216548`) with Ken Burns parallax animation. **Note:** Brief calls for showreel video bg — this is an interim solution; final showreel video to be sourced in Phase 3.
 - [x] **Scroll parallax:** GSAP ScrollTrigger translates `.index-hero .background` at 18% scroll speed (`scrub: 0.5`) for depth effect; hero content fades out on scroll (`opacity: 0, y: -60` at 60% scroll)
 - [x] **Reduced-motion guard:** Both parallax and fade-out animations wrapped in `prefers-reduced-motion: reduce` check
 - [x] **Template consolidation:** Header, footer, mobile menu, cursor divs, and transition overlays injected from `shared.js` via `injectTemplates()` function. Reads `data-page` attribute on `<body>` to set active nav state per page.
@@ -83,6 +90,7 @@
 - [x] **Code audit passed:** All 8 pages have perfectly balanced HTML tags inside `<main>`, shared.js passes Node.js syntax check, template injection ordering correct (runs before DOM queries)
 
 ## Immediate Next Steps
-1. **Inner Pages Build-Out (Phase 3):** Apply the same treatment to about.html, services.html, case-studies.html, and contact.html — each needs its own section-level animations and polish.
+1. **Inner Pages Build-Out (Phase 3):** About page (asymmetric lookbook grids, experience timeline) and Case Studies page (flush list, mouse-tracking image preview, scroll animations) are the most complex. Services and Contact pages need polish and booking integration.
 2. **Booking Integration:** Embed Calendly/Cal.com widget into contact page and services page.
 3. **Technical SEO:** Inject universal meta tracking, OpenGraph tags, and micro-device layout parameters across all pages.
+4. **Showreel Video Background:** Source and integrate a working MP4 video for the hero background to replace the Ken Burns still image interim solution.
