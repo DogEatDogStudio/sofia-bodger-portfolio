@@ -25,23 +25,23 @@
 - [x] Map active click-events launching the cinematic showreel overlay frame[cite: 2]
 
 ### 2. About Page (`about.html`)
-- [ ] Design asymmetric lookbook grids highlighting strategic experience parameters
-- [ ] Deploy dynamic asset sections declaring her permanent US market expansion plans
-- [ ] Format narrative blocks targeting premium agency leadership personas
+- [x] Design asymmetric lookbook grids highlighting strategic experience parameters
+- [x] Deploy dynamic asset sections declaring her permanent US market expansion plans
+- [x] Format narrative blocks targeting premium agency leadership personas
 
 ### 3. Services Page (`services.html`)
-- [ ] Code strategic tier matrix framing high-leverage consultancy items[cite: 2]
-- [ ] Embed contextual action targets routing traffic directly to calendar links
+- [x] Code strategic tier matrix framing high-leverage consultancy items[cite: 2]
+- [x] Embed contextual action targets routing traffic directly to calendar links
 
 ### 4. Case Studies Page (`case-studies.html`)
-- [ ] Format desktop flush typographical list layout displaying project metrics[cite: 2]
+- [x] Format desktop flush typographical list layout displaying project metrics[cite: 2]
 - [ ] Build desktop mouse tracking engine capturing trailing LERP coordinates[cite: 2]
-- [ ] Integrate scroll observers driving staggered line animations across text rows[cite: 2]
+- [x] Integrate scroll observers driving staggered line animations across text rows[cite: 2]
 
 ### 5. Contact Page (`contact.html`)
-- [ ] Embed primary booking system widget containers natively into layout panels
-- [ ] Synchronize persistent clock script components updating live city destination times[cite: 2]
-- [ ] Build minimal fallback form endpoint handlers to prevent communication loss
+- [x] Embed primary booking system widget containers natively into layout panels
+- [x] Synchronize persistent clock script components updating live city destination times[cite: 2]
+- [x] Build minimal fallback form endpoint handlers to prevent communication loss
 
 ---
 
@@ -79,6 +79,14 @@
 - [x] **GSAP animation ownership:** Removed CSS `keyframe` animations from `.hero-cta`, `.credibility-strip`, `.scroll-indicator` — GSAP timeline now exclusively controls hero element reveals
 - [x] **no-js fallback:** `<html class="no-js">` removed by shared.js on DOMContentLoaded; CSS rule ensures `.word-inner` stays visible if GSAP fails
 - [x] **Code review fixes:** Fixed opacity 0→0 conflict, showreel overlay DOM placement, visibility transition-delay, services preview redundant border-top
+
+## Phase 3 Completed Tasks (Inner Pages Build-Out)
+- [x] **About page:** GSAP hero word stagger reveal, timeline-item scroll reveal, value-item scroll reveal with reduced-motion guard
+- [x] **Services page:** GSAP service-card stagger reveal, process-item stagger reveal, "Book a consultation" CTA section added
+- [x] **Case Studies page:** ScrollTrigger-based case-study-item reveal with `.revealed` class toggle; 9 detailed case studies (H&M, Nike DFB, Nike Airtopia, Nike Mind Sets, Nike FlyEase, Foot Locker, Beats Daisy, Johnnie Walker, Audi)
+- [x] **Contact page:** Live Amsterdam clock widget with DST detection, form handler separated into own script block, Calendly booking section
+- [x] **CSS enhancements:** Phase 3 CSS additions — case-study-item scroll reveal, contact-clock widget, services-cta-section
+- [x] **Browser vibe check passed** on all 4 inner pages — header/footer render, active nav correct, content sections load, no JS errors
 
 ## Phase 2.5 Completed Tasks (Template Consolidation & Hero Polish)
 - [x] **Hero video replaced (interim):** Broken Mixkit CDN video replaced with high-quality Unsplash still image (`photo-1497366216548`) with Ken Burns parallax animation. **Note:** Brief calls for showreel video bg — this is an interim solution; final showreel video to be sourced in Phase 3.
