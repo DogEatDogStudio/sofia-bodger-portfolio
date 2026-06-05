@@ -7,6 +7,82 @@
   'use strict';
 
   // ========================================
+  // TEMPLATE INJECTION — Header, Footer, Mobile Menu
+  // ========================================
+  const SVG_LOGO = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 382 61" fill="currentColor"><text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text><text x="180" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text></svg>';
+  const ARROW_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14"><path fill="currentColor" d="M9.5 7H2v-1h7.5l-4-4V7zm4.5 4.5l-7-7 1-1 7 7-1 1z"/></svg>';
+
+  const NAV_ITEMS = [
+    { file: 'index.html', label: 'Work', index: 0 },
+    { file: 'about.html', label: 'About', index: 1 },
+    { file: 'services.html', label: 'Services', index: 2 },
+    { file: 'case-studies.html', label: 'Case Studies', index: 3 },
+    { file: 'contact.html', label: 'Contact', index: 4 },
+  ];
+
+  const THINKING_ITEMS = [
+    { file: 'thinking-brands.html', label: 'Why Brands Lose Cool' },
+    { file: 'thinking-audience.html', label: 'The Audience Is The Brief' },
+    { file: 'thinking-subculture.html', label: 'Subculture As Signal' },
+  ];
+
+  function injectTemplates() {
+    const page = document.body.getAttribute('data-page') || '';
+    const isIndex = page === 'index';
+
+    // --- Cursor divs ---
+    let cursorHTML = '<div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>';
+    if (isIndex) {
+      cursorHTML += '<div class="media-cursor-wrapper" aria-hidden="true"><div class="img-wrapper"><img src="" alt=""></div></div>';
+    }
+
+    // --- Transition overlays ---
+    const transitionsHTML = '<div class="transitions-overlays" aria-hidden="true"><div class="transition-overlay"></div><div class="transition-overlay transition-overlay-2"><svg viewBox="0 0 200 60" fill="currentColor"><text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text><text x="110" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text></svg></div></div>';
+
+    // --- Desktop nav ---
+    const desktopNavItems = NAV_ITEMS.map(item => {
+      const isActive = page === item.file.replace('.html', '') ? ' class="is-active"' : '';
+      return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + '><span class="link-text">' + item.label + '</span></a></li>';
+    }).join('');
+
+    // --- Mobile nav ---
+    const mobileNavItems = NAV_ITEMS.map(item => {
+      const isActive = page === item.file.replace('.html', '') ? ' class="is-active"' : '';
+      return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + '>' + item.label + '</a></li>';
+    }).join('');
+
+    // --- Header ---
+    const headerHTML = '<header class="layout-header lh"><div class="wrapper"><div class="top"><div class="logo-wrapper"><div class="logo-outer"><a href="index.html" aria-label="Sofia Bodger - Home">' + SVG_LOGO + '</a></div></div><div class="right"><button aria-controls="menu-mobile" aria-expanded="false">Menu</button></div><div class="right -dk"><div class="location"><span>Amsterdam, NL</span></div><span class="live-clock" id="live-clock"></span><a href="index.html#thinking" class="initiatives-btn"><span class="decorator"><i></i><i></i><i></i></span><span class="label-text">Thinking</span></a></div></div><nav style="--items:5" class="menu -dk"><ul>' + desktopNavItems + '</ul></nav></div></header>';
+
+    // --- Mobile menu ---
+    const contactLinks = '<ul><li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li><li><a href="tel:+316214206136">+31 6 2142 06136</a></li></ul>';
+    const mobileMenuHTML = '<div id="menu-mobile" class="menu-mobile" role="dialog" aria-label="Navigation menu"><div class="outer" data-lenis-prevent=""><div class="inner"><div class="views"><div class="view view-base"><div class="menus"><ul>' + mobileNavItems + '</ul>' + contactLinks + '</div><div class="menu-footer"><a href="contact.html" class="mobile-book-cta">Book a consultation ' + ARROW_SVG + '</a><div><p>Amsterdam, NL</p></div><div><p>Senior Strategy Director</p></div></div></div></div></div></div></div>';
+
+    // --- Footer ---
+    const footerNavItems = NAV_ITEMS.map(item =>
+      '<li><a href="' + item.file + '" class="hover-link"><span data-label="' + item.label + '">' + item.label + '</span></a></li>'
+    ).join('');
+    const footerThinkingItems = THINKING_ITEMS.map(item =>
+      '<li><a href="' + item.file + '" class="hover-link"><span data-label="' + item.label + '">' + item.label + '</span></a></li>'
+    ).join('');
+
+    const marqueeInner = '<div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div><div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div><div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div>';
+
+    const footerHTML = '<footer class="footer"><div class="logo-wrapper-footer">' + SVG_LOGO + SVG_LOGO + '</div><div class="menus"><div class="main-menu"><ul>' + footerNavItems + '</ul></div><div class="initiatives-menu"><ul>' + footerThinkingItems + '</ul></div><div class="legals"><ul class="menu"><li><a href="mailto:sofiabodger@me.com" class="hover-link"><span data-label="sofiabodger@me.com">sofiabodger@me.com</span></a></li><li><a href="tel:+316214206136" class="hover-link"><span data-label="+31 6 2142 06136">+31 6 2142 06136</span></a></li></ul></div></div><div class="bottom-text"><a href="contact.html"><span>Making brands</span></a><a href="contact.html"><span>culturally alive</span></a></div><div class="marquee-2"><a href="contact.html" class="marquee-link"><div class="marquee"><div class="marquee__list">' + marqueeInner + marqueeInner + '</div></div></a></div></footer>';
+
+    // --- Inject all shared elements ---
+    const sharedBefore = cursorHTML + transitionsHTML + headerHTML + mobileMenuHTML;
+    document.body.insertAdjacentHTML('afterbegin', sharedBefore);
+
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.insertAdjacentHTML('afterend', footerHTML);
+    }
+  }
+
+  injectTemplates();
+
+  // ========================================
   // LENIS SMOOTH SCROLL
   // ========================================
   const lenis = new Lenis({
