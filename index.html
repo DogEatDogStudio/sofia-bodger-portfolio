@@ -297,9 +297,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="shared.js"></script>
-<script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>  <!-- Showreel Overlay -->
+  <div id="showreel-overlay" class="showreel-overlay" aria-hidden="true" role="dialog" aria-label="Showreel video">
+    <div class="showreel-backdrop"></div>
+    <div class="showreel-container">
+      <button class="showreel-close" aria-label="Close showreel">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="showreel-video-wrapper">
+        <video id="showreel-video" controls preload="none" playsinline></video>
+        <p class="showreel-placeholder">Showreel coming soon</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
     /* ===== SHOWREEL OVERLAY ===== */
     const showreelOverlay = document.getElementById('showreel-overlay');
     const showreelVideo = document.getElementById('showreel-video');
@@ -308,6 +321,7 @@
     const showreelBackdrop = document.querySelector('.showreel-backdrop');
 
     function openShowreel() {
+      if (!showreelOverlay) return;
       showreelOverlay.classList.add('is-active');
       showreelOverlay.setAttribute('aria-hidden', 'false');
       document.body.classList.add('showreel-open');
@@ -317,11 +331,14 @@
     }
 
     function closeShowreel() {
+      if (!showreelOverlay) return;
       showreelOverlay.classList.remove('is-active');
       showreelOverlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('showreel-open');
-      showreelVideo.pause();
-      showreelVideo.currentTime = 0;
+      if (showreelVideo) {
+        showreelVideo.pause();
+        showreelVideo.currentTime = 0;
+      }
       if (window.__lenis) window.__lenis.start();
       showreelOverlay.removeEventListener('keydown', trapFocus);
     }
@@ -343,7 +360,7 @@
     openShowreelBtns.forEach(btn => btn.addEventListener('click', openShowreel));
     if (showreelClose) showreelClose.addEventListener('click', closeShowreel);
     if (showreelBackdrop) showreelBackdrop.addEventListener('click', closeShowreel);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeShowreel(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && showreelOverlay && showreelOverlay.classList.contains('is-active')) closeShowreel(); });
 
     /* ===== WORD-SPLIT GSAP TEXT REVEAL ===== */
     if (typeof gsap !== 'undefined') {
