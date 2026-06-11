@@ -1293,11 +1293,9 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 }
 
 @media (hover: hover) and (min-width: 1024px) {
-  .works { color: var(--text-dark); transition: color .1s linear; }
-  .works:hover { color: rgba(29,29,27,0.4); }
+  .works { color: var(--text-dark); }
   .work { position: relative; }
-  .work .copy { color: var(--text-dark); }
-  .work:hover .copy { opacity: 1; }
+  .work .copy { display: none; }
   .work .metas-wrapper {
     align-items: center;
     display: flex;

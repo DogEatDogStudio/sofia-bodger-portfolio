@@ -273,16 +273,8 @@
   if (works && workItems.length) {
     workItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
-        works.style.color = 'rgba(29, 29, 27, 0.2)';
-        item.style.color = '#1D1D1B';
-        const h2 = item.querySelector('.title h2');
-        const copy = item.querySelector('.copy');
-        if (h2) h2.style.opacity = '0';
-        if (copy) copy.style.opacity = '1';
-        // Cursor work state
         cursorDot?.classList.add('cursor--work');
         cursorRing?.classList.add('cursor--work');
-        // Media cursor preview
         const img = item.querySelector('.medias img[data-cursor-img]');
         if (img && mediaCursorImg && mediaCursorWrapper) {
           mediaCursorImg.src = img.getAttribute('data-cursor-img');
@@ -296,12 +288,6 @@
       });
 
       item.addEventListener('mouseleave', () => {
-        works.style.color = '#1D1D1B';
-        item.style.color = '';
-        const h2 = item.querySelector('.title h2');
-        const copy = item.querySelector('.copy');
-        if (h2) h2.style.opacity = '1';
-        if (copy) copy.style.opacity = '0';
         cursorDot?.classList.remove('cursor--work');
         cursorRing?.classList.remove('cursor--work');
         mediaCursorWrapper?.classList.remove('visible');
