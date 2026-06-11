@@ -97,8 +97,96 @@
 - [x] **All 8 pages verified:** Automated browser vibe check passed on Homepage, About, Services, Case Studies, Contact, and Thinking pages — header/footer render, active nav states correct, no JS errors (one benign CORB warning from font preloading)
 - [x] **Code audit passed:** All 8 pages have perfectly balanced HTML tags inside `<main>`, shared.js passes Node.js syntax check, template injection ordering correct (runs before DOM queries)
 
-## Immediate Next Steps
-1. **Inner Pages Build-Out (Phase 3):** About page (asymmetric lookbook grids, experience timeline) and Case Studies page (flush list, mouse-tracking image preview, scroll animations) are the most complex. Services and Contact pages need polish and booking integration.
-2. **Booking Integration:** Embed Calendly/Cal.com widget into contact page and services page.
-3. **Technical SEO:** Inject universal meta tracking, OpenGraph tags, and micro-device layout parameters across all pages.
-4. **Showreel Video Background:** Source and integrate a working MP4 video for the hero background to replace the Ken Burns still image interim solution.
+## Phase 4 Completed Tasks (Browser Test & Bug Fixes)
+- [x] **Broken Unsplash images fixed (case-studies.html):** 3 broken URLs replaced — Nike Mind Sets (photo-1502904550040), Nike FlyEase (photo-1552346154), Beats Daisy (photo-1511671782779)
+- [x] **Image height attributes corrected:** All 9 case-study image `height` attributes updated to match actual intrinsic dimensions (prevents CLS)
+- [x] **Johnnie Walker portrait fix:** Added Unsplash server-side crop params (`?w=800&fit=crop&h=450&q=80`) so the portrait image renders correctly in the 16:9 container
+- [x] **Broken Beats image fixed (index.html):** Replaced dead cursor image URL in works grid with working replacement
+- [x] **Contact form autocomplete:** Added `autocomplete="name"`, `autocomplete="email"`, `autocomplete="organization"` to form fields
+- [x] **Browser tests passed** on all 8 pages — no broken images, no layout issues, no broken links
+
+## Phase 4.5 Completed Tasks (Booking Integration — Prototype)
+- [x] **Calendly inline widget (contact.html):** Replaced external link with embedded inline calendar widget (`calendly-inline-widget`) + `widget.js` script
+- [x] **Calendly popup widget (services.html):** "Book a consultation" CTA upgraded with progressive enhancement — `href="contact.html"` is the no-JS fallback, JS listener triggers `Calendly.initPopupWidget()` when widget.js loads
+- [x] **Widget container styles (shared.css):** Added responsive inline widget styles — `border-radius: 8rem`, `box-shadow`, mobile height `520px`
+- [x] **Accessibility:** Replaced inline `onclick` with event listener pattern; added `role="button"` and `aria-label`; preserves graceful degradation
+- [x] **Prototype placeholder (contact.html):** For client demo, replaced the Calendly inline widget (which 404s with placeholder URL) with a styled `.booking-placeholder` containing calendar icon + "Online booking coming soon" text + email CTA. Removed `widget.js` script to eliminate 404 and console error.
+
+## Phase 4.6 Completed Tasks (Technical SEO)
+- [x] **OpenGraph tags added to all 8 pages:** `og:title`, `og:description`, `og:type`, `og:site_name`, `og:locale`, `og:url`, `og:image`, `og:image:width` (1200), `og:image:height` (675), `og:image:alt`
+- [x] **Twitter Card tags added to all 8 pages:** `twitter:card` (summary_large_image), `twitter:title`, `twitter:description`, `twitter:image`
+- [x] **Canonical URLs added to all 8 pages:** Absolute canonicals using `https://sofiabodger.com/` placeholder domain
+- [x] **Extra meta tags:** `robots` (index, follow), `theme-color` (#0f0f0d)
+- [x] **Article markup for thinking pages:** `article:author` meta added to thinking-audience, thinking-brands, thinking-subculture (og:type=article)
+- [x] **Verified:** 10 og tags + 4 twitter tags + 1 canonical per page across all 8 files
+
+## Phase 4.7 Completed Tasks (Structured Data)
+- [x] **JSON-LD Person schema (index.html):** Added `Person` schema with `@id: "https://sofiabodger.com/#person"`, including `name`, `jobTitle`, `description`, `url`, `image`, `email`, `telephone`, `address` (PostalAddress), `sameAs` (LinkedIn), and `knowsAbout` (6 expertise areas)
+- [x] **JSON-LD WebSite schema (index.html):** Added `WebSite` schema in `@graph` with `publisher` referencing the Person `@id` (not duplicating inline), plus `name`, `url`, `description`
+- [x] **JSON-LD Person schema (about.html & contact.html):** Reused the same `@id` for entity consistency; about.html added `mainEntityOfPage` linking the Person to the About WebPage
+- [x] **JSON-LD ProfessionalService schema (services.html):** Added `ProfessionalService` with `hasOfferCatalog` listing 6 services (Cultural Strategy, Brand Positioning, Cultural Intelligence, Creative Direction, Partnership & Talent, Speaking & Workshops), `provider` referencing Person `@id`, `areaServed: Global`, and `mainEntityOfPage`
+- [x] **JSON-LD Article schema (3 thinking pages):** Added `Article` schemas to thinking-audience.html, thinking-brands.html, and thinking-subculture.html — each with `headline`, `description`, `author` (Person `@id` ref), `publisher` (Person `@id` ref), `datePublished`, `dateModified`, `url`, `image`, and `mainEntityOfPage`
+- [x] **Validation:** All JSON-LD blocks verified as valid JSON across all 6 files; schema types confirmed: WebSite + Person (index), Person (about, contact), ProfessionalService (services), Article ×3 (thinking pages)
+
+## Phase 4.8 Completed Tasks (Prototype Polish)
+- [x] **Contact form success modal:** Replaced the brief "Sent!" button flash with a full-screen modal overlay containing a checkmark icon, "Message sent" heading, "We'll be in touch within 24 hours" message, and a Close CTA. Modal supports backdrop click, close button, and ESC key dismissal. Focus returns to the submit button on close to prevent aria-hidden focus warnings.
+
+## Phase 4.9 Completed Tasks (Responsive Layout Check)
+- [x] **Mobile (375px) tested:** index.html, case-studies.html, contact.html, thinking-audience.html, thinking-brands.html, thinking-subculture.html — all passed with no horizontal overflow, readable text, working mobile menu, and zero console errors
+- [x] **Tablet (768px) tested:** index.html passed — hero readable, works thumbnails visible, services preview grid and thinking cards reflow correctly
+- [x] **Desktop (1024px) tested:** about.html, services.html, contact.html passed — timelines/values grids and service cards reflow at breakpoints correctly
+- [x] **Marquee overflow fix:** Added `overflow-x: hidden` to `html` element in shared.css to prevent infinite-marquee `width: max-content` from inflating document `scrollWidth` beyond viewport on desktop
+
+## Phase 5 Completed Tasks (Final Browser Sweep — Demo Ready)
+- [x] **All 8 pages HTTP 200 verified:** Every page serves correctly from the local dev server
+- [x] **All image URLs verified:** Every Unsplash image URL across all pages returns HTTP 200 — zero broken images
+- [x] **Console error check:** Zero console errors, warnings, or failed network requests on every page (tested via browser automation)
+- [x] **Page title verification:** Every page has the correct `<title>` tag and renders as expected
+- [x] **No inline JS error patterns:** No `console.error`, `console.warn`, `throw`, or `ReferenceError` patterns found in any page source
+- [x] **Responsive overflow fix confirmed:** `overflow-x: hidden` on `html` prevents marquee width inflation on desktop
+
+---
+
+## Immediate Next Steps (Prototype Demo Priority)
+1. **Showreel Video Background:** Source and integrate a working MP4 video for the hero background to replace the Ken Burns still image — this is the biggest visual upgrade for the client demo.
+2. **Self-host OG image:** Download the hero image locally to eliminate Unsplash dependency for social previews (nice-to-have for prototype).
+
+## Phase 6 Completed Tasks (Case Study Pages Split)
+- [x] **9 individual case study pages created:** Each of the 9 case studies now has its own dedicated page with full content, hero image, approach/outcome sections, and prev/next navigation
+  - `case-study-hm.html` — H&M Social Relaunch
+  - `case-study-nike-dfb.html` — Nike DFB Women's Team
+  - `case-study-nike-airtopia.html` — Nike Airtopia
+  - `case-study-nike-mindsets.html` — Nike Mind Sets
+  - `case-study-nike-flyease.html` — Nike FlyEase
+  - `case-study-foot-locker.html` — Foot Locker
+  - `case-study-beats-daisy.html` — Beats Daisy
+  - `case-study-johnnie-walker.html` — Johnnie Walker Blonde
+  - `case-study-audi.html` — Audi Synchronised Swimming
+- [x] **Full SEO per page:** Each case study page has unique title, description, OpenGraph tags, Twitter Cards, canonical URL, and JSON-LD `Article` schema with `author`/`publisher` `@id` references to the canonical Person entity
+- [x] **Prev/next navigation:** Each page links to adjacent case studies in the original order; first page has no prev, last page has no next; all pages link back to the listing page
+- [x] **`<link rel="prev/next">` pagination tags:** Added to all 9 pages for SEO pagination signals
+- [x] **`data-page="case-studies"` on all detail pages:** Case Studies nav item stays highlighted when viewing any individual case study
+- [x] **`shared.css` updated:** Added `.case-study-single` styles (header, hero, body, detail blocks, nav) for the individual page layout
+- [x] **`case-studies.html` converted to listing page:** Removed long-form `.case-study-detail` content from all 9 cards; added "Read case study →" CTA buttons linking to individual pages; preserved image hover cursor effect
+- [x] **`index.html` works links updated:** All 5 homepage work links now point directly to individual case study pages instead of `case-studies.html#anchor`
+- [x] **Browser tests passed:** Listing page, first case study (H&M), last case study (Audi), and homepage all verified — correct titles, images load, navigation works, zero console errors
+- [x] **Code review passed:** Reviewer confirmed consistency, SEO completeness, and suggested minor fixes (empty span nav, prev/next link tags) which were applied
+
+## Phase 7 Completed Tasks (Design Sweep & Web Standards Audit)
+- [x] **CSS design tokens expanded:** Added 14 derived CSS variables (`--border-subtle`, `--border-light`, `--border-medium`, `--border-hover`, `--text-dark-muted`, `--text-dark-faint`, `--text-dark-ghost`, `--text-light-muted`, `--text-light-subtle`, `--text-light-ghost`, `--overlay-dark`, `--overlay-dark-light`, `--primary-hover`, `--focus-ring`) and replaced ~50 hardcoded `rgba()` / `#hex` values across shared.css with semantic tokens.
+- [x] **Broken CSS variable references fixed:** `.thinking-section` and `.thinking-card` used non-existent `--bg` and `--text` variables; corrected to `--bg-light` and `--text-dark`.
+- [x] **Dead CSS selectors removed:** Deleted `.no-js .word-inner` (never applied) and `.footer .thinking-link` (JS injects `.hover-link` instead).
+- [x] **Heading hierarchy fixed across all pages:** Eliminated h1→h4 skips by promoting headings to proper levels:
+  - **about.html:** `.timeline-content h4` → `h3`, `.value-item h4` → `h3`, `.section-label` → `h2` (Experience & Approach)
+  - **services.html:** `.service-card h3` → `h2`, `.process-item h4` → `h3`, `.section-label` → `h2` (Process)
+  - **thinking pages (×3):** `.case-study-detail h4` → `h2`
+  - **case-study single pages (×9):** `.detail-block h4` → `h2`
+- [x] **Inline styles eliminated:** Removed 15+ inline `style="…"` attributes from thinking pages (`border-top: none`, `margin-bottom`, back-link wrapper) and case-studies listing CTAs (`margin-top`, `display: inline-flex`); moved to dedicated CSS utility classes (`.thinking-article`, `.thinking-meta`, `.thinking-back`, `.case-study-read-btn`).
+- [x] **Accessibility improvements:** Added `aria-current="page"` to active desktop and mobile nav links in shared.js; added `aria-hidden="true"` + `tabindex="-1"` to footer marquee and section marquees in about.html/services.html to hide decorative motion from screen readers.
+- [x] **Browser verification passed:** All heading levels confirmed in DOM via automated browser tests; zero console errors across index.html, about.html, services.html, and thinking-audience.html.
+
+## Post-Demo / Production Checklist
+- [ ] Replace placeholder domain (`https://sofiabodger.com`) with actual production domain across all canonical, og:url, and JSON-LD `@id` references.
+- [ ] Wire up real Calendly account slug in contact.html inline widget and services.html popup CTA.
+- [ ] Replace fake `setTimeout` form submission with real backend (Formspree, Basin, etc.) or mailto fallback.
+- [ ] Source and add actual showreel footage to the hero video background and showreel overlay.
