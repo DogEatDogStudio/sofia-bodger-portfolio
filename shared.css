@@ -195,8 +195,8 @@ main[data-v-f3941143] {
 
 .transitions-overlays .transition-overlay {
   background: var(--bg-dark);
-  -webkit-clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-  clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+  -webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
   height: 100%;
   left: 0;
   position: absolute;
@@ -1510,9 +1510,24 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 }
 
 /* ========================================
+   INNER PAGES — GLOBAL HEADER CLEARANCE
+   Single rule owns all padding-top for every non-homepage <main>.
+   Individual page classes handle horizontal padding only.
+   ======================================== */
+body:not(.index-page) > main {
+  padding-top: 150rem;
+}
+
+@media (min-width: 1024px) {
+  body:not(.index-page) > main {
+    padding-top: 250rem;
+  }
+}
+
+/* ========================================
    PAGE SPECIFIC - ABOUT
    ======================================== */
-.page-about { padding-top: 150rem; }
+.page-about { padding-top: 0; }
 
 .about-hero { padding: 0 var(--content-padding); }
 
@@ -1538,10 +1553,9 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
     line-height: .9;
     flex-direction: row;
     flex-wrap: wrap;
+    column-gap: 0.3em;
   }
 }
-
-.about-hero h1 span:nth-child(2) { margin-left: auto; }
 
 .about-intro {
   display: grid;
@@ -1677,13 +1691,13 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 /* ========================================
    PAGE SPECIFIC - SERVICES
    ======================================== */
-.services-section { padding: 150rem var(--content-padding) 0; }
+.services-section { padding: 0 var(--content-padding) 0; }
 
 @media (min-width: 1024px) {
-  .services-section { padding: 200rem var(--content-padding-dk) 0; }
+  .services-section { padding: 0 var(--content-padding-dk) 0; }
 }
 
-.services-header { margin-bottom: 80rem; }
+.services-header { margin-bottom: 40rem; }
 
 .services-header h1 {
   font-size: 40rem;
@@ -1701,7 +1715,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   display: grid;
   grid-template-columns: 1fr;
   gap: 100rem;
-  margin-top: 60rem;
+  margin-top: 0;
 }
 
 @media (min-width: 1024px) {
@@ -1775,10 +1789,10 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 /* ========================================
    PAGE SPECIFIC - CASE STUDIES
    ======================================== */
-.case-studies-page { padding: 150rem var(--content-padding) 0; }
+.case-studies-page { padding: 0 var(--content-padding) 0; }
 
 @media (min-width: 1024px) {
-  .case-studies-page { padding: 200rem var(--content-padding-dk) 0; }
+  .case-studies-page { padding: 0 var(--content-padding-dk) 0; }
 }
 
 .case-studies-header { margin-bottom: 80rem; }
@@ -1865,10 +1879,10 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 /* ========================================
    PAGE SPECIFIC - CONTACT
    ======================================== */
-.contact-page { padding: 150rem var(--content-padding) 0; }
+.contact-page { padding: 0 var(--content-padding) 0; }
 
 @media (min-width: 1024px) {
-  .contact-page { padding: 200rem var(--content-padding-dk) 0; }
+  .contact-page { padding: 0 var(--content-padding-dk) 0; }
 }
 
 .contact-header h1 {
@@ -2535,10 +2549,10 @@ body.showreel-open {
 /* ========================================
    PAGE SPECIFIC — SINGLE CASE STUDY
    ======================================== */
-.case-study-single { padding: 150rem var(--content-padding) 0; }
+.case-study-single { padding: 0 var(--content-padding) 0; }
 
 @media (min-width: 1024px) {
-  .case-study-single { padding: 200rem var(--content-padding-dk) 0; }
+  .case-study-single { padding: 0 var(--content-padding-dk) 0; }
 }
 
 .case-study-single-header { margin-bottom: 40rem; }
@@ -2753,7 +2767,6 @@ a:focus-visible, button:focus-visible {
   background: var(--bg-dark);
   color: var(--text-light);
   min-height: 100dvh;
-  padding-top: 160rem;
 }
 
 .thinking-index-header {
@@ -2939,6 +2952,11 @@ a:focus-visible, button:focus-visible {
 .case-study-item.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+.case-study-item.thinking-article {
+  opacity: 1;
+  transform: none;
 }
 
 /* Case study title clip-path reveal */

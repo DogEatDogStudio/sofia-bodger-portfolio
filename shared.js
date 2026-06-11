@@ -32,11 +32,8 @@
 
     // --- Cursor divs ---
     let cursorHTML = '<div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>';
-    if (isIndex || page === 'case-studies') {
+    if (isIndex) {
       cursorHTML += '<div class="media-cursor-wrapper" aria-hidden="true"><div class="img-wrapper"><img src="" alt=""></div></div>';
-    }
-    if (page === 'case-studies') {
-      cursorHTML += '<div class="media-cursor-wrapper media-cursor-trail" aria-hidden="true"><div class="img-wrapper"><img src="" alt=""></div></div>';
     }
 
     // --- Transition overlays ---
@@ -291,41 +288,6 @@
         cursorDot?.classList.remove('cursor--work');
         cursorRing?.classList.remove('cursor--work');
         mediaCursorWrapper?.classList.remove('visible');
-      });
-    });
-  }
-
-  // ========================================
-  // CASE STUDIES HOVER EFFECT (dual-trail image preview)
-  // ========================================
-  const caseStudyItems = document.querySelectorAll('.case-study-item');
-  if (caseStudyItems.length && trailWrapper && mediaCursorWrapper) {
-    caseStudyItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        const img = item.querySelector('.media-wrapper img');
-        if (img) {
-          const src = img.getAttribute('src');
-          // Grayscale leader
-          if (mediaCursorImg) { mediaCursorImg.src = src; }
-          mediaCursorWrapper.classList.add('visible');
-          // Color trailer
-          if (trailImg) { trailImg.src = src; }
-          trailWrapper.classList.add('visible');
-        }
-        cursorDot?.classList.add('cursor--work');
-        cursorRing?.classList.add('cursor--work');
-      });
-      item.addEventListener('mousemove', (e) => {
-        mediaTargetX = e.clientX;
-        mediaTargetY = e.clientY;
-        trailTargetX = e.clientX;
-        trailTargetY = e.clientY;
-      });
-      item.addEventListener('mouseleave', () => {
-        mediaCursorWrapper.classList.remove('visible');
-        trailWrapper.classList.remove('visible');
-        cursorDot?.classList.remove('cursor--work');
-        cursorRing?.classList.remove('cursor--work');
       });
     });
   }
