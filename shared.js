@@ -43,19 +43,23 @@
     const transitionsHTML = '<div class="transitions-overlays" aria-hidden="true"><div class="transition-overlay"></div><div class="transition-overlay transition-overlay-2"><svg viewBox="0 0 200 60" fill="currentColor"><text x="0" y="45" font-size="40" font-weight="500" letter-spacing="-2">SOFIA</text><text x="110" y="45" font-size="40" font-weight="400" letter-spacing="-1" opacity="0.5">BODGER</text></svg></div></div>';
 
     // --- Desktop nav ---
-    const desktopNavItems = NAV_ITEMS.map(item => {
-      const isActive = page === item.file.replace('.html', '') ? ' class="is-active"' : '';
-      return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + '><span class="link-text">' + item.label + '</span></a></li>';
-    }).join('');
+  const desktopNavItems = NAV_ITEMS.map(item => {
+    const active = page === item.file.replace('.html', '');
+    const isActive = active ? ' class="is-active"' : '';
+    const ariaCurrent = active ? ' aria-current="page"' : '';
+    return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + ariaCurrent + '><span class="link-text">' + item.label + '</span></a></li>';
+  }).join('');
 
     // --- Mobile nav ---
-    const mobileNavItems = NAV_ITEMS.map(item => {
-      const isActive = page === item.file.replace('.html', '') ? ' class="is-active"' : '';
-      return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + '>' + item.label + '</a></li>';
-    }).join('');
+  const mobileNavItems = NAV_ITEMS.map(item => {
+    const active = page === item.file.replace('.html', '');
+    const isActive = active ? ' class="is-active"' : '';
+    const ariaCurrent = active ? ' aria-current="page"' : '';
+    return '<li style="--index:' + item.index + '"><a href="' + item.file + '"' + isActive + ariaCurrent + '>' + item.label + '</a></li>';
+  }).join('');
 
     // --- Header ---
-    const headerHTML = '<header class="layout-header lh"><div class="wrapper"><div class="top"><div class="logo-wrapper"><div class="logo-outer"><a href="index.html" aria-label="Sofia Bodger - Home">' + SVG_LOGO + '</a></div></div><div class="right"><button aria-controls="menu-mobile" aria-expanded="false">Menu</button></div><div class="right -dk"><div class="location"><span>Amsterdam, NL</span></div><span class="live-clock" id="live-clock"></span><a href="index.html#thinking" class="initiatives-btn"><span class="decorator"><i></i><i></i><i></i></span><span class="label-text">Thinking</span></a></div></div><nav style="--items:5" class="menu -dk"><ul>' + desktopNavItems + '</ul></nav></div></header>';
+    const headerHTML = '<header class="layout-header lh"><div class="wrapper"><div class="top"><div class="logo-wrapper"><div class="logo-outer"><a href="index.html" aria-label="Sofia Bodger - Home">' + SVG_LOGO + '</a></div></div><div class="right"><button aria-controls="menu-mobile" aria-expanded="false" aria-label="Open menu"></button></div><div class="right -dk"><div class="location"><span>Amsterdam, NL</span></div><span class="live-clock" id="live-clock"></span><a href="index.html#thinking" class="initiatives-btn"><span class="decorator"><i></i><i></i><i></i></span><span class="label-text" data-label="Thinking">Thinking</span></a></div></div><nav style="--items:5" class="menu -dk"><ul>' + desktopNavItems + '</ul></nav></div></header>';
 
     // --- Mobile menu ---
     const contactLinks = '<ul><li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li><li><a href="tel:+316214206136">+31 6 2142 06136</a></li></ul>';
@@ -71,7 +75,7 @@
 
     const marqueeInner = '<div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div><div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div><div class="marquee__item">Book a consultation</div><div class="marquee__item">—</div><div class="marquee__item">Making brands culturally alive</div><div class="marquee__item">—</div>';
 
-    const footerHTML = '<footer class="footer"><div class="logo-wrapper-footer">' + SVG_LOGO + SVG_LOGO + '</div><div class="menus"><div class="main-menu"><ul>' + footerNavItems + '</ul></div><div class="initiatives-menu"><ul>' + footerThinkingItems + '</ul></div><div class="legals"><ul class="menu"><li><a href="mailto:sofiabodger@me.com" class="hover-link"><span data-label="sofiabodger@me.com">sofiabodger@me.com</span></a></li><li><a href="tel:+316214206136" class="hover-link"><span data-label="+31 6 2142 06136">+31 6 2142 06136</span></a></li></ul></div></div><div class="bottom-text"><a href="contact.html"><span>Making brands</span></a><a href="contact.html"><span>culturally alive</span></a></div><div class="marquee-2"><a href="contact.html" class="marquee-link"><div class="marquee"><div class="marquee__list">' + marqueeInner + marqueeInner + '</div></div></a></div></footer>';
+    const footerHTML = '<footer class="footer"><div class="logo-wrapper-footer"><div class="footer-logo-track">' + SVG_LOGO + SVG_LOGO + '</div></div><div class="menus"><div class="main-menu"><ul>' + footerNavItems + '</ul></div><div class="initiatives-menu"><ul>' + footerThinkingItems + '</ul></div><div class="legals"><ul class="menu"><li><a href="mailto:sofiabodger@me.com" class="hover-link"><span data-label="sofiabodger@me.com">sofiabodger@me.com</span></a></li><li><a href="tel:+316214206136" class="hover-link"><span data-label="+31 6 2142 06136">+31 6 2142 06136</span></a></li></ul></div></div><div class="bottom-text"><a href="contact.html"><span>Making brands</span></a><a href="contact.html"><span>culturally alive</span></a></div><div class="marquee-2" aria-hidden="true"><a href="contact.html" class="marquee-link" tabindex="-1"><div class="marquee"><div class="marquee__list">' + marqueeInner + marqueeInner + '</div></div></a></div></footer>';
 
     // --- Inject all shared elements ---
     const sharedBefore = cursorHTML + transitionsHTML + headerHTML + mobileMenuHTML;
@@ -156,26 +160,8 @@
     });
   }
 
-  // ========================================
-  // HEADER SCROLL BEHAVIOR
-  // ========================================
-  const header = document.querySelector('.layout-header');
-  let ticking = false;
-
-  function updateHeader() {
-    header.classList.toggle('menu-visible', window.scrollY > 100);
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // ========================================
-  // MOBILE MENU
+// ========================================
+// MOBILE MENU
   // ========================================
   const menuBtn = document.querySelector('.right button[aria-controls="menu-mobile"]');
   const menuMobile = document.getElementById('menu-mobile');
@@ -288,8 +274,10 @@
     workItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
         works.style.color = 'rgba(29, 29, 27, 0.2)';
-        item.style.color = '#1d1d1b';
+        item.style.color = '#1D1D1B';
+        const h2 = item.querySelector('.title h2');
         const copy = item.querySelector('.copy');
+        if (h2) h2.style.opacity = '0';
         if (copy) copy.style.opacity = '1';
         // Cursor work state
         cursorDot?.classList.add('cursor--work');
@@ -308,9 +296,11 @@
       });
 
       item.addEventListener('mouseleave', () => {
-        works.style.color = '#1d1d1b';
+        works.style.color = '#1D1D1B';
         item.style.color = '';
+        const h2 = item.querySelector('.title h2');
         const copy = item.querySelector('.copy');
+        if (h2) h2.style.opacity = '1';
         if (copy) copy.style.opacity = '0';
         cursorDot?.classList.remove('cursor--work');
         cursorRing?.classList.remove('cursor--work');
@@ -425,25 +415,6 @@
   setInterval(updateClock, 1000);
 
   // ========================================
-  // HERO PARALLAX (index page only)
-  // ========================================
-  function initHeroParallax() {
-    if (prefersReducedMotion) return;
-    const heroBg = document.querySelector('.index-hero .background .media');
-    if (!heroBg) return;
-    gsap.to(heroBg, {
-      yPercent: 15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.index-hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-  }
-
-  // ========================================
   // DOM READY
   // ========================================
   document.addEventListener('DOMContentLoaded', () => {
@@ -452,6 +423,5 @@
     document.body.classList.add('page-finish');
     playPageTransition();
     initScrollReveals();
-    initHeroParallax();
   });
 })();
