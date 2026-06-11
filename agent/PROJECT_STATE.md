@@ -190,3 +190,60 @@
 - [ ] Wire up real Calendly account slug in contact.html inline widget and services.html popup CTA.
 - [ ] Replace fake `setTimeout` form submission with real backend (Formspree, Basin, etc.) or mailto fallback.
 - [ ] Source and add actual showreel footage to the hero video background and showreel overlay.
+
+---
+
+## Session Log — 2026-06-12
+
+### Session Summary
+Full project audit and workflow setup session. No new features built. 
+Role definition and AGENT.md operating rules established for all future sessions.
+
+### Completed Today
+- [x] **AGENT.md created (root):** New permanent operating rules file written to project root, defining agent role, communication protocols, 5-stage blueprint, anti-technical debt protocol, verify-then-commit workflow, and definition of done.
+- [x] **Full project audit:** All pages, uncommitted changes, git history, font loading, Calendly integration, and placeholder content reviewed end-to-end.
+
+### Commits Made Today
+None. No code changes were made or committed this session.
+
+---
+
+## Pending Visual Review (Do First Next Session)
+
+### Thinking Article CTA Upgrade
+**Files changed:** `shared.css`, `thinking-brands.html`, `thinking-audience.html`, `thinking-subculture.html`
+
+**What changed:** Each of the 3 Thinking articles now ends with a conversion-focused CTA block replacing the old back-link that was awkwardly styled as a primary button. The new layout has:
+- A "Want to apply this thinking to your brand?" prompt line
+- A "Book a consultation → contact.html" primary CTA button
+- A clean "← Back to Thinking" text link below it
+
+**Status:** Built and sitting in working tree. NOT committed. Awaiting operator visual review on localhost.
+
+**What to check:** Open each of the 3 Thinking articles and scroll to the very bottom. Confirm the CTA feels right and the back link reads clearly.
+- `http://localhost:8080/thinking-brands.html`
+- `http://localhost:8080/thinking-audience.html`
+- `http://localhost:8080/thinking-subculture.html`
+
+---
+
+## Phase 8 — Production Wiring (Next Up After Visual Review)
+
+Priority order for the production readiness sprint:
+
+1. **Contact form backend** — Current form fakes submission with a `setTimeout`. Wire to Formspree (no server required, free tier covers this use case) so real enquiries land in Sofia's inbox.
+2. **Calendly live URL** — Contact page shows a placeholder. Needs Sofia's real Calendly account slug to embed the live booking calendar. *Requires client input: Calendly URL.*
+3. **Showreel video** — Homepage hero uses a Ken Burns still image as an interim stand-in. Brief requires Sofia's actual showreel footage. *Requires client input: MP4 video file.*
+4. **Production domain** — All canonical URLs, og:url, and JSON-LD `@id` fields use `https://sofiabodger.com`. Confirm this is the live domain before final deployment.
+
+---
+
+## Known Issues
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| PP Neue Montreal font not web-loaded — Inter (Google Fonts) renders for all visitors | Medium | Pending — requires font files or licensed CDN delivery once Sofia sources the PP Neue Montreal license |
+| Contact page Calendly is a placeholder (styled "coming soon" block, not a live widget) | High | Blocked on client providing real Calendly URL |
+| Contact form submits to a fake `setTimeout` handler, not a real backend | High | Phase 8 — fix is straightforward once Formspree account is set up |
+| Showreel overlay has no video — placeholder text "Showreel coming soon" | Medium | Blocked on client providing MP4 footage |
+| Duplicate AGENT.md: one in `/agent/`, one in project root | Low | Root version is the current authoritative rules; agent/ version is legacy |
