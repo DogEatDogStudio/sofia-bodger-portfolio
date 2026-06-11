@@ -59,7 +59,7 @@
   }).join('');
 
     // --- Header ---
-    const headerHTML = '<header class="layout-header lh"><div class="wrapper"><div class="top"><div class="logo-wrapper"><div class="logo-outer"><a href="index.html" aria-label="Sofia Bodger - Home">' + SVG_LOGO + '</a></div></div><div class="right"><button aria-controls="menu-mobile" aria-expanded="false" aria-label="Open menu"></button></div><div class="right -dk"><div class="location"><span>Amsterdam, NL</span></div><span class="live-clock" id="live-clock"></span><a href="index.html#thinking" class="initiatives-btn"><span class="decorator"><i></i><i></i><i></i></span><span class="label-text" data-label="Thinking">Thinking</span></a></div></div><nav style="--items:5" class="menu -dk"><ul>' + desktopNavItems + '</ul></nav></div></header>';
+    const headerHTML = '<header class="layout-header lh"><div class="wrapper"><div class="top"><div class="logo-wrapper"><div class="logo-outer"><a href="index.html" aria-label="Sofia Bodger - Home">' + SVG_LOGO + '</a></div></div><div class="right"><button aria-controls="menu-mobile" aria-expanded="false" aria-label="Open menu"></button></div><div class="right -dk"><div class="location"><span>Amsterdam, NL</span></div><span class="live-clock" id="live-clock"></span><a href="thinking.html" class="initiatives-btn"><span class="decorator"><i></i><i></i><i></i></span><span class="label-text" data-label="Thinking">Thinking</span></a></div></div><nav style="--items:5" class="menu -dk"><ul>' + desktopNavItems + '</ul></nav></div></header>';
 
     // --- Mobile menu ---
     const contactLinks = '<ul><li><a href="mailto:sofiabodger@me.com">sofiabodger@me.com</a></li><li><a href="tel:+316214206136">+31 6 2142 06136</a></li></ul>';
