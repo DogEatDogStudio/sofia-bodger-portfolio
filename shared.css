@@ -57,7 +57,7 @@
   --tertiary: #6F94B1;
   --error: #D24B4B;
   --border: #374151;
-  --accent: #FFFFFF;
+  --accent: #6F94B1;
 
   /* Derived tokens */
   --border-subtle: rgba(55, 65, 81, 0.35);
@@ -146,6 +146,7 @@ body {
 * { scrollbar-width: none; }
 
 a { color: inherit; text-decoration: none; }
+@media (hover: hover) { a:hover { color: var(--tertiary); } }
 button { cursor: pointer; font-family: inherit; background: none; border: none; padding: 0; }
 ul, ol { list-style: none; margin: 0; padding: 0; }
 img, video { display: block; max-width: 100%; height: auto; }
@@ -520,7 +521,7 @@ main[data-v-f3941143] {
 }
 
 .right .initiatives-btn .decorator i {
-  background: var(--text-light);
+  background: var(--tertiary);
   -webkit-clip-path: circle(50% at 50% 50%);
   clip-path: circle(50% at 50% 50%);
   display: block;
@@ -789,6 +790,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
 
 .menu-mobile .menu-footer .mobile-book-cta:hover {
   background: var(--accent);
+  color: var(--text-light);
 }
 
 .menu-mobile .menu-footer .mobile-book-cta svg {
@@ -1244,6 +1246,7 @@ body:not(.index-page) .layout-header .menu.-dk li > * {
   font-weight: var(--font-medium);
   line-height: 1;
   text-transform: uppercase;
+  color: var(--tertiary);
 }
 
 .work .medias {
@@ -1600,7 +1603,7 @@ body:not(.index-page) > main {
   font-size: 12rem;
   letter-spacing: .12rem;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--tertiary);
   margin-bottom: 30rem;
   padding: 0 var(--content-padding);
 }
@@ -1640,7 +1643,7 @@ body:not(.index-page) > main {
 
 .timeline-year {
   font-size: 12rem;
-  color: var(--text-muted);
+  color: var(--tertiary);
   min-width: 80rem;
 }
 
@@ -1836,7 +1839,7 @@ body:not(.index-page) > main {
   font-size: 12rem;
   letter-spacing: .1rem;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--tertiary);
 }
 
 .case-study-item .description {
@@ -1961,7 +1964,7 @@ body:not(.index-page) > main {
 }
 
 @media (hover: hover) {
-  .calendly-section a:hover { background: var(--accent); }
+  .calendly-section a:hover { background: var(--accent); color: var(--text-light); }
 }
 
 /* Booking placeholder (replaces Calendly inline widget until account is wired up) */
@@ -2058,7 +2061,7 @@ body:not(.index-page) > main {
 }
 
 @media (hover: hover) {
-  .submit-btn:hover { background: var(--accent); transform: translateY(-2rem); }
+  .submit-btn:hover { background: var(--accent); color: var(--text-light); transform: translateY(-2rem); }
 }
 
 .submit-btn:active { transform: translateY(1rem); }
@@ -2093,6 +2096,7 @@ body:not(.index-page) > main {
 
 .cta-book:hover {
   background: var(--accent);
+  color: var(--text-light);
   transform: translate3d(5rem, 0, 0);
 }
 
@@ -2317,7 +2321,7 @@ body.showreel-open {
 }
 
 @media (hover: hover) {
-  .form-success-cta:hover { background: var(--accent); }
+  .form-success-cta:hover { background: var(--accent); color: var(--text-light); }
 }
 
 /* ========================================
@@ -2907,8 +2911,7 @@ a:focus-visible, button:focus-visible {
   font-weight: var(--font-medium);
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--text-light);
-  opacity: .6;
+  color: var(--tertiary);
   font-variant-numeric: tabular-nums;
 }
 
