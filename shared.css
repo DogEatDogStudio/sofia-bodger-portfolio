@@ -1694,10 +1694,12 @@ body:not(.index-page) > main {
 /* ========================================
    PAGE SPECIFIC - SERVICES
    ======================================== */
-.services-section { padding: 0 var(--content-padding) 0; }
+/* Main container: horizontal padding only — matches pattern of contact-page, case-studies-page.
+   The global body:not(.index-page) rule owns padding-top via higher specificity. */
+.services-page { padding: 0 var(--content-padding); }
 
 @media (min-width: 1024px) {
-  .services-section { padding: 0 var(--content-padding-dk) 0; }
+  .services-page { padding: 0 var(--content-padding-dk); }
 }
 
 .services-header { margin-bottom: 40rem; }
@@ -1717,12 +1719,12 @@ body:not(.index-page) > main {
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 100rem;
+  gap: 60rem;
   margin-top: 0;
 }
 
 @media (min-width: 1024px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 80rem; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 60rem; }
 }
 
 .service-card {

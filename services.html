@@ -206,23 +206,5 @@
       });
     });
   </script>
-  <script>
-    if (typeof gsap !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced) {
-        // Service cards stagger reveal
-        gsap.from('.service-card', {
-          scrollTrigger: { trigger: '.services-grid', start: 'top 80%', once: true },
-          opacity: 0, y: 40, duration: 0.7, stagger: 0.1, ease: 'power3.out'
-        });
-        // Process items stagger
-        gsap.from('.process-item', {
-          scrollTrigger: { trigger: '.process-grid', start: 'top 85%', once: true },
-          opacity: 0, y: 30, duration: 0.6, stagger: 0.12, ease: 'power3.out'
-        });
-      }
-    }
-  </script>
 </body>
 </html>
