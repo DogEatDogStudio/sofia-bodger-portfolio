@@ -24,3 +24,6 @@ dist/
 # Temporary files
 *.tmp
 *.bak
+
+# Claude Code internals
+.claude/
